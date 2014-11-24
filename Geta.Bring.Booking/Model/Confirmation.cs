@@ -1,4 +1,4 @@
-﻿namespace Geta.Bring.Booking
+﻿namespace Geta.Bring.Booking.Model
 {
     public class Confirmation
     {

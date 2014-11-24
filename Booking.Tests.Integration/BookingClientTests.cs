@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Geta.Bring.Booking;
+using Geta.Bring.Booking.Model;
 using Xunit;
 
 namespace Booking.Tests.Integration
@@ -14,7 +15,7 @@ namespace Booking.Tests.Integration
         {
             var settings = new BookingSettings(TestSettings.Uid, TestSettings.Key, TestSettings.ClientUri);
             var sut = new BookingClient(settings);
-            var consignment = new Consignment();
+            //var consignment = new Consignment();
 
             /*var confirmation = await sut.Book(consignment);
 

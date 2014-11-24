@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FluentAssertions;
 using Geta.Bring.Booking.Dtos;
 using Geta.Bring.Booking.Infrastructure;
+using Geta.Bring.Booking.Model;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -18,71 +19,53 @@ namespace Booking.Tests.Integration
             {
                 TestIndicator = true,
                 SchemaVersion = 1,
-                Consignments = new List<BookingRequest.Consignment>
+                Consignments = new List<Consignment>
                 {
-                    new BookingRequest.Consignment
-                    {
-                        CorrelationId = "INTERNAL-123456",
-                        ShippingDateTime = DateTime.Parse("Sat, 22 Nov 2014 13:33:56.483"),
-
-                        Parties = new BookingRequest.Parties
+                    new Consignment(
+                        "INTERNAL-123456", 
+                        DateTime.Parse("Sat, 22 Nov 2014 13:33:56.483"),
+                        new Parties(
+                            new Party(
+                                "Ola Nordmann",
+                                "Testsvingen 12",
+                                null,
+                                "0263",
+                                "OSLO",
+                                "no",
+                                "1234",
+                                "Hentes på baksiden etter klokken to",
+                                new Contact(
+                                    "Trond Nordmann",
+                                    "trond@nordmanntest.no",
+                                    "99999999"
+                                )),
+                            new Party(
+                                "Tore Mottaker",
+                                "Mottakerveien 14",
+                                "c/o Tina Mottaker",
+                                "0659",
+                                "OSLO",
+                                "no",
+                                "43242",
+                                "Bruk ringeklokken",
+                                new Contact(
+                                    "Tore mottaker",
+                                    "tore@mottakertest.no",
+                                    "88888888"
+                                ))
+                            ),
+                        new Product(
+                            "SERVICEPAKKE",
+                            "PARCELS_NORWAY-10005540322"),
+                        new[]
                         {
-                            Sender = new BookingRequest.Party
-                            {
-                                Name = "Ola Nordmann",
-                                AddressLine = "Testsvingen 12",
-                                AddressLine2 = null,
-                                PostalCode = "0263",
-                                City = "OSLO",
-                                CountryCode = "no",
-                                Reference = "1234",
-                                AdditionalAddressInfo = "Hentes på baksiden etter klokken to",
-                                Contact = new BookingRequest.Contact
-                                {
-                                    Name = "Trond Nordmann",
-                                    Email = "trond@nordmanntest.no",
-                                    PhoneNumber = "99999999"
-                                }
-                            },
-                            Recipient = new BookingRequest.Party
-                            {
-                                Name = "Tore Mottaker",
-                                AddressLine = "Mottakerveien 14",
-                                AddressLine2 = "c/o Tina Mottaker",
-                                PostalCode = "0659",
-                                City = "OSLO",
-                                CountryCode = "no",
-                                Reference = "43242",
-                                AdditionalAddressInfo = "Bruk ringeklokken",
-                                Contact = new BookingRequest.Contact
-                                {
-                                    Name = "Tore mottaker",
-                                    Email = "tore@mottakertest.no",
-                                    PhoneNumber = "88888888"
-                                }
-                            }
-                        },
-                        Product = new BookingRequest.Product
-                        {
-                            Id = "SERVICEPAKKE",
-                            CustomerNumber = "PARCELS_NORWAY-10005540322"
-                        },
-                        Packages = new List<BookingRequest.Package>
-                        {
-                            new BookingRequest.Package
-                            {
-                                CorrelationId = "PACKAGE-123",
-                                WeightInKg = 1.1,
-                                GoodsDescription = "Testing equipment",
-                                Dimensions = new BookingRequest.Dimensions
-                                {
-                                    HeightInCm = 13,
-                                    WidthInCm = 23,
-                                    LengthInCm = 10
-                                }
-                            }
-                        }
-                    }
+                            new Package(
+                                "PACKAGE-123",
+                                1.1,
+                                "Testing equipment",
+                                new Dimensions(13, 23, 10)
+                            )
+                        })
                 }
             };
             var result = JsonConvert.SerializeObject(request, new MilisecondEpochConverter());

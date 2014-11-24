@@ -52,14 +52,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingClient.cs" />
-    <Compile Include="Confirmation.cs" />
-    <Compile Include="Consignment.cs" />
+    <Compile Include="Model\Confirmation.cs" />
+    <Compile Include="Model\Consignment.cs" />
     <Compile Include="Dtos\BookingResponse.cs" />
     <Compile Include="BookingSettings.cs" />
     <Compile Include="Dtos\BookingRequest.cs" />
     <Compile Include="Infrastructure\MilisecondEpochConverter.cs" />
     <Compile Include="Mapping\BookingResponseMapping.cs" />
     <Compile Include="Mapping\ConsignmentMapping.cs" />
+    <Compile Include="Model\Contact.cs" />
+    <Compile Include="Model\Dimensions.cs" />
+    <Compile Include="Model\Package.cs" />
+    <Compile Include="Model\Parties.cs" />
+    <Compile Include="Model\Party.cs" />
+    <Compile Include="Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

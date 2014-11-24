@@ -8,11 +8,12 @@ namespace Geta.Bring.Booking
         public string Key { get; private set; }
         public Uri ClientUri { get; private set; }
         public Uri BookingEndpointUri { get; private set; }
+        public bool IsTest { get; private set; }
 
-        public BookingSettings(string uid, string key, Uri clientUri)
-            : this(uid, key, clientUri, new Uri("https://api.bring.com/booking/api/booking")) { }
+        public BookingSettings(string uid, string key, Uri clientUri, bool test = false)
+            : this(uid, key, clientUri, new Uri("https://api.bring.com/booking/api/booking"), test) { }
 
-        public BookingSettings(string uid, string key, Uri clientUri, Uri bookingEndpointUri)
+        public BookingSettings(string uid, string key, Uri clientUri, Uri bookingEndpointUri, bool isTest = false)
         {
             if (uid == null) throw new ArgumentNullException("uid");
             if (key == null) throw new ArgumentNullException("key");
@@ -23,6 +24,7 @@ namespace Geta.Bring.Booking
             Key = key;
             ClientUri = clientUri;
             BookingEndpointUri = bookingEndpointUri;
+            IsTest = isTest;
         }
     }
 }
