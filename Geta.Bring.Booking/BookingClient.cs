@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -21,11 +22,22 @@ namespace Geta.Bring.Booking
             Settings = settings;
         }
 
-        public async Task<IEnumerable<Confirmation>> BookAsync(IEnumerable<Consignment> consignment)
+        public async Task<Confirmation> BookAsync(Consignment consignment)
+        {
+            var consignments = await BookAsync(new[] {consignment}).ConfigureAwait(false);
+            var first = consignments.FirstOrDefault();
+            if (first == null)
+            {
+                return new Confirmation(); // TODO: Create failure confirmation
+            }
+            return first;
+        }
+
+        public async Task<IEnumerable<Confirmation>> BookAsync(IEnumerable<Consignment> consignments)
         {
             using (var client = CreateClient())
             {
-                var stringRequest = JsonConvert.SerializeObject(consignment.ToRequest(), new MilisecondEpochConverter());
+                var stringRequest = JsonConvert.SerializeObject(consignments.ToRequest(), new MilisecondEpochConverter());
                 var requestContent = new StringContent(stringRequest, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(Settings.BookingEndpointUri, requestContent).ConfigureAwait(false);
                 var stringResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
