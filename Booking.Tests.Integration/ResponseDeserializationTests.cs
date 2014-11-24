@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using FluentAssertions;
 using Geta.Bring.Booking.Dtos;
 using Geta.Bring.Booking.Infrastructure;
@@ -13,35 +13,80 @@ namespace Booking.Tests.Integration
         [Fact]
         public void it_can_be_deserialized()
         {
-            var result = JsonConvert.DeserializeObject<BookingResponse>(SuccessJsonResponse, new MilisecondEpochConverter());
+            var expected = new BookingResponse
+            {
+                Consignments = new List<BookingResponse.Consignment>
+                {
+                    new BookingResponse.Consignment
+                    {
+                        CorrelationId = "INTERNAL-123456",
+                        Confirmation = new BookingResponse.Confirmation
+                        {
+                            ConsignmentNumber = "70438101268018539",
+                            Links = new BookingResponse.Links
+                            {
+                                Labels = new Uri("https://www.mybring.com/booking/labels/2968466?auth-token=5cf1dcee-4f01-4c9a-9870-3ba6d9ba050b"),
+                                Tracking = new Uri("http://sporing.bring.no/sporing.html?q=70438101268018539")
+                            },
+                            DateAndTimes = new BookingResponse.DateAndTimes
+                            {
+                                EarliestPickup = null,
+                                ExpectedDelivery = DateTime.Parse("Sat, 22 Nov 2014 13:33:56.515")
+                            },
+                            Packages = new List<BookingResponse.Package>
+                            {
+                                new BookingResponse.Package
+                                {
+                                    CorrelationId = "PACKAGE-123",
+                                    PackageNumber = "370438101268058536"
+                                }
+                            }
+                        },
+                        Errors = null
+                    }
+                }
+            }; 
 
-            result.Consignments.Should().NotBeNull();
-            result.Consignments.Should().HaveCount(1);
-            var consignment = result.Consignments.First();
-            consignment.CorrelationId.Should().Be("INTERNAL-123456");
+            var actual = JsonConvert.DeserializeObject<BookingResponse>(SuccessJsonResponse, new MilisecondEpochConverter());
 
-            consignment.Confirmation.Should().NotBeNull();
-            var confirmation = consignment.Confirmation;
-            confirmation.ConsignmentNumber.Should().Be("70438101268018539");
-
-            confirmation.Links.Should().NotBeNull();
-            confirmation.Links.Labels.Should()
-                .Be(new Uri("https://www.mybring.com/booking/labels/2968466?auth-token=5cf1dcee-4f01-4c9a-9870-3ba6d9ba050b"));
-            confirmation.Links.Tracking.Should()
-                .Be(new Uri("http://sporing.bring.no/sporing.html?q=70438101268018539"));
-
-            confirmation.DateAndTimes.EarliestPickup.Should().Be(null);
-            confirmation.DateAndTimes.ExpectedDelivery.Should().Be(DateTime.Parse("Sat, 22 Nov 2014 13:33:56.515"));
-
-            confirmation.Packages.Should().HaveCount(1);
-            var package = confirmation.Packages.First();
-            package.CorrelationId.Should().Be("PACKAGE-123");
-            package.PackageNumber.Should().Be("370438101268058536");
-
-            consignment.Errors.Should().BeNull();
+            expected.ShouldBeEquivalentTo(actual);
         }
 
-        
+        [Fact]
+        public void it_can_be_deserialized_when_has_errors()
+        {
+            var expected = new BookingResponse
+            {
+                Consignments = new List<BookingResponse.Consignment>
+                {
+                    new BookingResponse.Consignment
+                    {
+                        CorrelationId = null,
+                        Confirmation = null,
+                        Errors = new List<BookingResponse.Error>
+                        {
+                            new BookingResponse.Error
+                            {
+                                UniqueId = "b2e73d9f-6281-4ed2-91ee-431eba33f766",
+                                Code = "BOOK-INPUT-023",
+                                Messages = new List<BookingResponse.ErrorMessage>
+                                {
+                                    new BookingResponse.ErrorMessage
+                                    {
+                                        Lang = "en",
+                                        Message = "The shipment is too big to send with the given product"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            var actual = JsonConvert.DeserializeObject<BookingResponse>(ErrorJsonResponse, new MilisecondEpochConverter());
+
+            expected.ShouldBeEquivalentTo(actual);
+        }
 
         private const string SuccessJsonResponse = @"
 {
@@ -70,6 +115,23 @@ namespace Booking.Tests.Integration
             ""errors"": null
         }
     ]
+}
+";
+        private const string ErrorJsonResponse = @"
+{
+	""consignments"":[{
+		""confirmation"":null,
+		""errors"":[{
+			""uniqueId"":""b2e73d9f-6281-4ed2-91ee-431eba33f766"",
+			""code"":""BOOK-INPUT-023"",
+			""messages"":[{
+				""lang"":""en"",
+				""message"":""The shipment is too big to send with the given product""
+			}],
+			""consignmentCorrelationId"":null,
+			""packageCorrelationId"":null
+		}]
+	}]
 }
 ";
     }
