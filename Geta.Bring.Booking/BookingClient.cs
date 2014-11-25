@@ -36,7 +36,7 @@ namespace Geta.Bring.Booking
             {
                 var stringRequest = JsonConvert.SerializeObject(consignments.ToRequest(Settings.IsTest), new MilisecondEpochConverter());
                 var requestContent = new StringContent(stringRequest, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(Settings.BookingEndpointUri, requestContent).ConfigureAwait(false);
+                var response = await client.PostAsync(Settings.EndpointUri, requestContent).ConfigureAwait(false);
                 var stringResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 return JsonConvert.DeserializeObject<BookingResponse>(stringResponse, new MilisecondEpochConverter())
                     .ToConfirmation();

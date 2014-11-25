@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DF2B6C
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.Shipping", "Geta.Bring.Shipping\Geta.Bring.Shipping.csproj", "{F95D12D5-2FF7-4909-B031-3FB71BA11931}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.Tracking", "Geta.Bring.Tracking\Geta.Bring.Tracking.csproj", "{D92122BE-2405-45D2-A428-82BBF6E85A20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,14 @@ Global
 		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
