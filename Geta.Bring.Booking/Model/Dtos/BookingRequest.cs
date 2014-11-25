@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Geta.Bring.Booking.Model;
 
-namespace Geta.Bring.Booking.Dtos
+namespace Geta.Bring.Booking.Model.Dtos
 {
     internal class BookingRequest
     {

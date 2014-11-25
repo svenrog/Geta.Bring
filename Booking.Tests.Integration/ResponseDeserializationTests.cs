@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using Geta.Bring.Booking.Dtos;
 using Geta.Bring.Booking.Infrastructure;
+using Geta.Bring.Booking.Model;
+using Geta.Bring.Booking.Model.Dtos;
 using Newtonsoft.Json;
 using Xunit;
 
@@ -63,21 +64,19 @@ namespace Booking.Tests.Integration
                     {
                         CorrelationId = null,
                         Confirmation = null,
-                        Errors = new List<BookingResponse.Error>
+                        Errors = new List<Error>
                         {
-                            new BookingResponse.Error
-                            {
-                                UniqueId = "b2e73d9f-6281-4ed2-91ee-431eba33f766",
-                                Code = "BOOK-INPUT-023",
-                                Messages = new List<BookingResponse.ErrorMessage>
+                            new Error(
+                                "b2e73d9f-6281-4ed2-91ee-431eba33f766",
+                                "BOOK-INPUT-023",
+                                new List<ErrorMessage>
                                 {
-                                    new BookingResponse.ErrorMessage
-                                    {
-                                        Lang = "en",
-                                        Message = "The shipment is too big to send with the given product"
-                                    }
+                                    new ErrorMessage(
+                                        "en",
+                                        "The shipment is too big to send with the given product"
+                                    )
                                 }
-                            }
+                            )
                         }
                     }
                 }

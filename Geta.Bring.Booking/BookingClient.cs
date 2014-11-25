@@ -5,10 +5,10 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Geta.Bring.Booking.Dtos;
 using Geta.Bring.Booking.Infrastructure;
 using Geta.Bring.Booking.Mapping;
 using Geta.Bring.Booking.Model;
+using Geta.Bring.Booking.Model.Dtos;
 using Newtonsoft.Json;
 
 namespace Geta.Bring.Booking
@@ -27,7 +27,7 @@ namespace Geta.Bring.Booking
         {
             var consignments = await BookAsync(new[] {consignment}).ConfigureAwait(false);
             var first = consignments.FirstOrDefault();
-            return first ?? Confirmation.Error("No confirmation received.");
+            return first ?? Confirmation.CreateError("No confirmation received.");
         }
 
         public async Task<IEnumerable<Confirmation>> BookAsync(IEnumerable<Consignment> consignments)

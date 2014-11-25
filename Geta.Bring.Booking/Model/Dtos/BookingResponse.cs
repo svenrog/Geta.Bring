@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Geta.Bring.Booking.Dtos
+namespace Geta.Bring.Booking.Model.Dtos
 {
     internal class BookingResponse
     {
@@ -38,19 +38,6 @@ namespace Geta.Bring.Booking.Dtos
         {
             public string CorrelationId { get; set; }
             public string PackageNumber { get; set; }
-        }
-
-        public class Error
-        {
-            public string UniqueId { get; set; }
-            public string Code { get; set; }
-            public IEnumerable<ErrorMessage> Messages { get; set; }
-        }
-
-        public class ErrorMessage
-        {
-            public string Lang { get; set; }
-            public string Message { get; set; }
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
-using Geta.Bring.Booking.Dtos;
 using Geta.Bring.Booking.Infrastructure;
 using Geta.Bring.Booking.Model;
+using Geta.Bring.Booking.Model.Dtos;
 using Newtonsoft.Json;
 using Xunit;
 

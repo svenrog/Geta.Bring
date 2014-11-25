@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Geta.Bring.Booking.Dtos;
 using Geta.Bring.Booking.Model;
+using Geta.Bring.Booking.Model.Dtos;
 
 namespace Geta.Bring.Booking.Mapping
 {
