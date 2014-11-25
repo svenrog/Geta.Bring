@@ -27,11 +27,7 @@ namespace Geta.Bring.Booking
         {
             var consignments = await BookAsync(new[] {consignment}).ConfigureAwait(false);
             var first = consignments.FirstOrDefault();
-            if (first == null)
-            {
-                return new Confirmation(); // TODO: Create failure confirmation
-            }
-            return first;
+            return first ?? Confirmation.Error("No confirmation received.");
         }
 
         public async Task<IEnumerable<Confirmation>> BookAsync(IEnumerable<Consignment> consignments)
