@@ -8,7 +8,7 @@ namespace Geta.Bring.Tracking.Model
         public PackageStatus(
             string statusDescription, 
             string packageNumber, 
-            string previousPakcageNumber, 
+            string previousPackageNumber, 
             string productName, 
             string productCode, 
             string brand, 
@@ -18,14 +18,14 @@ namespace Geta.Bring.Tracking.Model
             double volumeInDm3, 
             double weightInKgs, 
             string pickupCode, 
-            DateTime dateOfReturn, 
+            string dateOfReturn, 
             string senderName, 
             Address recipientAddress, 
             IEnumerable<TrackingEvent> eventSet)
         {
             if (statusDescription == null) throw new ArgumentNullException("statusDescription");
             if (packageNumber == null) throw new ArgumentNullException("packageNumber");
-            if (previousPakcageNumber == null) throw new ArgumentNullException("previousPakcageNumber");
+            if (previousPackageNumber == null) throw new ArgumentNullException("previousPackageNumber");
             if (productName == null) throw new ArgumentNullException("productName");
             if (productCode == null) throw new ArgumentNullException("productCode");
             if (brand == null) throw new ArgumentNullException("brand");
@@ -46,14 +46,14 @@ namespace Geta.Bring.Tracking.Model
             Brand = brand;
             ProductCode = productCode;
             ProductName = productName;
-            PreviousPakcageNumber = previousPakcageNumber;
+            PreviousPackageNumber = previousPackageNumber;
             PackageNumber = packageNumber;
             StatusDescription = statusDescription;
         }
 
         public string StatusDescription { get; private set; }
         public string PackageNumber { get; private set; }
-        public string PreviousPakcageNumber { get; private set; }
+        public string PreviousPackageNumber { get; private set; }
         public string ProductName { get; private set; }
         public string ProductCode { get; private set; }
         public string Brand { get; private set; }
@@ -63,7 +63,7 @@ namespace Geta.Bring.Tracking.Model
         public double VolumeInDm3 { get; private set; }
         public double WeightInKgs { get; private set; }
         public string PickupCode { get; private set; }
-        public DateTime DateOfReturn { get; private set; }
+        public string DateOfReturn { get; private set; }
         public string SenderName { get; private set; }
         public Address RecipientAddress { get; private set; }
         public IEnumerable<TrackingEvent> EventSet { get; private set; }

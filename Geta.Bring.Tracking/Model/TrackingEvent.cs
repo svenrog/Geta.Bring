@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Geta.Bring.Tracking.Model
 {
@@ -26,7 +27,6 @@ namespace Geta.Bring.Tracking.Model
             if (status == null) throw new ArgumentNullException("status");
             if (recipientSignature == null) throw new ArgumentNullException("recipientSignature");
             if (unitId == null) throw new ArgumentNullException("unitId");
-            if (unitInformationUrl == null) throw new ArgumentNullException("unitInformationUrl");
             if (unitType == null) throw new ArgumentNullException("unitType");
             if (postalCode == null) throw new ArgumentNullException("postalCode");
             if (city == null) throw new ArgumentNullException("city");
@@ -34,8 +34,7 @@ namespace Geta.Bring.Tracking.Model
             if (country == null) throw new ArgumentNullException("country");
             if (displayDate == null) throw new ArgumentNullException("displayDate");
             if (displayTime == null) throw new ArgumentNullException("displayTime");
-            if (definitions == null) throw new ArgumentNullException("definitions");
-            Definitions = definitions;
+            Definitions = definitions ?? Enumerable.Empty<TrackingEventDefinition>();
             ConsignmentEvent = consignmentEvent;
             DisplayTime = displayTime;
             DisplayDate = displayDate;

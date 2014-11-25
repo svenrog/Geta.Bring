@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Geta.Bring.Tracking.Model
 {
     internal class TrackingResponse
     {
-        public TrackingResponse(ConsignmentStatus consignmentSet)
+        public TrackingResponse(IEnumerable<ConsignmentStatus> consignmentSet)
         {
             if (consignmentSet == null) throw new ArgumentNullException("consignmentSet");
             ConsignmentSet = consignmentSet;
         }
 
-        public ConsignmentStatus ConsignmentSet { get; private set; }
+        public IEnumerable<ConsignmentStatus> ConsignmentSet { get; private set; }
     }
 }
