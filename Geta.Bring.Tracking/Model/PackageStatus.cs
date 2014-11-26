@@ -29,12 +29,9 @@ namespace Geta.Bring.Tracking.Model
             if (productName == null) throw new ArgumentNullException("productName");
             if (productCode == null) throw new ArgumentNullException("productCode");
             if (brand == null) throw new ArgumentNullException("brand");
-            if (pickupCode == null) throw new ArgumentNullException("pickupCode");
-            if (senderName == null) throw new ArgumentNullException("senderName");
-            if (recipientAddress == null) throw new ArgumentNullException("recipientAddress");
             if (eventSet == null) throw new ArgumentNullException("eventSet");
             EventSet = eventSet;
-            RecipientAddress = recipientAddress;
+            RecipientAddress = recipientAddress ?? Address.Empty;
             SenderName = senderName;
             DateOfReturn = dateOfReturn;
             PickupCode = pickupCode;
@@ -67,6 +64,5 @@ namespace Geta.Bring.Tracking.Model
         public string SenderName { get; private set; }
         public Address RecipientAddress { get; private set; }
         public IEnumerable<TrackingEvent> EventSet { get; private set; }
-
     }
 }

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using Geta.Bring.Tracking.Model;
+using Newtonsoft.Json;
 
 namespace Geta.Bring.Tracking
 {
@@ -14,9 +18,30 @@ namespace Geta.Bring.Tracking
 
         public TrackingSettings Settings { get; private set; }
 
-        public IEnumerable<ConsignmentStatus> Track(string trackingNumber)
+        public async Task<IEnumerable<ConsignmentStatus>> Track(string trackingNumber)
         {
-            return null;
+            using (var client = CreateClient())
+            {
+                var requestUri = CreateRequestUri(trackingNumber);
+                var jsonResponse = await client.GetStringAsync(requestUri).ConfigureAwait(false);
+                var response = JsonConvert.DeserializeObject<TrackingResponse>(jsonResponse);
+                return response.ConsignmentSet;
+            }
+        }
+
+        private Uri CreateRequestUri(string trackingNumber)
+        {
+            var ub = new UriBuilder(Settings.EndpointUri);
+            var queryValues = HttpUtility.ParseQueryString(Settings.EndpointUri.Query);
+            queryValues.Add("q", trackingNumber);
+            ub.Query = queryValues.ToString();
+            return ub.Uri;
+        }
+
+        private HttpClient CreateClient()
+        {
+            var client = new HttpClient();
+            return client;
         }
     }
 }

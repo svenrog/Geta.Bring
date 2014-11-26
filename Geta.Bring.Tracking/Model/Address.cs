@@ -32,5 +32,8 @@ namespace Geta.Bring.Tracking.Model
         public string City { get; private set; }
         public string CountryCode { get; private set; }
         public string Country { get; private set; }
+
+        public static Address Empty = 
+            new Address(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
     }
 }
