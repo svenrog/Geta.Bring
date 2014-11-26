@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.Tracking", "Geta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracking.Tests.Integration", "Tracking.Tests.Integration\Tracking.Tests.Integration.csproj", "{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping.Tests.Integration", "Shipping.Tests.Integration\Shipping.Tests.Integration.csproj", "{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
 		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
+		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
 	EndGlobalSection
 EndGlobal
