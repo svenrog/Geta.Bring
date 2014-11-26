@@ -2,6 +2,9 @@
 
 namespace Geta.Bring.Shipping.Model
 {
+    /// <summary>
+    /// Additional services from http://developer.bring.com/additionalresources/productlist.html?from=shipping
+    /// </summary>
     public class AdditionalService
     {
         private AdditionalService(string displayName, string code, IEnumerable<Product> appliesTo)
