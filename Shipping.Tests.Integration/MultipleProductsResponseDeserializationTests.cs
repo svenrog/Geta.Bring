@@ -70,7 +70,12 @@ namespace Shipping.Tests.Integration
                             null
                             )
                         )
-                });
+                },
+                new TraceMessages(
+                    new[]
+                    {
+                        "Package exceed maximum measurements for product A-POST "
+                    }));
 
             var actual = JsonConvert.DeserializeObject<ShippingResponse>(MultipleProductsSuccessJsonResponse);
 
@@ -161,11 +166,7 @@ namespace Shipping.Tests.Integration
         }
     ],
     ""TraceMessages"": {
-        ""Message"": [
-            ""Added fee 'brev-varsling' (NOK 7.00) to base price of SERVICEPAKKE since request did not have additional service 'eVarsling' specified."",
-            ""Package exceed maximum measurements for product B-POST "",
-            ""Package exceed maximum measurements for product A-POST ""
-        ]
+        ""Message"": ""Package exceed maximum measurements for product A-POST ""
     }
 }
 ";

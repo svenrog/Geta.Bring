@@ -42,7 +42,15 @@ namespace Shipping.Tests.Integration
                             null
                             )
                         )
-                });
+                },
+                new TraceMessages(
+                    new[]
+                    {
+                        "Added fee 'brev-varsling' (NOK 7.00) to base price of SERVICEPAKKE since request did not have additional service 'eVarsling' specified.",
+                        "Package exceed maximum measurements for product B-POST ",
+                        "Package exceed maximum measurements for product A-POST "
+                    })
+                );
 
             var actual = JsonConvert.DeserializeObject<ShippingResponse>(SingleProductSuccessJsonResponse);
 
