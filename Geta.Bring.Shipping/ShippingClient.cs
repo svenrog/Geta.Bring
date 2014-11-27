@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Geta.Bring.Shipping.Model;
 
 namespace Geta.Bring.Shipping
 {
@@ -10,6 +12,12 @@ namespace Geta.Bring.Shipping
         {
             if (settings == null) throw new ArgumentNullException("settings");
             Settings = settings;
+        }
+
+        public async Task<T> Find<T>(EstimateQuery query)
+            where T : IEstimate
+        {
+            throw new NotImplementedException();
         }
     }
 }
