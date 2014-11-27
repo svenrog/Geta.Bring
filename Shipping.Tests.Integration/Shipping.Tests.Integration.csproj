@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MultipleProductsResponseDeserializationTests.cs" />
     <Compile Include="ShippingClientTests.cs" />
+    <Compile Include="SingleProductResponseDeserializationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

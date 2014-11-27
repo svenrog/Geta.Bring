@@ -4,15 +4,15 @@ namespace Geta.Bring.Shipping.Model
 {
     public class PriceEstimate : IEstimate
     {
-        public PriceEstimate(Product product, Price price)
+        public PriceEstimate(Product product, PackagePrice packagePrice)
         {
             if (product == null) throw new ArgumentNullException("product");
-            if (price == null) throw new ArgumentNullException("price");
-            Price = price;
+            if (packagePrice == null) throw new ArgumentNullException("packagePrice");
+            PackagePrice = packagePrice;
             Product = product;
         }
 
         public Product Product { get; private set; }
-        public Price Price { get; private set; }
+        public PackagePrice PackagePrice { get; private set; }
     }
 }

@@ -7,22 +7,22 @@ namespace Geta.Bring.Shipping.Model
         public ShipmentEstimate(
             Product product, 
             GuiInformation guiInformation, 
-            Price price, 
+            PackagePrice packagePrice, 
             ExpectedDelivery expectedDelivery)
         {
             if (product == null) throw new ArgumentNullException("product");
             if (guiInformation == null) throw new ArgumentNullException("guiInformation");
-            if (price == null) throw new ArgumentNullException("price");
+            if (packagePrice == null) throw new ArgumentNullException("packagePrice");
             if (expectedDelivery == null) throw new ArgumentNullException("expectedDelivery");
             ExpectedDelivery = expectedDelivery;
-            Price = price;
+            PackagePrice = packagePrice;
             GuiInformation = guiInformation;
             Product = product;
         }
 
         public Product Product { get; private set; }
         public GuiInformation GuiInformation { get; private set; }
-        public Price Price { get; private set; }
+        public PackagePrice PackagePrice { get; private set; }
         public ExpectedDelivery ExpectedDelivery { get; private set; }
     }
 }
