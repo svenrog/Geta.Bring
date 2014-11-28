@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Geta.Bring.Shipping.Model;
 
@@ -14,14 +15,15 @@ namespace Geta.Bring.Shipping
             Settings = settings;
         }
 
-        public async Task<T> FindAsync<T>(EstimateQuery query)
+        public async Task<EstimateResult<T>> FindAsync<T>(EstimateQuery query)
             where T : IEstimate
         {
             foreach (var handler in Settings.QueryHandlers)
             {
                 if (handler.CanHandle(typeof(T)))
                 {
-                    return (T)await handler.FindEstimateAsync(query).ConfigureAwait(false);
+                    var estimate = await handler.FindEstimatesAsync(query).ConfigureAwait(false);
+                    return new EstimateResult<T>(estimate.Estimates.Cast<T>());
                 }
             }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Geta.Bring.Shipping.Model
 {
@@ -45,7 +46,7 @@ namespace Geta.Bring.Shipping.Model
         public static Product Courier6h = new Product("Bud 6 timer", "COURIER_6H", true, true);
         public static Product Ox = new Product("Oil Express", "OX", true, true);
 
-        public IEnumerable<Product> All
+        public static IEnumerable<Product> All
         {
             get
             {
@@ -74,6 +75,11 @@ namespace Geta.Bring.Shipping.Model
                 yield return Courier6h;
                 yield return Ox;
             }
+        }
+
+        public static Product GetByCode(string code)
+        {
+            return All.First(x => x.Code == code);
         }
     }
 }

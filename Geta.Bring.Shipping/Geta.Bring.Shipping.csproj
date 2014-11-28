@@ -55,6 +55,7 @@
     <Compile Include="Infrastructure\DeliveryDateToDateTimeConverter.cs" />
     <Compile Include="Infrastructure\ObjectToArrayConverter.cs" />
     <Compile Include="Model\DeliveryEstimate.cs" />
+    <Compile Include="Model\DeliveryEstimateQueryHandler.cs" />
     <Compile Include="Model\GuiInformation.cs" />
     <Compile Include="Model\ExpectedDelivery.cs" />
     <Compile Include="Model\EstimateQuery.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Model\AdditionalService.cs" />
     <Compile Include="Model\IQueryParameter.cs" />
     <Compile Include="Model\Price.cs" />
+    <Compile Include="Model\PriceEstimateQueryHandler.cs" />
     <Compile Include="Model\QueryParameters\AdditionalServices.cs" />
     <Compile Include="Model\QueryParameters\Edi.cs" />
     <Compile Include="Model\QueryParameters\ShippingDateAndTime.cs" />
@@ -72,9 +74,9 @@
     <Compile Include="Model\PackagePrice.cs" />
     <Compile Include="Model\ProductResponse.cs" />
     <Compile Include="Model\QueryParameters\Products.cs" />
-    <Compile Include="Model\QueryParameters\PublicId.cs" />
     <Compile Include="Model\QueryParameters\ShipmentLeg.cs" />
     <Compile Include="Model\QueryParameters\ShippedFromPostOffice.cs" />
+    <Compile Include="Model\ShipmentEstimateQueryHandler.cs" />
     <Compile Include="Model\ShippingResponse.cs" />
     <Compile Include="Model\TraceMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
