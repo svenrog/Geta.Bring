@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Geta.Bring.Shipping.Infrastructure
 {
-    public class DeliveryDateToDateTimeConverter : JsonConverter
+    internal class DeliveryDateToDateTimeConverter : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

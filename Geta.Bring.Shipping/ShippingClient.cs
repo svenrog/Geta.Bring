@@ -14,10 +14,18 @@ namespace Geta.Bring.Shipping
             Settings = settings;
         }
 
-        public async Task<T> Find<T>(EstimateQuery query)
+        public async Task<T> FindAsync<T>(EstimateQuery query)
             where T : IEstimate
         {
-            throw new NotImplementedException();
+            foreach (var handler in Settings.QueryHandlers)
+            {
+                if (handler.CanHandle(typeof(T)))
+                {
+                    return (T)await handler.FindEstimateAsync(query).ConfigureAwait(false);
+                }
+            }
+
+            throw new Exception(string.Format("No matching query handler found for estimate type {0}", typeof(T).Name));
         }
     }
 }

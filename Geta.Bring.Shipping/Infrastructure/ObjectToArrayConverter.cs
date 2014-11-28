@@ -4,7 +4,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Geta.Bring.Shipping.Infrastructure
 {
-    public class ObjectToArrayConverter<T> : JsonConverter
+    internal class ObjectToArrayConverter<T> : JsonConverter
     {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {

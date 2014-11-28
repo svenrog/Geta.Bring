@@ -61,6 +61,7 @@
     <Compile Include="Model\IEstimate.cs" />
     <Compile Include="Model\AdditionalService.cs" />
     <Compile Include="Model\IQueryParameter.cs" />
+    <Compile Include="Model\Price.cs" />
     <Compile Include="Model\QueryParameters\AdditionalServices.cs" />
     <Compile Include="Model\QueryParameters\Edi.cs" />
     <Compile Include="Model\QueryParameters\ShippingDateAndTime.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Model\TraceMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\ShipmentEstimate.cs" />
+    <Compile Include="QueryHandler.cs" />
     <Compile Include="ShippingClient.cs" />
     <Compile Include="ShippingSettings.cs" />
   </ItemGroup>

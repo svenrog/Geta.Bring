@@ -22,7 +22,7 @@ namespace Shipping.Tests.Integration
                 PackageSize.InGrams(2500),
                 new Edi(true));
 
-            var actual = await sut.Find<ShipmentEstimate>(query);
+            var actual = await sut.FindAsync<ShipmentEstimate>(query);
             /*var actual = await sut.GetEstimatedPrice(query);
             var actual = await sut.GetEstimatedDelivery(query);*/
 
