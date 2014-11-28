@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using Geta.Bring.Shipping.Model;
 using Newtonsoft.Json;
 
@@ -58,7 +59,8 @@ namespace Geta.Bring.Shipping
         private Uri CreateRequestUri(EstimateQuery query)
         {
             var uri = new Uri(Settings.EndpointUri, MethodName);
-            var queryItems = query.Items;
+            var queryItems = HttpUtility.ParseQueryString(string.Empty); // This creates empty HttpValueCollection which creates query string on ToString
+            queryItems.Add(query.Items);
 
             if (Settings.PublicId != null)
             {
