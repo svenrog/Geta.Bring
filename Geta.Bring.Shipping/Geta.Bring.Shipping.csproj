@@ -60,10 +60,20 @@
     <Compile Include="Model\EstimateQuery.cs" />
     <Compile Include="Model\IEstimate.cs" />
     <Compile Include="Model\AdditionalService.cs" />
+    <Compile Include="Model\IQueryParameter.cs" />
+    <Compile Include="Model\QueryParameters\AdditionalServices.cs" />
+    <Compile Include="Model\QueryParameters\Edi.cs" />
+    <Compile Include="Model\QueryParameters\ShippingDateAndTime.cs" />
+    <Compile Include="Model\QueryParameters\PackageSize.cs" />
+    <Compile Include="Model\QueryParameters\PriceAdjustment.cs" />
     <Compile Include="Model\PriceEstimate.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\PackagePrice.cs" />
     <Compile Include="Model\ProductResponse.cs" />
+    <Compile Include="Model\QueryParameters\Products.cs" />
+    <Compile Include="Model\QueryParameters\PublicId.cs" />
+    <Compile Include="Model\QueryParameters\ShipmentLeg.cs" />
+    <Compile Include="Model\QueryParameters\ShippedFromPostOffice.cs" />
     <Compile Include="Model\ShippingResponse.cs" />
     <Compile Include="Model\TraceMessages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +84,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
