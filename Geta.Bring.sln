@@ -22,6 +22,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracking.Tests.Integration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping.Tests.Integration", "Shipping.Tests.Integration\Shipping.Tests.Integration.csproj", "{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.EPi.Commerce", "Geta.Bring.EPi.Commerce\Geta.Bring.EPi.Commerce.csproj", "{41E8992D-D71D-4158-BEE5-BF223242B061}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.EPi.Commerce.Manager", "Geta.Bring.EPi.Commerce.Manager\Geta.Bring.EPi.Commerce.Manager.csproj", "{CB3E8E42-ABE5-46AA-8BD6-71FE64B851B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +56,14 @@ Global
 		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E8992D-D71D-4158-BEE5-BF223242B061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E8992D-D71D-4158-BEE5-BF223242B061}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E8992D-D71D-4158-BEE5-BF223242B061}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41E8992D-D71D-4158-BEE5-BF223242B061}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB3E8E42-ABE5-46AA-8BD6-71FE64B851B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB3E8E42-ABE5-46AA-8BD6-71FE64B851B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB3E8E42-ABE5-46AA-8BD6-71FE64B851B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB3E8E42-ABE5-46AA-8BD6-71FE64B851B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
