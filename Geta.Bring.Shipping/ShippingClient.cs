@@ -5,7 +5,7 @@ using Geta.Bring.Shipping.Model;
 
 namespace Geta.Bring.Shipping
 {
-    public class ShippingClient
+    public class ShippingClient : Geta.Bring.Shipping.IShippingClient
     {
         public ShippingSettings Settings { get; private set; }
 

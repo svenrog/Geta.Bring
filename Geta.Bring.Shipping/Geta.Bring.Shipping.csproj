@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Infrastructure\DeliveryDateToDateTimeConverter.cs" />
     <Compile Include="Infrastructure\ObjectToArrayConverter.cs" />
+    <Compile Include="IShippingClient.cs" />
     <Compile Include="Model\DeliveryEstimate.cs" />
     <Compile Include="Model\DeliveryEstimateQueryHandler.cs" />
     <Compile Include="Model\GuiInformation.cs" />
