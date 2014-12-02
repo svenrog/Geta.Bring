@@ -75,9 +75,31 @@ namespace Geta.Bring.EPi.Commerce
         {
             var shipmentLeg = CreateShipmentLeg(orderAddress, shippingMethod);
             var packageSize = CreatePackageSize(shipment, shipmentLineItems);
+            var additionalParameters = CreateAdditionalParameters(shippingMethod);
             return new EstimateQuery(
                 shipmentLeg,
-                packageSize); // TODO: Add more parameters
+                packageSize,
+                additionalParameters.ToArray());
+        }
+
+        private static IEnumerable<IQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
+        {
+            var hasEdi = bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.Edi, "true"));
+            yield return new Edi(hasEdi);
+
+            var shippedFromPostOffice =
+                bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PostingAtPostOffice, "false"));
+            yield return new ShippedFromPostOffice(shippedFromPostOffice);
+
+            var productCode = shippingMethod.GetShippingMethodParameterValue(ParameterNames.BringProductId, null)
+                              ?? Product.Servicepakke.Code;
+            yield return new Products(Product.GetByCode(productCode));
+
+            var additionalServicesCodes = shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices);
+            var services = additionalServicesCodes.Split(',')
+                .Select(code => AdditionalService.All.FirstOrDefault(x => x.Code == code))
+                .Where(service => service != null);
+            yield return new AdditionalServices(services.ToArray());
         }
 
         private static PackageSize CreatePackageSize(Shipment shipment, IEnumerable<LineItem> shipmentLineItems)
@@ -124,8 +146,12 @@ namespace Geta.Bring.EPi.Commerce
 
         internal static class ParameterNames
         {
+            public const string BringProductId = "BringProductId";
+            public const string PostingAtPostOffice = "PostingAtPostOffice";
             public const string PostalCodeFrom = "PostalCodeFrom";
             public const string CountryFrom = "CountryFrom";
+            public const string Edi = "EDI";
+            public const string AdditionalServices = "AdditionalServices";
         }
 
         internal static class ErrorMessages

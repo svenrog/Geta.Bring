@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Geta.Bring.Shipping.Model
 {
@@ -58,7 +59,7 @@ namespace Geta.Bring.Shipping.Model
                 Product.CarryonHomeshopping
             });
 
-        public IEnumerable<AdditionalService> All
+        public static IEnumerable<AdditionalService> All
         {
             get
             {
@@ -69,6 +70,11 @@ namespace Geta.Bring.Shipping.Model
                 yield return Advisering;
                 yield return PickupPoint;
             }
+        }
+
+        public static AdditionalService GetByCode(string code)
+        {
+            return All.First(x => x.Code == code);
         }
     }
 }

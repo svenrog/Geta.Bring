@@ -8,9 +8,8 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     {
         private const string ParameterName = "additional";
 
-        public AdditionalServices(AdditionalService service, params AdditionalService[] additionalServices)
+        public AdditionalServices(params AdditionalService[] additionalServices)
         {
-            if (service == null) throw new ArgumentNullException("service");
             var services = additionalServices.ToList();
             services.ForEach(x =>
             {
@@ -18,10 +17,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
                     throw new ArgumentException("additionalServices contains null item", "additionalServices");
             });
 
-            Items = new NameValueCollection
-            {
-                {ParameterName, service.Code}
-            };
+            Items = new NameValueCollection();
 
             services
                 .ForEach(x => Items.Add(ParameterName, x.Code));

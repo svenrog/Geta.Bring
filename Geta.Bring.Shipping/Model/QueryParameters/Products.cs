@@ -8,9 +8,8 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     {
         private const string ParameterName = "product";
 
-        public Products(Product product, params Product[] additionalProducts)
+        public Products(params Product[] additionalProducts)
         {
-            if (product == null) throw new ArgumentNullException("product");
             var products = additionalProducts.ToList();
             products.ForEach(x =>
             {
@@ -18,10 +17,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
                     throw new ArgumentException("additionalProducts contains null item", "additionalProducts");
             });
 
-            Items = new NameValueCollection
-            {
-                {ParameterName, product.Code}
-            };
+            Items = new NameValueCollection();
 
             products
                 .ForEach(x => Items.Add(ParameterName, x.Code));
