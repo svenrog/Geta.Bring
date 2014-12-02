@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Geta.Bring.Tracking")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Bring Tracking client.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Geta AS")]
 [assembly: AssemblyProduct("Geta.Bring.Tracking")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyCopyright("Copyright © 2014 Geta AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
