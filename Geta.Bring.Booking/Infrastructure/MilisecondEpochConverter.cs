@@ -15,7 +15,8 @@ namespace Geta.Bring.Booking.Infrastructure
             {
                 return;
             }
-            writer.WriteRawValue(((DateTime)value - _epoch).TotalMilliseconds.ToString(CultureInfo.InvariantCulture));
+            var miliseconds = Convert.ToInt64(((DateTime) value - _epoch).TotalMilliseconds);
+            writer.WriteRawValue((miliseconds.ToString(CultureInfo.InvariantCulture)));
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
