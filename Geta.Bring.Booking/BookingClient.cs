@@ -10,6 +10,7 @@ using Geta.Bring.Booking.Mapping;
 using Geta.Bring.Booking.Model;
 using Geta.Bring.Booking.Model.Dtos;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Geta.Bring.Booking
 {
@@ -34,7 +35,12 @@ namespace Geta.Bring.Booking
         {
             using (var client = CreateClient())
             {
-                var stringRequest = JsonConvert.SerializeObject(consignments.ToRequest(Settings.IsTest), new MilisecondEpochConverter());
+                var settings = new JsonSerializerSettings
+                {
+                    Converters = new JsonConverter[] {new MilisecondEpochConverter()},
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
+                var stringRequest = JsonConvert.SerializeObject(consignments.ToRequest(Settings.IsTest), settings);
                 var requestContent = new StringContent(stringRequest, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(Settings.EndpointUri, requestContent).ConfigureAwait(false);
                 var stringResponse = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
