@@ -23,6 +23,11 @@ namespace Geta.Bring.EPi.Commerce
             _shippingClient = ServiceLocator.Current.GetInstance<IShippingClient>();
         }
 
+        public BringShippingGateway(IMarket market)
+            : this()
+        {
+        }
+
         public ShippingRate GetRate(Guid methodId, Shipment shipment, ref string message)
         {
             if (shipment == null)
