@@ -8,6 +8,12 @@
         </td>
     </tr>
     <tr>
+        <th class="FormLabelCell">Customer number:</th>
+        <td class="FormLabelCell">
+            <asp:TextBox runat="server" ID="txtCustomerNumber"/>
+        </td>
+    </tr>
+    <tr>
         <th class="FormLabelCell">Ship from postal code:</th>
         <td class="FormLabelCell">
             <asp:TextBox runat="server" ID="txtPostalCodeFrom"/>

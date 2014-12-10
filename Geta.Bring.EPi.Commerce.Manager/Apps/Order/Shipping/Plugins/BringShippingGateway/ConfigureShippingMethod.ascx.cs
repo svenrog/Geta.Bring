@@ -20,19 +20,22 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
 
             if (_shippingMethodDto != null && _shippingMethodDto.ShippingMethodParameter != null)
             {
-                ShippingMethodDto.ShippingMethodParameterRow productIdRow = GetOrCreateParameterRow("BringProductId");
-                ShippingMethodDto.ShippingMethodParameterRow postalCodeFromRow = GetOrCreateParameterRow("PostalCodeFrom");
-                ShippingMethodDto.ShippingMethodParameterRow ediRow = GetOrCreateParameterRow("EDI");
-                ShippingMethodDto.ShippingMethodParameterRow postingAtPostOfficeRow = GetOrCreateParameterRow("PostingAtPostOffice");
-                ShippingMethodDto.ShippingMethodParameterRow additionalServicesRow = GetOrCreateParameterRow("AdditionalServices");
+                var productIdRow = GetOrCreateParameterRow("BringProductId");
+                var customerNumberRow = GetOrCreateParameterRow("BringCustomerNumber");
+                var postalCodeFromRow = GetOrCreateParameterRow("PostalCodeFrom");
+                var ediRow = GetOrCreateParameterRow("EDI");
+                var postingAtPostOfficeRow = GetOrCreateParameterRow("PostingAtPostOffice");
+                var additionalServicesRow = GetOrCreateParameterRow("AdditionalServices");
 
                 productIdRow.Value = ddlBringProducts.SelectedValue;
+                customerNumberRow.Value = txtCustomerNumber.Text;
                 postalCodeFromRow.Value = txtPostalCodeFrom.Text;
                 ediRow.Value = cbEdi.Checked.ToString();
                 postingAtPostOfficeRow.Value = cbPostingAtPostOffice.Checked.ToString();
                 additionalServicesRow.Value = GetSelectedListItemsString(cblAdditionalServices.Items);
 
                 AttachParameterRow(productIdRow);
+                AttachParameterRow(customerNumberRow);
                 AttachParameterRow(postalCodeFromRow);
                 AttachParameterRow(ediRow);
                 AttachParameterRow(postingAtPostOfficeRow);
@@ -53,14 +56,20 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
             if (_shippingMethodDto != null && _shippingMethodDto.ShippingMethodParameter.Rows.Count > 0)
             {
 
-                ShippingMethodDto.ShippingMethodParameterRow productIdRow = GetParameterRow("BringProductId");
-                ShippingMethodDto.ShippingMethodParameterRow postalCodeFromRow = GetParameterRow("PostalCodeFrom");
-                ShippingMethodDto.ShippingMethodParameterRow ediRow = GetParameterRow("EDI");
-                ShippingMethodDto.ShippingMethodParameterRow postingAtPostOfficeRow = GetParameterRow("PostingAtPostOffice");
+                var productIdRow = GetParameterRow("BringProductId");
+                var customerNumberRow = GetParameterRow("BringCustomerNumber");
+                var postalCodeFromRow = GetParameterRow("PostalCodeFrom");
+                var ediRow = GetParameterRow("EDI");
+                var postingAtPostOfficeRow = GetParameterRow("PostingAtPostOffice");
 
                 if (productIdRow != null)
                 {
                     ddlBringProducts.SelectedValue = productIdRow.Value;
+                }
+
+                if (customerNumberRow != null)
+                {
+                    txtCustomerNumber.Text = customerNumberRow.Value;
                 }
 
                 if (postalCodeFromRow != null)

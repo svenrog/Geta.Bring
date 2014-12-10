@@ -22,6 +22,15 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
         protected global::System.Web.UI.WebControls.DropDownList ddlBringProducts;
         
         /// <summary>
+        /// txtCustomerNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCustomerNumber;
+        
+        /// <summary>
         /// txtPostalCodeFrom control.
         /// </summary>
         /// <remarks>
