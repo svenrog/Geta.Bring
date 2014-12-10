@@ -14,7 +14,7 @@ namespace Geta.Bring.Booking.Mapping
 
         private static Confirmation ToConfirmation(BookingResponse.Consignment consignment)
         {
-            var errors = consignment.Errors.ToArray();
+            var errors = (consignment.Errors ?? Enumerable.Empty<Error>()).ToArray();
             if (errors.Any())
             {
                 return Confirmation.CreateError(errors);
