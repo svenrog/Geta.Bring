@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Geta.Bring.Tracking.Model
 {
+    /// <summary>
+    /// Tracking event.
+    /// </summary>
     public class TrackingEvent
     {
         public TrackingEvent(
@@ -51,20 +54,64 @@ namespace Geta.Bring.Tracking.Model
             Description = description;
         }
 
+        /// <summary>
+        /// Description of tracking event.
+        /// </summary>
         public string Description { get; private set; }
+
+        /// <summary>
+        /// Event status.
+        /// </summary>
         public string Status { get; private set; }
+
+        /// <summary>
+        /// Recipient signature.
+        /// </summary>
         public RecipientSignature RecipientSignature { get; private set; }
+
+        /// <summary>
+        /// Unit ID.
+        /// </summary>
         public string UnitId { get; private set; }
+
+        /// <summary>
+        /// Unit information URI.
+        /// </summary>
         public Uri UnitInformationUrl { get; private set; }
+
+        /// <summary>
+        /// Unit type.
+        /// </summary>
         public string UnitType { get; private set; }
+
         public string PostalCode { get; private set; }
         public string City { get; private set; }
         public string CountryCode { get; private set; }
         public string Country { get; private set; }
+
+        /// <summary>
+        /// Event date and time.
+        /// </summary>
         public DateTime DateIso { get; private set; }
+
+        /// <summary>
+        /// Formatted event date.
+        /// </summary>
         public string DisplayDate { get; private set; }
+
+        /// <summary>
+        /// Formatted event time.
+        /// </summary>
         public string DisplayTime { get; private set; }
+
+        /// <summary>
+        /// Mark if it is consignment event.
+        /// </summary>
         public bool ConsignmentEvent { get; private set; }
+
+        /// <summary>
+        /// List of the tracking event definitions.
+        /// </summary>
         public IEnumerable<TrackingEventDefinition> Definitions { get; private set; }
     }
 }

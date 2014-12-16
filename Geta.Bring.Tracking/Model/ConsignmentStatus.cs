@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Geta.Bring.Tracking.Model
 {
+    /// <summary>
+    /// Package consignment status.
+    /// </summary>
     public class ConsignmentStatus
     {
         public ConsignmentStatus(
@@ -22,10 +25,29 @@ namespace Geta.Bring.Tracking.Model
             ConsignmentId = consignmentId;
         }
 
+        /// <summary>
+        /// Consignment ID.
+        /// </summary>
         public string ConsignmentId { get; private set; }
+        
+        /// <summary>
+        /// Previous consignment ID.
+        /// </summary>
         public string PreviousConsignmentId { get; private set; }
+
+        /// <summary>
+        /// Total weight in kilograms.
+        /// </summary>
         public double TotalWeightInKgs { get; private set; }
+
+        /// <summary>
+        /// Total volume in dm3.
+        /// </summary>
         public double TotalVolumeInDm3 { get; private set; }
+
+        /// <summary>
+        /// List of package statuses.
+        /// </summary>
         public IEnumerable<PackageStatus> PackageSet { get; private set; }
 
     }
