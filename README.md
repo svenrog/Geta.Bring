@@ -65,7 +65,7 @@ Query requires at least two parameters - *ShipmentLeg* and *PackageSize* paramet
 - *Products* - query parameter to describe required products. List of available products: http://developer.bring.com/additionalresources/productlist.html?from=shipping ,
 - *ShippedFromPostOffice* - query parameter to describe if shipped from post office,
 - *ShippingDateAndTime* - query parameter to describe package shipping date and/or time to Bring,
-- 
+- *PriceAdjustment* - query parameter to describe price adjustments. Prices can be increased/decreased by percentage or amount or fixed price used.
 
 ### Tracking API
 
