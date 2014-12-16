@@ -50,7 +50,7 @@ To find estimated delivery options you have to call *FindAsync* method with quer
     var query = new EstimateQuery(
         new ShipmentLeg("0484", "5600"),
         PackageSize.InGrams(2500));
-    var result = await sut.FindAsync<ShipmentEstimate>(query);
+    var result = await client.FindAsync<ShipmentEstimate>(query);
 
 There are three types of estimates:
 - *DeliveryEstimate* - returns estimated delivery options,
