@@ -69,6 +69,18 @@ Query requires at least two parameters - *ShipmentLeg* and *PackageSize* paramet
 
 ### Tracking API
 
+To start using Tracking API you have to create new *TrackingClient* with provided settings.
+
+    ITrackingClient client = new TrackingClient();
+
+Default constructor do not require any parameters, but there is available constructor which accepts *TrackingSettings*. *TrackingSettings* by default do not have any paramters, but you can change endpoint URI if it changes. By default it uses http://sporing.bring.no/sporing.json as service endpoint.
+
+To get tracking information you have to call *TrackAsync* method with tracking number.
+
+    var result = await client.TrackAsync("123456789");
+
+The method returns list of package consignment statuses.
+
 ### Booking API
 
 ### EPiServer Commerce module

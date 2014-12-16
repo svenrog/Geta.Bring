@@ -6,6 +6,6 @@ namespace Geta.Bring.Tracking
 {
     public interface ITrackingClient
     {
-        Task<IEnumerable<ConsignmentStatus>> Track(string trackingNumber);
+        Task<IEnumerable<ConsignmentStatus>> TrackAsync(string trackingNumber);
     }
 }

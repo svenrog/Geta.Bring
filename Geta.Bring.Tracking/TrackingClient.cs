@@ -8,8 +8,23 @@ using Newtonsoft.Json;
 
 namespace Geta.Bring.Tracking
 {
+    /// <summary>
+    /// Bring Tracking API client.
+    /// </summary>
     public class TrackingClient : ITrackingClient
     {
+        /// <summary>
+        /// Initializes new instance of <see cref="TrackingClient"/> with default <see cref="TrackingSettings()"/>.
+        /// </summary>
+        public TrackingClient()
+        {
+            Settings = new TrackingSettings();
+        }
+
+        /// <summary>
+        /// Initializes new instance of <see cref="TrackingClient"/>.
+        /// </summary>
+        /// <param name="settings">Settings for <see cref="TrackingClient"/></param>
         public TrackingClient(TrackingSettings settings)
         {
             if (settings == null) throw new ArgumentNullException("settings");
@@ -18,7 +33,12 @@ namespace Geta.Bring.Tracking
 
         public TrackingSettings Settings { get; private set; }
 
-        public async Task<IEnumerable<ConsignmentStatus>> Track(string trackingNumber)
+        /// <summary>
+        /// Returns tracking information.
+        /// </summary>
+        /// <param name="trackingNumber">Tracking number.</param>
+        /// <returns>List of package consignment statuses. See more: <see cref="ConsignmentStatus"/>.</returns>
+        public async Task<IEnumerable<ConsignmentStatus>> TrackAsync(string trackingNumber)
         {
             using (var client = CreateClient())
             {

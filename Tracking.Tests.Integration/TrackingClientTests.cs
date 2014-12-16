@@ -23,7 +23,7 @@ namespace Tracking.Tests.Integration
             var sut = new TrackingClient(settings);
             var expected = JsonConvert.DeserializeObject<TrackingResponse>(expectedJson).ConsignmentSet;
 
-            var actual = await sut.Track(trackingNumber);
+            var actual = await sut.TrackAsync(trackingNumber);
 
             expected.ShouldBeEquivalentTo(actual,
                 options => options.Excluding(ctx => Regex.IsMatch(ctx.PropertyPath, @"item\[.+\].PackageSet\[.+\].EventSet\[.+\].Definitions")));
