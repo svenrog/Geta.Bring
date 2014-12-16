@@ -57,6 +57,8 @@ There are three types of estimates:
 - *PriceEstimate* - returns estimated price options,
 - *ShipmentEstimate* - returns estimated delivery, price and GUI information options.
 
+Query requires at least two parameters - *ShipmentLeg* and *PackageSize* parameters. 
+
 ### Tracking API
 
 ### Booking API

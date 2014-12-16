@@ -5,8 +5,17 @@ using Geta.Bring.Shipping.Model.QueryParameters;
 
 namespace Geta.Bring.Shipping.Model
 {
+    /// <summary>
+    /// Query object for <see cref="ShippingClient.FindAsync{T}"/>.
+    /// </summary>
     public class EstimateQuery
     {
+        /// <summary>
+        /// Initializes new instance of <see cref="EstimateQuery"/>.
+        /// </summary>
+        /// <param name="shipmentLeg">Shipment leg parameter <see cref="ShipmentLeg"/>.</param>
+        /// <param name="packageSize">Package size parameter <see cref="PackageSize"/>.</param>
+        /// <param name="additionalParameters">Additional parameters.</param>
         public EstimateQuery(
             ShipmentLeg shipmentLeg, 
             PackageSize packageSize,
