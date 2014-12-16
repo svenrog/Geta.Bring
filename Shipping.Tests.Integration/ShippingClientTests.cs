@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Geta.Bring.Shipping;
 using Geta.Bring.Shipping.Model;
 using Geta.Bring.Shipping.Model.QueryParameters;
@@ -10,7 +11,7 @@ namespace Shipping.Tests.Integration
     public class ShippingClientTests
     {
         [Fact]
-        public async Task it_()
+        public async Task it_returns_result()
         {
             var settings = new ShippingSettings(new Uri("http://test.localtest.me"));
             var sut = new ShippingClient(settings);
@@ -20,6 +21,8 @@ namespace Shipping.Tests.Integration
                 PackageSize.InGrams(2500));
 
             var actual = await sut.FindAsync<ShipmentEstimate>(query);
+
+            actual.Estimates.Should().NotBeEmpty();
         }
     }
 }
