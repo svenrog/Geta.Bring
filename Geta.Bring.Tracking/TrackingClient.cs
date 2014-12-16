@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Geta.Bring.Tracking
 {
-    public class TrackingClient
+    public class TrackingClient : ITrackingClient
     {
         public TrackingClient(TrackingSettings settings)
         {

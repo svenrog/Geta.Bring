@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITrackingClient.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\ConsignmentStatus.cs" />
     <Compile Include="Model\TrackingResponse.cs" />
