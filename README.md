@@ -45,6 +45,18 @@ To start using Shipping Guide API you have to create new *ShippingClient* with p
 
 *ShippingSettings* requires at least one parameter - *clientUri*, which is the base URI of your Web site.
 
+To find estimated delivery options you have to call *FindAsync* method with query parameters and type of the estimate.
+    
+    var query = new EstimateQuery(
+        new ShipmentLeg("0484", "5600"),
+        PackageSize.InGrams(2500));
+    var result = await sut.FindAsync<ShipmentEstimate>(query);
+
+There are three types of estimates:
+- *DeliveryEstimate* - returns estimated delivery options,
+- *PriceEstimate* - returns estimated price options,
+- *ShipmentEstimate* - returns estimated delivery, price and GUI information options.
+
 ### Tracking API
 
 ### Booking API

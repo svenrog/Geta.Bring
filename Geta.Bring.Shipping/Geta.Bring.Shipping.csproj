@@ -58,6 +58,7 @@
     <Compile Include="IShippingClient.cs" />
     <Compile Include="Model\DeliveryEstimate.cs" />
     <Compile Include="Model\DeliveryEstimateQueryHandler.cs" />
+    <Compile Include="Model\EstimateResult.cs" />
     <Compile Include="Model\GuiInformation.cs" />
     <Compile Include="Model\ExpectedDelivery.cs" />
     <Compile Include="Model\EstimateQuery.cs" />
