@@ -4,10 +4,17 @@ using System.Linq;
 
 namespace Geta.Bring.Shipping.Model.QueryParameters
 {
+    /// <summary>
+    /// Query parameter to describe required products of type <see cref="Product"/>.
+    /// </summary>
     public class Products : IQueryParameter
     {
         private const string ParameterName = "product";
 
+        /// <summary>
+        /// Initializes new instance of <see cref="Products"/>.
+        /// </summary>
+        /// <param name="additionalProducts">Parameter list of <see cref="Product"/>.</param>
         public Products(params Product[] additionalProducts)
         {
             var products = additionalProducts.ToList();

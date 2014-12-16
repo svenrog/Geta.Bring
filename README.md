@@ -62,6 +62,8 @@ Query requires at least two parameters - *ShipmentLeg* and *PackageSize* paramet
 - *PackageSize* - query parameter to describe package size in grams, by dimensions or by volume,
 - *AdditionalServices* - query parameter to describe required additional services. List of available services: http://developer.bring.com/additionalresources/productlist.html?from=shipping#additionalServices ,
 - *Edi* - query parameter to describe if EDI is used,
+- *Products* - query parameter to describe required products. List of available products: http://developer.bring.com/additionalresources/productlist.html?from=shipping ,
+- 
 
 ### Tracking API
 
