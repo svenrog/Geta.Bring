@@ -57,7 +57,11 @@ There are three types of estimates:
 - *PriceEstimate* - returns estimated price options,
 - *ShipmentEstimate* - returns estimated delivery, price and GUI information options.
 
-Query requires at least two parameters - *ShipmentLeg* and *PackageSize* parameters. 
+Query requires at least two parameters - *ShipmentLeg* and *PackageSize* parameters. Additionaly it can have more parameters according to your needs. Full list of parameters:
+- *ShipmentLeg* - query parameter to describe shipment source and destination by providing postal codes and/or country codes,
+- *PackageSize* - query parameter to describe package size in grams, by dimensions or by volume,
+- *AdditionalServices* - query parameter to describe required additional services. List of available services: http://developer.bring.com/additionalresources/productlist.html?from=shipping#additionalServices ,
+- *Edi* - query parameter to describe if EDI is used,
 
 ### Tracking API
 
