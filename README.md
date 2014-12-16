@@ -63,6 +63,8 @@ Query requires at least two parameters - *ShipmentLeg* and *PackageSize* paramet
 - *AdditionalServices* - query parameter to describe required additional services. List of available services: http://developer.bring.com/additionalresources/productlist.html?from=shipping#additionalServices ,
 - *Edi* - query parameter to describe if EDI is used,
 - *Products* - query parameter to describe required products. List of available products: http://developer.bring.com/additionalresources/productlist.html?from=shipping ,
+- *ShippedFromPostOffice* - query parameter to describe if shipped from post office,
+- *ShippingDateAndTime* - query parameter to describe package shipping date and/or time to Bring,
 - 
 
 ### Tracking API
