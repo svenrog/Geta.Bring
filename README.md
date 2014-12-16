@@ -38,6 +38,13 @@ Second package - *Geta.Bring.EPi.Commerce.Manager*, should be installed into you
 
 ### Shipping Guide API
 
+To start using Shipping Guide API you have to create new *ShippingClient* with provided settings.
+
+    var settings = new ShippingSettings(new Uri("http://test.localtest.me"));
+    IShippingClient client = new ShippingClient(settings);
+
+*ShippingSettings* requires at least one parameter - *clientUri*, which is the base URI of your Web site.
+
 ### Tracking API
 
 ### Booking API
