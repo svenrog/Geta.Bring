@@ -4,7 +4,7 @@ using System.Linq;
 namespace Geta.Bring.Shipping.Model
 {
     /// <summary>
-    /// Additional services from http://developer.bring.com/additionalresources/productlist.html?from=shipping
+    /// Additional services from http://developer.bring.com/additionalresources/productlist.html?from=shipping .
     /// </summary>
     public class AdditionalService
     {
@@ -15,8 +15,19 @@ namespace Geta.Bring.Shipping.Model
             DisplayName = displayName;
         }
 
+        /// <summary>
+        /// Additional service's display name.
+        /// </summary>
         public string DisplayName { get; private set; }
+
+        /// <summary>
+        /// Additional service's code.
+        /// </summary>
         public string Code { get; private set; }
+
+        /// <summary>
+        /// List of products to which additional service applies.
+        /// </summary>
         public IEnumerable<Product> AppliesTo { get; private set; }
 
         public static AdditionalService Evarsling = 
@@ -59,6 +70,9 @@ namespace Geta.Bring.Shipping.Model
                 Product.CarryonHomeshopping
             });
 
+        /// <summary>
+        /// Returns all available additional services.
+        /// </summary>
         public static IEnumerable<AdditionalService> All
         {
             get
@@ -72,6 +86,11 @@ namespace Geta.Bring.Shipping.Model
             }
         }
 
+        /// <summary>
+        /// Gets additional service by it's code.
+        /// </summary>
+        /// <param name="code">Additional service code.</param>
+        /// <returns>Found <see cref="AdditionalService"/></returns>
         public static AdditionalService GetByCode(string code)
         {
             return All.First(x => x.Code == code);

@@ -3,6 +3,9 @@ using Newtonsoft.Json;
 
 namespace Geta.Bring.Shipping.Model
 {
+    /// <summary>
+    /// Price information.
+    /// </summary>
     public class PackagePrice
     {
         public PackagePrice(
@@ -20,10 +23,20 @@ namespace Geta.Bring.Shipping.Model
             CurrencyIdentificationCode = currencyIdentificationCode;
         }
 
+        /// <summary>
+        /// Currency code.
+        /// </summary>
         [JsonProperty("@currencyIdentificationCode")]
         public string CurrencyIdentificationCode { get; private set; }
 
+        /// <summary>
+        /// Price without additional services.
+        /// </summary>
         public Price PackagePriceWithoutAdditionalServices { get; private set; }
+
+        /// <summary>
+        /// Price with additional services.
+        /// </summary>
         public Price PackagePriceWithAdditionalServices { get; private set; }
     }
 }

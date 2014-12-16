@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 
 namespace Geta.Bring.Shipping.Model
 {
+    /// <summary>
+    /// Expected delivery information.
+    /// </summary>
     public class ExpectedDelivery
     {
         public ExpectedDelivery(
@@ -24,17 +27,35 @@ namespace Geta.Bring.Shipping.Model
             WorkingDays = workingDays;
         }
 
+        /// <summary>
+        /// Description of week days when delivery available.
+        /// </summary>
         public string WorkingDays { get; private set; }
 
+        /// <summary>
+        /// Message to user.
+        /// </summary>
         public string UserMessage { get; private set; }
 
+        /// <summary>
+        /// Formatted expeted delivery date.
+        /// </summary>
         public string FormattedExpectedDeliveryDate { get; private set; }
 
+        /// <summary>
+        /// Formatted earliest pickup date.
+        /// </summary>
         public string FormattedEarliestPickupDate { get; private set; }
 
+        /// <summary>
+        /// Expected delivery date.
+        /// </summary>
         [JsonConverter(typeof(DeliveryDateToDateTimeConverter))]
         public DateTime? ExpectedDeliveryDate { get; private set; }
 
+        /// <summary>
+        /// List of alternative expected delivery dates.
+        /// </summary>
         public IEnumerable<DateTime> AlternativeDeliveryDates { get; private set; }
     }
 }
