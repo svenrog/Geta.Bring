@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingClient.cs" />
+    <Compile Include="IBookingClient.cs" />
     <Compile Include="Model\Error.cs" />
     <Compile Include="Model\ErrorMessage.cs" />
     <Compile Include="Model\Confirmation.cs" />

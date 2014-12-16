@@ -14,7 +14,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Geta.Bring.Booking
 {
-    public class BookingClient
+    public class BookingClient : IBookingClient
     {
         public BookingSettings Settings { get; private set; }
 
