@@ -176,6 +176,10 @@ This example shows how to get all awailable shipping rates. You also can get onl
         .GroupBy(x => x.MainDisplayCategory)
         .Select(x => new BringShippingRateGroup(x.Key, x));
 
+There is also partial view installed with Bring EPiServer Commerce module which can be used to render shipping options for Bring. View location is at *~/Views/Shared/Bring/Rates.cshtml*. Here is an example how to render it in your view:
+
+    @{ Html.RenderPartial("~/Views/Shared/Bring/Rates.cshtml", Model.BringShippingRateGroups); }
+
 -- Add screenshots and description how to configure Bring.
 
 -- Describe when and how to use Booking
