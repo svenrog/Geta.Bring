@@ -1,0 +1,526 @@
+//
+// Settings
+//
+
+// Layout
+
+$shipping-gutter: 1.25rem !default;
+$shipping-max-width: 1200px !default;
+$shipping-column-gutter: $shipping-gutter !default;
+$shipping-first-column-width: $shipping-gutter * 4 !default;
+$shipping-first-column-width-small: $shipping-gutter * 2 !default;
+$shipping-media-small: "screen and (max-width:800px)" !default;
+$shipping-min-width: 320px !default;
+
+
+// Colors
+
+$shipping-color-theme: #5ebd7d !default;
+$shipping-color-subtle: #fafafa !default;
+$shipping-color-background: #eee !default;
+$shipping-font-color-primary: #444 !default;
+$shipping-font-color-secondary: #888 !default;
+$shipping-focus-outline: solid 3px $shipping-color-theme;
+
+// Fonts
+
+$shipping-font-family: "Arial", "Helvetica", sans-serif !default;
+
+// Tick
+
+$shipping-tick-width: $shipping-gutter*1.25 !default;
+$shipping-tick-height: $shipping-gutter*1.25 !default;
+$shipping-tick-y: .25rem !default;
+$shipping-tick-background-color: #fff !default;
+$shipping-tick-border-color: $shipping-color-theme !default;
+
+// Panel
+
+$shipping-panel-box-shadow: 0 1px 1px rgba(black, 0.3), 0 -1px 1px rgba(black, .1) !default;
+$shipping-panel-background-color: #fff !default;
+
+//
+// Mixins
+//
+
+@mixin shipping-first-column($property: padding-left, $add: 0){
+  padding-left: $shipping-first-column-width + $add;
+
+  @media #{$shipping-media-small} {
+    padding-left: $shipping-first-column-width-small + $add;
+  }
+}
+
+@mixin shipping-columns($widths...) {
+
+  // Clearfix
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  // Child columns
+
+  > * {
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    $i: 1;
+    @each $width in $widths {
+      &:nth-child(#{$i}){
+        width: $width;
+        float: left;
+        padding-right: $shipping-column-gutter;
+      }
+      $i: $i + 1;
+    }
+
+    @media #{$shipping-media-small} {
+      float: none !important;
+      width: 100% !important;
+      padding-right: 0 !important;
+    }
+  }
+}
+
+//
+// Extends
+//
+
+// Fonts
+
+%shipping-font-base {
+  font-family: $shipping-font-family;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-1 {
+  font-family: $shipping-font-family;
+  font-size: 2rem;
+  line-height: 2rem;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-2 {
+  font-family: $shipping-font-family;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-3 {
+  font-family: $shipping-font-family;
+  font-size: .75rem;
+  font-weight: normal;
+  line-height: 2.5rem;
+  color: $shipping-font-color-secondary;
+  text-transform: uppercase;
+}
+
+%shipping-font-4 {
+  font-family: $shipping-font-family;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2rem;
+  color: $shipping-font-color-primary;
+}
+
+// Other elements
+
+%shipping-panel {
+  padding: $shipping-gutter;
+  background-color: $shipping-panel-background-color;
+  box-shadow: $shipping-panel-box-shadow;
+}
+
+%shipping-button {
+  @extend %shipping-font-base;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+  color: $shipping-font-color-secondary;
+  border: none 0;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow .5s;
+  border-bottom: solid 1px $shipping-font-color-secondary;
+
+  &:after {
+    content: '\25BE';
+    margin-left: 5px;
+  }
+
+  &:focus {
+    outline: $shipping-focus-outline;
+  }
+}
+
+%shipping-tick {
+  @extend %shipping-font-4;
+  position: relative;
+  @include shipping-first-column;
+
+  > label {
+
+    &:before,
+    &:after {
+      content: '';
+    }
+
+    &:before {
+      position: absolute;
+      top: $shipping-tick-y;
+      left: 0;
+      width: $shipping-tick-width;
+      height: $shipping-tick-width;
+      background-color: $shipping-tick-background-color;
+      border: solid 1px $shipping-tick-border-color;
+      border-radius: 50%;
+    }
+
+    &:after {
+      position: absolute;
+      display: none;
+      top: $shipping-tick-y + ($shipping-tick-height/4);
+      left: $shipping-tick-width/4;
+      width: $shipping-tick-width/2;
+      height: $shipping-tick-height/3;
+      border: 3px solid $shipping-font-color-primary;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+    }
+  }
+
+  > input {
+    position: absolute;
+    top: $shipping-tick-y;
+    left: 0;
+
+    &:checked + label {
+      &:after {
+        display: block;
+      }
+    }
+
+    &:focus + label {
+      &:before {
+        outline: $shipping-focus-outline;
+      }
+    }
+  }
+}
+
+//
+// CSS Output
+//
+
+.shipping {
+  width: 100%;
+  min-width: $shipping-min-width;
+  max-width: $shipping-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding: $shipping-gutter;
+  background-color: $shipping-color-background;
+
+  @media #{$shipping-media-small} {
+    padding: $shipping-gutter/2;
+  }
+
+  //
+  // Reset
+  //
+
+  &, *, *:before, *:after {
+    box-sizing: border-box;
+  }
+
+  h2, h3, h4, h5, h6 {
+    margin: 0 0 $shipping-gutter 0;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  p {
+    @extend %shipping-font-base;
+    margin: 0;
+  }
+
+  fieldset {
+    border: none 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  //
+  // Elements
+  //
+
+  // Main header
+
+  > header {
+    @extend %shipping-font-1;
+    margin-bottom: $shipping-gutter*1.5;
+  }
+
+  // Fieldsets containing delivery options
+
+  > fieldset {
+    margin-bottom: $shipping-gutter*2;
+
+    &:last-of-type {
+      margin-bottom: $shipping-gutter;
+    }
+
+    > header {
+      @extend %shipping-font-3;
+      @include shipping-columns(45%, 10%, 45%);
+      margin-bottom: $shipping-gutter / 4;
+
+      > h3 {
+        position: relative;
+        padding-left: $shipping-first-column-width + $shipping-gutter;
+        margin-bottom: 0;
+        color: $shipping-font-color-primary;
+
+        @media #{$shipping-media-small} {
+          padding-left: $shipping-gutter;
+          padding-right: $shipping-first-column-width + $shipping-gutter !important;
+        }
+
+        > img {
+          @extend %shipping-panel;
+          padding: 5px 10px 8px 10px;
+          float: left;
+          width: $shipping-first-column-width;
+          margin-left: -$shipping-first-column-width - $shipping-gutter;
+
+          @media #{$shipping-media-small} {
+            float: right;
+            margin-left: 0;
+            margin-right: -$shipping-first-column-width - $shipping-gutter;
+          }
+        }
+
+        > span {
+          display: block;
+          margin-bottom: 0;
+          width: 100%;
+        }
+      }
+
+      > .shipping-price,
+      > .shipping-arrival {
+        @media #{$shipping-media-small} {
+          display: none;
+        }
+      }
+
+      > .shipping-arrival {
+        padding-left: $shipping-gutter;
+      }
+
+      > .shipping-price {
+        text-align: right;
+      }
+    }
+
+    > .shipping-group {
+      margin-bottom: 3px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      > h4 {
+        @extend %shipping-panel;
+        @extend %shipping-font-4;
+        @include shipping-first-column($add: $shipping-gutter);
+        display: block;
+        margin: 0;
+        color: $shipping-color-theme;
+        background-color: $shipping-color-subtle;
+
+        @media #{$shipping-media-small} {
+          padding-left: $shipping-gutter;
+        }
+
+        &:empty {
+          display: none;
+        }
+      }
+
+      > ul {
+        @extend %shipping-panel;
+        padding: $shipping-gutter;
+
+        // Reset list styles
+        margin: 0;
+        list-style: none;
+
+        //
+        // Row
+        //
+
+        > li {
+          @include shipping-columns(45%, 10%, 15%, 30%);
+          margin: 0 0 $shipping-gutter 0;
+          padding: 0 0 $shipping-gutter 0;
+          border-bottom: solid 1px rgba($shipping-color-theme, .5);
+
+          &:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none 0;
+          }
+
+          //
+          // Row columns
+          //
+
+          .shipping-option {
+            .shipping-tick {
+              @extend %shipping-tick;
+
+              @media #{$shipping-media-small} {
+                margin-bottom: $shipping-gutter/2;
+              }
+            }
+          }
+
+          .shipping-price,
+          .shipping-arrival,
+          .shipping-note {
+            @extend %shipping-font-4;
+            text-align: right;
+
+            @media #{$shipping-media-small} {
+              padding-left: $shipping-first-column-width-small;
+              font-weight: normal;
+              line-height: 1.25rem;
+              text-align: left;
+              color: $shipping-font-color-secondary;
+
+              &:before {
+                content: '\25CF';
+                float: left;
+                line-height: 1rem;
+                margin-right: 5px;
+                color: $shipping-color-theme;
+              }
+            }
+
+            > span {
+              position: absolute;
+              width: 0;
+              overflow: hidden;
+
+              @media #{$shipping-media-small} {
+                display: inline-block;
+                position: static;
+                width: auto;
+                overflow: visible;
+              }
+            }
+          }
+
+          .shipping-price {}
+
+          .shipping-arrival {
+            padding-left: $shipping-gutter;
+            text-align: left;
+            @media #{$shipping-media-small} {
+              padding-left: $shipping-first-column-width-small;
+            }
+          }
+
+          .shipping-note {
+            @media #{$shipping-media-small} {
+              margin-bottom: $shipping-gutter/2;
+            }
+          }
+
+          //
+          // Info
+          //
+
+          .shipping-info {
+            @include shipping-first-column();
+
+            > p {
+              @extend %shipping-font-base;
+              color: $shipping-font-color-secondary;
+              margin-bottom: $shipping-gutter/4;
+
+              @media #{$shipping-media-small} {
+                margin-bottom: $shipping-gutter/2;
+                line-height: 1.25rem;
+                font-size: .85rem;
+              }
+            }
+
+
+            > button {
+              @extend %shipping-button;
+            }
+
+            .shipping-info-extended {
+              @extend %shipping-font-base;
+              clear: both;
+              position: relative;
+              top: $shipping-gutter;
+              background-color: $shipping-color-subtle;
+              margin-left: -$shipping-first-column-width - $shipping-gutter;
+              margin-right: -$shipping-gutter;
+              max-height: 0;
+              overflow: hidden;
+              transition: all .33s;
+
+              @media #{$shipping-media-small} {
+                margin-left: -$shipping-first-column-width-small - $shipping-gutter;
+              }
+
+              > p {
+                padding: $shipping-gutter $shipping-gutter $shipping-gutter ($shipping-first-column-width + $shipping-gutter);
+
+                @media #{$shipping-media-small} {
+                  padding-left: $shipping-first-column-width-small + $shipping-gutter;
+                }
+              }
+            }
+          }
+
+          //
+          // States
+          //
+
+          &.shipping-state-info {
+            .shipping-info {
+              > button:after {
+                content: '\25B4';
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > footer {
+    @extend %shipping-font-3;
+    @include shipping-first-column($add: $shipping-gutter);
+
+    @media #{$shipping-media-small} {
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+}
