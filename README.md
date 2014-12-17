@@ -83,6 +83,23 @@ The method returns list of package consignment statuses.
 
 ### Booking API
 
+To start using Booking API you have to create new *BookingClient* with provided settings.
+
+    var settings = new BookingSettings(
+        "Uid",
+        "ApiKey",
+        new Uri("http://clientUri"),
+        test: false
+        );
+    IBookingClient client = new BookingClient(settings);
+
+*BookingSettings* has four parameters:
+- *uid* - Bring API User ID,
+- *key* - Bring API Key,
+- *clientUri* - base URI of your Web site,
+- *isTest* - mark if test mode in use (default: false),
+- *endpointUri* - Bring API endpoint (default: https://api.bring.com/booking/api/booking).
+
 ### EPiServer Commerce module
 
 ## More info about Bring API
