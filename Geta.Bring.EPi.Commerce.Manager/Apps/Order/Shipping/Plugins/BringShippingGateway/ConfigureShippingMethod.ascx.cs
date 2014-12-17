@@ -26,6 +26,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var ediRow = GetOrCreateParameterRow("EDI");
                 var postingAtPostOfficeRow = GetOrCreateParameterRow("PostingAtPostOffice");
                 var additionalServicesRow = GetOrCreateParameterRow("AdditionalServices");
+                var priceRoundingRow = GetOrCreateParameterRow("PriceRounding");
 
                 productIdRow.Value = ddlBringProducts.SelectedValue;
                 customerNumberRow.Value = txtCustomerNumber.Text;
@@ -33,6 +34,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 ediRow.Value = cbEdi.Checked.ToString();
                 postingAtPostOfficeRow.Value = cbPostingAtPostOffice.Checked.ToString();
                 additionalServicesRow.Value = GetSelectedListItemsString(cblAdditionalServices.Items);
+                priceRoundingRow.Value = cbPriceRounding.Checked.ToString();
 
                 AttachParameterRow(productIdRow);
                 AttachParameterRow(customerNumberRow);
@@ -40,6 +42,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 AttachParameterRow(ediRow);
                 AttachParameterRow(postingAtPostOfficeRow);
                 AttachParameterRow(additionalServicesRow);
+                AttachParameterRow(priceRoundingRow);
             }
         }
 
@@ -61,6 +64,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var postalCodeFromRow = GetParameterRow("PostalCodeFrom");
                 var ediRow = GetParameterRow("EDI");
                 var postingAtPostOfficeRow = GetParameterRow("PostingAtPostOffice");
+                var priceRoundingRow = GetOrCreateParameterRow("PriceRounding");
 
                 if (productIdRow != null)
                 {
@@ -82,6 +86,11 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 if (postingAtPostOfficeRow != null)
                 {
                     cbPostingAtPostOffice.Checked = postingAtPostOfficeRow.Value.Equals("true", StringComparison.InvariantCultureIgnoreCase);
+                }
+
+                if (priceRoundingRow != null)
+                {
+                    cbPriceRounding.Checked = priceRoundingRow.Value.Equals("true", StringComparison.InvariantCultureIgnoreCase);
                 }
             }
         }

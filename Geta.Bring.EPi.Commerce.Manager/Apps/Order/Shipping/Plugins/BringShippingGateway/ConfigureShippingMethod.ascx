@@ -37,4 +37,10 @@
             <asp:CheckBoxList runat="server" ID="cblAdditionalServices" DataValueField="Code" DataTextField="DisplayName" RepeatLayout="Flow" />
         </td>
     </tr>
+    <tr>
+        <th class="FormLabelCell">Price rounding:</th>
+        <td class="FormLabelCell">
+            <asp:CheckBox runat="server" ID="cbPriceRounding" Checked="False"/>
+        </td>
+    </tr>
 </table>

@@ -23,6 +23,7 @@ namespace Geta.Bring.EPi.Commerce
             _shippingClient = ServiceLocator.Current.GetInstance<IShippingClient>();
         }
 
+        // ReSharper disable once UnusedParameter.Local
         public BringShippingGateway(IMarket market)
             : this()
         {
@@ -132,10 +133,10 @@ namespace Geta.Bring.EPi.Commerce
             EstimateResult<ShipmentEstimate> result)
         {
             var estimate = result.Estimates.First();
-            var shippingMethodRow = shippingMethod.ShippingMethod[0];
-            var amount = new Money(
-                shippingMethodRow.BasePrice +
-               (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT,
+            var amount = AdjustPrice(shippingMethod, (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT);
+
+            var moneyAmount = new Money(
+                amount,
                 new Currency(estimate.PackagePrice.CurrencyIdentificationCode));
             
             return new BringShippingRate(
@@ -146,7 +147,20 @@ namespace Geta.Bring.EPi.Commerce
                 estimate.GuiInformation.DescriptionText,
                 estimate.GuiInformation.HelpText,
                 estimate.GuiInformation.Tip,
-                amount);
+                moneyAmount);
+        }
+
+        private decimal AdjustPrice(ShippingMethodDto shippingMethod, decimal price)
+        {
+            var shippingMethodRow = shippingMethod.ShippingMethod[0];
+            var amount = shippingMethodRow.BasePrice + price;
+            bool priceRounding;
+            if (bool.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceRounding, "false"), out priceRounding)
+                && priceRounding)
+            {
+                return Math.Round(amount, MidpointRounding.AwayFromZero);
+            }
+            return amount;
         }
 
         internal static class ParameterNames
@@ -157,6 +171,7 @@ namespace Geta.Bring.EPi.Commerce
             public const string CountryFrom = "CountryFrom";
             public const string Edi = "EDI";
             public const string AdditionalServices = "AdditionalServices";
+            public const string PriceRounding = "PriceRounding";
         }
 
         internal static class ErrorMessages
