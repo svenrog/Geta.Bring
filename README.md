@@ -196,12 +196,11 @@ You can create a partial view to render bring shipping rates. For example:
         </div>
     }
 
-To configure shipping methods you have to go to *Commerce Manager* - *Administration* and under *Order System* - *Shipping* - *Shipping Methods* - *language* start creating new shipping method by clicking *New*. Provide shipping method details in *Overview* tab and use *Bring Shipping Gateway* as *Provider*. Click *OK* and open again newly created method. In *Parameters* tabs 
+To configure shipping methods you have to go to *Commerce Manager* - *Administration* and under *Order System* - *Shipping* - *Shipping Methods* - *language* start creating new shipping method by clicking *New*. Provide shipping method details in *Overview* tab and use *Bring Shipping Gateway* as *Provider*. Click *OK* and open again newly created method. In *Parameters* tab provide Bring Product, customer number, ship from postal code, price rounding and other parameters.
 
--- Add screenshots and description how to configure Bring.
+![Configuration](https://github.com/Geta/Geta.Bring/tree/master/Documentation/config.png)
 
 -- Describe when and how to use Booking
-
 
 ## More info about Bring API
 
