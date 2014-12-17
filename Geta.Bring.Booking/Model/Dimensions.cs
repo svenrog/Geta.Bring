@@ -1,7 +1,16 @@
 ﻿namespace Geta.Bring.Booking.Model
 {
+    /// <summary>
+    /// Dimensions information.
+    /// </summary>
     public class Dimensions
     {
+        /// <summary>
+        /// Initializes new instance of <see cref="Dimensions"/>.
+        /// </summary>
+        /// <param name="heightInCm">Height in cm.</param>
+        /// <param name="widthInCm">Width in cm.</param>
+        /// <param name="lengthInCm">Length in cm.</param>
         public Dimensions(int heightInCm, int widthInCm, int lengthInCm)
         {
             LengthInCm = lengthInCm;
@@ -9,10 +18,19 @@
             HeightInCm = heightInCm;
         }
 
+        /// <summary>
+        /// Height in cm.
+        /// </summary>
         public int HeightInCm { get; private set; }
 
+        /// <summary>
+        /// Width in cm.
+        /// </summary>
         public int WidthInCm { get; private set; }
 
+        /// <summary>
+        /// Length in cm.
+        /// </summary>
         public int LengthInCm { get; private set; }
 
         public override bool Equals(object obj)

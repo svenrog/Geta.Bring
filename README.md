@@ -150,6 +150,8 @@ The method returns confirmation information.
 
 ### EPiServer Commerce module
 
+
+
 ## More info about Bring API
 
 ### Shipping Guide API
