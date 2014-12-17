@@ -64,7 +64,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var postalCodeFromRow = GetParameterRow("PostalCodeFrom");
                 var ediRow = GetParameterRow("EDI");
                 var postingAtPostOfficeRow = GetParameterRow("PostingAtPostOffice");
-                var priceRoundingRow = GetOrCreateParameterRow("PriceRounding");
+                var priceRoundingRow = GetParameterRow("PriceRounding");
 
                 if (productIdRow != null)
                 {
