@@ -282,6 +282,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\Bring\Rates.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Geta.Bring.Booking\Geta.Bring.Booking.csproj">

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Geta.Bring.EPi.Commerce.Model.BringShippingRateGroup>
+
+@foreach (var shippingGroup in Model)
+{
+    <div>
+        <h2>@shippingGroup.Name</h2>
+        @foreach (var shippingMethod in shippingGroup.ShippingRates)
+        {
+            <div>
+                <input type="radio" value="@shippingMethod.Id" group="ShippingMethod" />
+                @shippingMethod.Name
+                @shippingMethod.Description
+                @shippingMethod.Money.Amount.ToString("0.00") @shippingMethod.Money.Currency.CurrencyCode
+            </div>
+        }
+    </div>
+}
