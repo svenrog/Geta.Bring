@@ -176,9 +176,27 @@ This example shows how to get all awailable shipping rates. You also can get onl
         .GroupBy(x => x.MainDisplayCategory)
         .Select(x => new BringShippingRateGroup(x.Key, x));
 
-There is also partial view installed with Bring EPiServer Commerce module which can be used to render shipping options for Bring. View location is at *~/Views/Shared/Bring/Rates.cshtml*. Here is an example how to render it in your view:
+You can create a partial view to render bring shipping rates. For example:
 
-    @{ Html.RenderPartial("~/Views/Shared/Bring/Rates.cshtml", Model.BringShippingRateGroups); }
+    @model IEnumerable<Geta.Bring.EPi.Commerce.Model.BringShippingRateGroup>
+
+    @foreach (var shippingGroup in Model)
+    {
+        <div>
+            <h2>@shippingGroup.Name</h2>
+            @foreach (var shippingMethod in shippingGroup.ShippingRates)
+            {
+                <div>
+                    <input type="radio" value="@shippingMethod.Id" group="ShippingMethod" />
+                    @shippingMethod.Name
+                    @shippingMethod.Description
+                    @shippingMethod.Money.Amount.ToString("0.00") @shippingMethod.Money.Currency.CurrencyCode
+                </div>
+            }
+        </div>
+    }
+
+To configure shipping methods you have to go to *Commerce Manager* - *Administration* and under *Order System* - *Shipping* - *Shipping Methods* - *language* start creating new shipping method by clicking *New*. Provide shipping method details in *Overview* tab and use *Bring Shipping Gateway* as *Provider*. Click *OK* and open again newly created method. In *Parameters* tabs 
 
 -- Add screenshots and description how to configure Bring.
 
