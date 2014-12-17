@@ -150,6 +150,35 @@ The method returns confirmation information.
 
 ### EPiServer Commerce module
 
+EPiServer Commerce module consists of two libraries: *Geta.Bring.EPi.Commerce* - library which should be installed into your Web site; *Geta.Bring.EPi.Commerce.Manager* - library which should be installed into Commerce Manager Web site. *Geta.Bring.EPi.Commerce* contains shipping gateway - *BringShippingGateway* and types for shipping details - *BringShippingRate* and *BringShippingRateGroup*. *Geta.Bring.EPi.Commerce.Manager* contains required views to configure EPiServer Commerce Bring module.
+
+To list all awailable shipping options create gateway instances for each available shipping method and use *GetRate* method as in EPiServer Commerce [documentation](http://world.episerver.com/documentation/Items/Developers-Guide/EPiServer-Commerce/8/Shipping/Shipping/). Example:
+
+    CommerceCart.Shipment shipment = ...; // getting shipment from cart
+    var shippingMethods = ShippingManager.GetShippingMethods(languageId);
+    var shippingRates = new List<CommerceCart.ShippingRate>();
+    foreach (var shippingMethod in 
+        shippingMethods.ShippingMethod.OrderBy(x => x.Ordering))
+    {
+        var type = Type.GetType(shippingMethod.ShippingOptionRow.ClassName);
+        var shippingGateway = 
+            (CommerceCart.IShippingGateway)Activator.CreateInstance(type);
+        var message = string.Empty;
+        var rate = shippingGateway.GetRate(
+            shippingMethod.ShippingMethodId, shipment, ref message);
+        shippingRates.Add(rate);
+    }
+
+This example shows how to get all awailable shipping rates. You also can get only Bring shipping rates with specific details and also group them.
+
+    var bringShippingRates = shippingRates.OfType<BringShippingRate>();
+    var rateGroups = bringShippingRates
+        .GroupBy(x => x.MainDisplayCategory)
+        .Select(x => new BringShippingRateGroup(x.Key, x));
+
+-- Add screenshots and description how to configure Bring.
+
+-- Describe when and how to use Booking
 
 
 ## More info about Bring API
