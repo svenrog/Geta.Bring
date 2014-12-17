@@ -14,6 +14,9 @@ using Newtonsoft.Json.Serialization;
 
 namespace Geta.Bring.Booking
 {
+    /// <summary>
+    /// Bring Booking API client.
+    /// </summary>
     public class BookingClient : IBookingClient
     {
         public BookingSettings Settings { get; private set; }
@@ -24,6 +27,11 @@ namespace Geta.Bring.Booking
             Settings = settings;
         }
 
+        /// <summary>
+        /// Single consignment booking.
+        /// </summary>
+        /// <param name="consignment">Consignment to book.</param>
+        /// <returns>Booking confirmation.</returns>
         public async Task<Confirmation> BookAsync(Consignment consignment)
         {
             var consignments = await BookAsync(new[] {consignment}).ConfigureAwait(false);
@@ -31,6 +39,11 @@ namespace Geta.Bring.Booking
             return first ?? Confirmation.CreateError("No confirmation received.");
         }
 
+        /// <summary>
+        /// Multiple consignment booking.
+        /// </summary>
+        /// <param name="consignments">List of consignments.</param>
+        /// <returns>List of booking confirmations.</returns>
         public async Task<IEnumerable<Confirmation>> BookAsync(IEnumerable<Consignment> consignments)
         {
             using (var client = CreateClient())

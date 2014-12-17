@@ -100,6 +100,54 @@ To start using Booking API you have to create new *BookingClient* with provided 
 - *isTest* - mark if test mode in use (default: false),
 - *endpointUri* - Bring API endpoint (default: https://api.bring.com/booking/api/booking).
 
+To book consignment you have to call *BookAsync* method with consignment details. The overload of the method can handle multiple consignments.
+
+    var sender = new Party(
+        "Sender Name",
+        "Address 1",
+        "Address 2",
+        "0123",
+        "Oslo",
+        "NOR",
+        "reference number",
+        "additional info",
+        new Contact("John", "john@example.com", "98745612"));
+
+    var recipient = new Party(
+        "Recipient Name",
+        "Address 1",
+        "Address 2",
+        "0123",
+        "Oslo",
+        "NOR",
+        "reference number",
+        "additional info",
+        new Contact("Tom", "tom@example.com", "23654789"));
+
+    var product = new Product(
+        "A-POST", // Bring product code
+        "customer number"); // Customer number for Bring product
+
+    var packages = new[]
+    {
+        new Package(
+            "correlation ID", 
+            1.0, // weight in kilograms
+            "Products", // goods description
+            new Dimensions(10, 10, 10)) // dimensions H W L in cm
+    };
+
+    var consignment = new Consignment(
+        "correlation ID",
+        DateTime.UtcNow.AddDays(1), // date when package delivered to Bring
+        new Parties(sender, recipient),
+        product,
+        packages);
+
+    var result = await sut.BookAsync(consignment);
+
+The method returns confirmation information.
+
 ### EPiServer Commerce module
 
 ## More info about Bring API

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Geta.Bring.Booking;
@@ -10,56 +9,52 @@ namespace Booking.Tests.Integration
 {
     public class BookingClientTests
     {
-        [Fact]
+        //[Fact]
         public async Task it_books_consignment()
         {
-            var settings = new BookingSettings(TestSettings.Uid, TestSettings.Key, TestSettings.ClientUri);
-            var sut = new BookingClient(settings);
-            //var consignment = new Consignment();
-
-            /*var confirmation = await sut.Book(consignment);
-
-            confirmation.Success.Should().BeTrue();*/
-        }
-
-
-        /*[Fact]
-        public async Task it_returns_confirmations_for_valid_request()
-        {
-            var settings = new BookingSettings(TestSettings.Uid, TestSettings.Key, TestSettings.ClientUri);
-            var request = CreateValidRequest();
+            var settings = new BookingSettings(TestSettings.Uid, TestSettings.Key, TestSettings.ClientUri, isTest: true);
             var sut = new BookingClient(settings);
 
-            var response = await sut.Book(request);
+            var sender = new Party(
+                "Sender Name",
+                "Address 1",
+                "Address 2",
+                "0123",
+                "Oslo",
+                "NOR",
+                "reference number",
+                "additional info",
+                new Contact("John", "john@example.com", "98745612"));
 
-            response.Consignments.Should().NotBeEmpty();
-            var consignment = response.Consignments.First();
-            consignment.HasErrors.Should().BeFalse();
-            consignment.Confirmation.Should().NotBeNull();
+            var recipient = new Party(
+                "Recipient Name",
+                "Address 1",
+                "Address 2",
+                "0123",
+                "Oslo",
+                "NOR",
+                "reference number",
+                "additional info",
+                new Contact("Tom", "tom@example.com", "23654789"));
+
+            var product = new Product("A-POST", "customer number");
+
+            var packages = new[]
+            {
+                new Package("correlation ID", 1.0, "Products", new Dimensions(10, 10, 10))
+            };
+
+            var consignment = new Consignment(
+                "correlation ID",
+                DateTime.UtcNow.AddDays(1),
+                new Parties(sender, recipient),
+                product,
+                packages);
+
+            var result = await sut.BookAsync(consignment);
+
+            result.Success.Should().BeTrue();
         }
-        
-        [Fact]
-        public async Task it_returns_errors_for_invalid_request()
-        {
-            var settings = new BookingSettings(TestSettings.Uid, TestSettings.Key, TestSettings.ClientUri);
-            var request = CreateInvalidRequest();
-            var sut = new BookingClient(settings);
-
-            var response = await sut.Book(request); 
-
-            var consignment = response.Consignments.First();
-            consignment.HasErrors.Should().BeTrue();
-        }
-
-        private BookingRequest CreateValidRequest()
-        {
-            return new BookingRequest();
-        }
-
-        private BookingRequest CreateInvalidRequest()
-        {
-            return new BookingRequest();
-        }*/
     }
 
     public static class TestSettings
