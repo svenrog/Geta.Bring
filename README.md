@@ -152,6 +152,8 @@ The method returns confirmation information.
 
 EPiServer Commerce module consists of two libraries: *Geta.Bring.EPi.Commerce* - library which should be installed into your Web site; *Geta.Bring.EPi.Commerce.Manager* - library which should be installed into Commerce Manager Web site. *Geta.Bring.EPi.Commerce* contains shipping gateway - *BringShippingGateway* and types for shipping details - *BringShippingRate* and *BringShippingRateGroup*. *Geta.Bring.EPi.Commerce.Manager* contains required views to configure EPiServer Commerce Bring module.
 
+#### Getting rates
+
 To list all awailable shipping options create gateway instances for each available shipping method and use *GetRate* method as in EPiServer Commerce [documentation](http://world.episerver.com/documentation/Items/Developers-Guide/EPiServer-Commerce/8/Shipping/Shipping/). Example:
 
     CommerceCart.Shipment shipment = ...; // getting shipment from cart
@@ -199,8 +201,6 @@ You can create a partial view to render bring shipping rates. For example:
 To configure shipping methods you have to go to *Commerce Manager* - *Administration* and under *Order System* - *Shipping* - *Shipping Methods* - *language* start creating new shipping method by clicking *New*. Provide shipping method details in *Overview* tab and use *Bring Shipping Gateway* as *Provider*. Click *OK* and open again newly created method. In *Parameters* tab provide Bring Product, customer number, ship from postal code, price rounding and other parameters.
 
 ![Configuration](https://raw.githubusercontent.com/Geta/Geta.Bring/master/Documentation/config.png?token=AAncmpjSrDugDDFq-TNPw3ifahFGfBbNks5UmtDQwA%3D%3D)
-
--- Describe when and how to use Booking
 
 ## More info about Bring API
 
