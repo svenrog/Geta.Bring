@@ -11,7 +11,6 @@ namespace Geta.Bring.EPi.Commerce.Model
         public string Description { get; set; }
         public string HelpText { get; set; }
         public string Tip { get; set; }
-        public bool InNorwayShipping { get; set; }
 
         public BringShippingRate(
             Guid methodId, 
