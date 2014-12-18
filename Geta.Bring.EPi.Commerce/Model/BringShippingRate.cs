@@ -11,6 +11,7 @@ namespace Geta.Bring.EPi.Commerce.Model
         public string Description { get; set; }
         public string HelpText { get; set; }
         public string Tip { get; set; }
+        public DateTime? ExpectedDeliveryDate { get; set; }
 
         public BringShippingRate(
             Guid methodId, 
@@ -19,7 +20,8 @@ namespace Geta.Bring.EPi.Commerce.Model
             string subDisplayCategory, 
             string description, 
             string helpText, 
-            string tip, 
+            string tip,
+            DateTime? expectedDeliveryDate,
             Money money) 
             : base(methodId, displayName, money)
         {
@@ -28,6 +30,7 @@ namespace Geta.Bring.EPi.Commerce.Model
             Description = description;
             HelpText = helpText;
             Tip = tip;
+            ExpectedDeliveryDate = expectedDeliveryDate;
         }
     }
 }

@@ -138,7 +138,7 @@ namespace Geta.Bring.EPi.Commerce
             var moneyAmount = new Money(
                 amount,
                 new Currency(estimate.PackagePrice.CurrencyIdentificationCode));
-            
+
             return new BringShippingRate(
                 methodId,
                 estimate.GuiInformation.DisplayName,
@@ -147,6 +147,7 @@ namespace Geta.Bring.EPi.Commerce
                 estimate.GuiInformation.DescriptionText,
                 estimate.GuiInformation.HelpText,
                 estimate.GuiInformation.Tip,
+                estimate.ExpectedDelivery.ExpectedDeliveryDate,
                 moneyAmount);
         }
 
