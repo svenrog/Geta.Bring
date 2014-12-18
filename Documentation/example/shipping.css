@@ -91,11 +91,8 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 1.25rem;
+  padding: 0.625rem;
   background-color: #eee; }
-  @media screen and (max-width: 800px) {
-    .shipping {
-      padding: 0.625rem; } }
   .shipping, .shipping *, .shipping *:before, .shipping *:after {
     box-sizing: border-box; }
   .shipping h2, .shipping h3, .shipping h4, .shipping h5, .shipping h6 {
@@ -123,15 +120,15 @@
       .shipping > fieldset > header > *:last-child {
         padding-right: 0; }
       .shipping > fieldset > header > *:nth-child(1) {
-        width: 45%;
+        width: 43%;
         float: left;
         padding-right: 1.25rem; }
       .shipping > fieldset > header > *:nth-child(2) {
-        width: 10%;
+        width: 17%;
         float: left;
         padding-right: 1.25rem; }
       .shipping > fieldset > header > *:nth-child(3) {
-        width: 45%;
+        width: 40%;
         float: left;
         padding-right: 1.25rem; }
       @media screen and (max-width: 800px) {
@@ -203,11 +200,11 @@
           .shipping > fieldset > .shipping-group > ul > li > *:last-child {
             padding-right: 0; }
           .shipping > fieldset > .shipping-group > ul > li > *:nth-child(1) {
-            width: 45%;
+            width: 43%;
             float: left;
             padding-right: 1.25rem; }
           .shipping > fieldset > .shipping-group > ul > li > *:nth-child(2) {
-            width: 10%;
+            width: 17%;
             float: left;
             padding-right: 1.25rem; }
           .shipping > fieldset > .shipping-group > ul > li > *:nth-child(3) {
@@ -215,7 +212,7 @@
             float: left;
             padding-right: 1.25rem; }
           .shipping > fieldset > .shipping-group > ul > li > *:nth-child(4) {
-            width: 30%;
+            width: 25%;
             float: left;
             padding-right: 1.25rem; }
           @media screen and (max-width: 800px) {
@@ -275,7 +272,8 @@
             .shipping > fieldset > .shipping-group > ul > li .shipping-note {
               margin-bottom: 0.625rem; } }
           .shipping > fieldset > .shipping-group > ul > li .shipping-info {
-            padding-left: 5rem; }
+            padding-left: 5rem;
+            clear: both; }
             @media screen and (max-width: 800px) {
               .shipping > fieldset > .shipping-group > ul > li .shipping-info {
                 padding-left: 2.5rem; } }

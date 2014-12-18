@@ -228,12 +228,8 @@ $shipping-panel-background-color: #fff !default;
   max-width: $shipping-max-width;
   margin-left: auto;
   margin-right: auto;
-  padding: $shipping-gutter;
+  padding: $shipping-gutter/2;
   background-color: $shipping-color-background;
-
-  @media #{$shipping-media-small} {
-    padding: $shipping-gutter/2;
-  }
 
   //
   // Reset
@@ -282,7 +278,7 @@ $shipping-panel-background-color: #fff !default;
 
     > header {
       @extend %shipping-font-3;
-      @include shipping-columns(45%, 10%, 45%);
+      @include shipping-columns(43%, 17%, 40%);
       margin-bottom: $shipping-gutter / 4;
 
       > h3 {
@@ -371,7 +367,7 @@ $shipping-panel-background-color: #fff !default;
         //
 
         > li {
-          @include shipping-columns(45%, 10%, 15%, 30%);
+          @include shipping-columns(43%, 17%, 15%, 25%);
           margin: 0 0 $shipping-gutter 0;
           padding: 0 0 $shipping-gutter 0;
           border-bottom: solid 1px rgba($shipping-color-theme, .5);
@@ -454,6 +450,7 @@ $shipping-panel-background-color: #fff !default;
 
           .shipping-info {
             @include shipping-first-column();
+            clear: both;
 
             > p {
               @extend %shipping-font-base;
