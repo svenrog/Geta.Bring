@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.Booking", "Geta.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E65E5FCC-640D-45C8-9D29-B686178E2D36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Tests.Integration", "Booking.Tests.Integration\Booking.Tests.Integration.csproj", "{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DF2B6C02-A87D-426D-A143-E0C1B7CA1185}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
@@ -18,15 +16,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.Shipping", "Geta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.Tracking", "Geta.Bring.Tracking\Geta.Bring.Tracking.csproj", "{D92122BE-2405-45D2-A428-82BBF6E85A20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracking.Tests.Integration", "Tracking.Tests.Integration\Tracking.Tests.Integration.csproj", "{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shipping.Tests.Integration", "Shipping.Tests.Integration\Shipping.Tests.Integration.csproj", "{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.EPi.Commerce", "Geta.Bring.EPi.Commerce\Geta.Bring.EPi.Commerce.csproj", "{41E8992D-D71D-4158-BEE5-BF223242B061}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring.EPi.Commerce.Manager", "Geta.Bring.EPi.Commerce.Manager\Geta.Bring.EPi.Commerce.Manager.csproj", "{CB3E8E42-ABE5-46AA-8BD6-71FE64B851B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geta.Bring", "Geta.Bring\Geta.Bring.csproj", "{6E7AB0C2-0CCC-4C21-8226-89F291B3C395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Integration", "Tests.Integration\Tests.Integration.csproj", "{10AE9ED3-F241-4B08-A08A-E462C0609FA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +34,6 @@ Global
 		{6E172AD9-874D-4DDD-875A-E5219CBEEB69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E172AD9-874D-4DDD-875A-E5219CBEEB69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E172AD9-874D-4DDD-875A-E5219CBEEB69}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F95D12D5-2FF7-4909-B031-3FB71BA11931}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -50,14 +42,6 @@ Global
 		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D92122BE-2405-45D2-A428-82BBF6E85A20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41E8992D-D71D-4158-BEE5-BF223242B061}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41E8992D-D71D-4158-BEE5-BF223242B061}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41E8992D-D71D-4158-BEE5-BF223242B061}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -70,13 +54,15 @@ Global
 		{6E7AB0C2-0CCC-4C21-8226-89F291B3C395}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E7AB0C2-0CCC-4C21-8226-89F291B3C395}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E7AB0C2-0CCC-4C21-8226-89F291B3C395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10AE9ED3-F241-4B08-A08A-E462C0609FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10AE9ED3-F241-4B08-A08A-E462C0609FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10AE9ED3-F241-4B08-A08A-E462C0609FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10AE9ED3-F241-4B08-A08A-E462C0609FA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{9E04E5B8-BD0F-43ED-8B77-9A6A5A8D3FC2} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
-		{813B8AFE-E9EF-4D03-B0D5-D4809FCF2A56} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
-		{7C04E91C-E6F6-46EC-81CE-03CDADDBFBCD} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
+		{10AE9ED3-F241-4B08-A08A-E462C0609FA0} = {E65E5FCC-640D-45C8-9D29-B686178E2D36}
 	EndGlobalSection
 EndGlobal
