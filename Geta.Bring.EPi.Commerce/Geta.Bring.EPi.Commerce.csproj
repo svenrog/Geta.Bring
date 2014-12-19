@@ -284,17 +284,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Geta.Bring.Booking\Geta.Bring.Booking.csproj">
-      <Project>{6e172ad9-874d-4ddd-875a-e5219cbeeb69}</Project>
-      <Name>Geta.Bring.Booking</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Bring.Shipping\Geta.Bring.Shipping.csproj">
-      <Project>{f95d12d5-2ff7-4909-b031-3fb71ba11931}</Project>
-      <Name>Geta.Bring.Shipping</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Geta.Bring.Tracking\Geta.Bring.Tracking.csproj">
-      <Project>{d92122be-2405-45d2-a428-82bbf6e85a20}</Project>
-      <Name>Geta.Bring.Tracking</Name>
+    <ProjectReference Include="..\Geta.Bring\Geta.Bring.csproj">
+      <Project>{6e7ab0c2-0ccc-4c21-8226-89f291b3c395}</Project>
+      <Name>Geta.Bring</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
