@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6E7AB0C2-0CCC-4C21-8226-89F291B3C395}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Geta.Bring</RootNamespace>
+    <AssemblyName>Geta.Bring</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Booking\BookingClient.cs" />
+    <Compile Include="Booking\BookingSettings.cs" />
+    <Compile Include="Booking\IBookingClient.cs" />
+    <Compile Include="Booking\Infrastructure\MilisecondEpochConverter.cs" />
+    <Compile Include="Booking\Mapping\BookingResponseMapping.cs" />
+    <Compile Include="Booking\Mapping\ConsignmentMapping.cs" />
+    <Compile Include="Booking\Model\Confirmation.cs" />
+    <Compile Include="Booking\Model\Consignment.cs" />
+    <Compile Include="Booking\Model\Contact.cs" />
+    <Compile Include="Booking\Model\Dimensions.cs" />
+    <Compile Include="Booking\Model\Dtos\BookingRequest.cs" />
+    <Compile Include="Booking\Model\Dtos\BookingResponse.cs" />
+    <Compile Include="Booking\Model\Error.cs" />
+    <Compile Include="Booking\Model\ErrorMessage.cs" />
+    <Compile Include="Booking\Model\Package.cs" />
+    <Compile Include="Booking\Model\PackageConfirmation.cs" />
+    <Compile Include="Booking\Model\Parties.cs" />
+    <Compile Include="Booking\Model\Party.cs" />
+    <Compile Include="Booking\Model\Product.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shipping\Infrastructure\DeliveryDateToDateTimeConverter.cs" />
+    <Compile Include="Shipping\Infrastructure\ObjectToArrayConverter.cs" />
+    <Compile Include="Shipping\IShippingClient.cs" />
+    <Compile Include="Shipping\Model\AdditionalService.cs" />
+    <Compile Include="Shipping\Model\DeliveryEstimate.cs" />
+    <Compile Include="Shipping\Model\DeliveryEstimateQueryHandler.cs" />
+    <Compile Include="Shipping\Model\EstimateQuery.cs" />
+    <Compile Include="Shipping\Model\EstimateResult.cs" />
+    <Compile Include="Shipping\Model\ExpectedDelivery.cs" />
+    <Compile Include="Shipping\Model\GuiInformation.cs" />
+    <Compile Include="Shipping\Model\IEstimate.cs" />
+    <Compile Include="Shipping\Model\IQueryParameter.cs" />
+    <Compile Include="Shipping\Model\PackagePrice.cs" />
+    <Compile Include="Shipping\Model\Price.cs" />
+    <Compile Include="Shipping\Model\PriceEstimate.cs" />
+    <Compile Include="Shipping\Model\PriceEstimateQueryHandler.cs" />
+    <Compile Include="Shipping\Model\Product.cs" />
+    <Compile Include="Shipping\Model\ProductResponse.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\AdditionalServices.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\Edi.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\PackageSize.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\PriceAdjustment.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\Products.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\ShipmentLeg.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\ShippedFromPostOffice.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\ShippingDateAndTime.cs" />
+    <Compile Include="Shipping\Model\ShipmentEstimate.cs" />
+    <Compile Include="Shipping\Model\ShipmentEstimateQueryHandler.cs" />
+    <Compile Include="Shipping\Model\ShippingResponse.cs" />
+    <Compile Include="Shipping\Model\TraceMessages.cs" />
+    <Compile Include="Shipping\QueryHandler.cs" />
+    <Compile Include="Shipping\ShippingClient.cs" />
+    <Compile Include="Shipping\ShippingSettings.cs" />
+    <Compile Include="Tracking\ITrackingClient.cs" />
+    <Compile Include="Tracking\Model\Address.cs" />
+    <Compile Include="Tracking\Model\ConsignmentStatus.cs" />
+    <Compile Include="Tracking\Model\PackageStatus.cs" />
+    <Compile Include="Tracking\Model\RecipientSignature.cs" />
+    <Compile Include="Tracking\Model\TrackingEvent.cs" />
+    <Compile Include="Tracking\Model\TrackingEventDefinition.cs" />
+    <Compile Include="Tracking\Model\TrackingResponse.cs" />
+    <Compile Include="Tracking\TrackingClient.cs" />
+    <Compile Include="Tracking\TrackingSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
