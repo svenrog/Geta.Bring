@@ -3,7 +3,7 @@ Bring .NET API and EPiServer Commerce module
 
 ## What is it?
 
-This is a set of .NET Bring API libraries and module to integrate with EPiServer Commerce. Currently it supports these Bring APIs:
+This is a .NET Bring API library and module to integrate with EPiServer Commerce. Currently it supports these Bring APIs:
 - Shipping Guide API
 - Tracking API
 - Booking API
@@ -12,17 +12,9 @@ This is a set of .NET Bring API libraries and module to integrate with EPiServer
 
 Start by installing NuGet packages in you project.
 
-### Shipping Guide API
+### Bring API
 
-    Install-Package Geta.Bring.Shipping
-
-### Tracking API
-
-    Install-Package Geta.Bring.Tracking
-
-### Booking API
-
-    Install-Package Geta.Bring.Booking
+    Install-Package Geta.Bring
 
 ### EPiServer Commerce module
 
@@ -198,11 +190,11 @@ You can create a partial view to render bring shipping rates. For example:
         </div>
     }
 
-There is available sample view on [GitHub](https://github.com/Geta/Geta.Bring/tree/master/Documentation/example). It contains HTML/CSS sample and sample MVC view - *Rates.cshtml*.
+There is available sample view on [GitHub](https://github.com/Geta/Geta.Bring/tree/master/docs/example). It contains HTML/CSS sample and sample MVC view - *Rates.cshtml*.
 
 To configure shipping methods you have to go to *Commerce Manager* - *Administration* and under *Order System* - *Shipping* - *Shipping Methods* - *language* start creating new shipping method by clicking *New*. Provide shipping method details in *Overview* tab and use *Bring Shipping Gateway* as *Provider*. Click *OK* and open again newly created method. In *Parameters* tab provide Bring Product, customer number, ship from postal code, price rounding and other parameters.
 
-![Configuration](https://raw.githubusercontent.com/Geta/Geta.Bring/master/Documentation/config.png?token=AAncmpjSrDugDDFq-TNPw3ifahFGfBbNks5UmtDQwA%3D%3D)
+![Configuration](https://raw.githubusercontent.com/Geta/Geta.Bring/master/docs/config.png?token=AAncmpjSrDugDDFq-TNPw3ifahFGfBbNks5UmtDQwA%3D%3D)
 
 ## More info about Bring API
 
