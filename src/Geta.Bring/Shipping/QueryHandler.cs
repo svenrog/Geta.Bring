@@ -42,11 +42,18 @@ namespace Geta.Bring.Shipping
             var requestUri = CreateRequestUri(query);
             using (var client = CreateClient())
             {
-                jsonResponse = await client.GetStringAsync(requestUri).ConfigureAwait(false);
+                try
+                {
+                    jsonResponse = await client.GetStringAsync(requestUri).ConfigureAwait(false);
+                }
+                catch (HttpRequestException rEx)
+                {
+                    return EstimateResult<IEstimate>.CreateFailure(rEx.Message); 
+                }
             }
             var response = JsonConvert.DeserializeObject<ShippingResponse>(jsonResponse);
             var estimates = response.Product.Select(MapProduct).Cast<IEstimate>();
-            return new EstimateResult<IEstimate>(estimates);
+            return EstimateResult<IEstimate>.CreateSuccess(estimates);
         }
 
         private HttpClient CreateClient()

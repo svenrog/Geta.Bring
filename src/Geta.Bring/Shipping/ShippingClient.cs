@@ -36,7 +36,11 @@ namespace Geta.Bring.Shipping
                 if (handler.CanHandle(typeof(T)))
                 {
                     var estimate = await handler.FindEstimatesAsync(query).ConfigureAwait(false);
-                    return new EstimateResult<T>(estimate.Estimates.Cast<T>());
+                    if (estimate.Success)
+                    {
+                        return EstimateResult<T>.CreateSuccess(estimate.Estimates.Cast<T>());
+                    }
+                    return EstimateResult<T>.CreateFailure(estimate.ErrorMessages);
                 }
             }
 

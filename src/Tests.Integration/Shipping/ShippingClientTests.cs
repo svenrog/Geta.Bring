@@ -17,10 +17,10 @@ namespace Tests.Integration.Shipping
             var sut = new ShippingClient(settings);
 
             var query = new EstimateQuery(
-                new ShipmentLeg("0484", "5600"),
+                new ShipmentLeg("0484", "56000"),
                 PackageSize.InGrams(2500));
 
-            var actual = await sut.FindAsync<ShipmentEstimate>(query);
+            var actual = await sut.FindAsync<ShipmentEstimate>(query).ConfigureAwait(false);
 
             actual.Estimates.Should().NotBeEmpty();
         }
