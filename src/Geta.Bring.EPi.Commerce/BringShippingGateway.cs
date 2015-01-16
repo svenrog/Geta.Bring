@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using EPiServer.ServiceLocation;
 using Geta.Bring.EPi.Commerce.Extensions;
 using Geta.Bring.EPi.Commerce.Model;
@@ -68,9 +69,20 @@ namespace Geta.Bring.EPi.Commerce
             }
 
             var query = BuildQuery(orderAddress, shippingMethod, shipment, shipmentLineItems);
-            var result = _shippingClient.FindAsync<ShipmentEstimate>(query).Result;
+            var estimate = _shippingClient.FindAsync<ShipmentEstimate>(query).Result;
+            if (estimate.Success)
+            {
+                return CreateShippingRate(methodId, shippingMethod, estimate);
+            }
 
-            return CreateShippingRate(methodId, shippingMethod, result);
+            message = estimate.ErrorMessages
+                .Aggregate(new StringBuilder(), (sb, msg) =>
+                {
+                    sb.Append(msg);
+                    sb.AppendLine();
+                    return sb;
+                }).ToString();
+            return null;
         }
 
         private static EstimateQuery BuildQuery(
