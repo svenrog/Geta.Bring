@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Geta AS")]
 [assembly: AssemblyProduct("Geta.Bring")]
-[assembly: AssemblyCopyright("Copyright © 2014 Geta AS")]
+[assembly: AssemblyCopyright("Copyright © 2015 Geta AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

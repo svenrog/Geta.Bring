@@ -1,0 +1,65 @@
+﻿@model Geta.Bring.Sample.BringRatesSampleBlockView
+
+    <section class="shipping">
+        <header>Levering</header>
+
+        @foreach (var shippingGroup in Model)
+        {
+            <fieldset>
+
+                <!-- Column headings -->
+                <header>
+                    <h3>
+                        <img src="posten-logo.jpg" alt="Posten logo">
+                        <span>@shippingGroup.Name</span>
+                    </h3>
+                    <div class="shipping-price" aria-hidden="true">Pris</div>
+                    <div class="shipping-arrival" aria-hidden="true">Ankomst</div>
+                </header>
+
+                <!-- For each group of options, display a <div> with a subheading (if any) -->
+                <div class="shipping-group">
+
+                    <!-- Sub heading, e.g. "Under 2 kilo" -->
+                    <h4></h4>
+
+                    <ul>
+                        @foreach (var shippingMethod in shippingGroup.ShippingRates)
+                        {
+                            <li>
+                                <div class="shipping-option">
+                                    <div class="shipping-tick">
+                                        <input id="shipping_@shippingMethod.Id" value="@shippingMethod.Id" group="ShippingMethod" type="radio" name="shipping_@shippingMethod.Id">
+                                        <label for="shipping_@shippingMethod.Id">@shippingMethod.Name</label>
+                                    </div>
+                                </div>
+                                <div class="shipping-price">
+                                    <span>Pris:</span>
+                                    @shippingMethod.Money.Amount.ToString("0.00") @shippingMethod.Money.Currency.CurrencyCode
+                                </div>
+                                <div class="shipping-arrival">
+                                    <span>Ankomst:</span>
+                                    @shippingMethod.ExpectedDeliveryDate
+                                </div>
+                                <div class="shipping-note">
+                                    @shippingMethod.Tip
+                                </div>
+                                <div class="shipping-info">
+                                    <p>
+                                        @shippingMethod.Description
+                                    </p>
+                                    <button type="button" data-shipping-info-extended-toggle>Mer informasjon</button>
+                                    <div class="shipping-info-extended" data-shipping-info-extended>
+                                        <p>
+                                            @shippingMethod.HelpText
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </fieldset>
+        }
+        <footer>Alle priser er med merverdiavgift.</footer>
+    </section>

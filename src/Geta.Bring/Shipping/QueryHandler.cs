@@ -48,7 +48,13 @@ namespace Geta.Bring.Shipping
                 }
                 catch (HttpRequestException rEx)
                 {
-                    return EstimateResult<IEstimate>.CreateFailure(rEx.Message); 
+                    // TODO: parse errors from here and create strongly typed error messages
+                    // Could be object with Code, Description and HTML (full message received from Bring)
+                    // Some errors are validation errors like - invalid postal code, invalid city etc., but some are exceptions.
+                    // Wrap and return only validation errors, others throw further.
+                    // Wrap configuration errors and throw them with details, but other errors throw as is.
+                    // http://developer.bring.com/additionalresources/errorhandling.html?from=shipping
+                    return EstimateResult<IEstimate>.CreateFailure(rEx.Message);
                 }
             }
             var response = JsonConvert.DeserializeObject<ShippingResponse>(jsonResponse);

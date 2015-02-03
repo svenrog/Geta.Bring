@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Geta.Bring.EPi.Commerce")]
-[assembly: AssemblyDescription("Bring client integration with EPiServer Commerce library.")]
+[assembly: AssemblyTitle("Geta.Bring.Sample")]
+[assembly: AssemblyDescription("Sample EPiServer block to show Bring API usage.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Geta AS")]
-[assembly: AssemblyProduct("Geta.Bring.EPi.Commerce")]
+[assembly: AssemblyProduct("Geta.Bring.Sample")]
 [assembly: AssemblyCopyright("Copyright © 2015 Geta AS")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("463596ce-3c90-4155-a9fb-6547dbef6aa0")]
+[assembly: Guid("a9ab6281-42b7-4b98-9969-83fb7342aa9d")]
 
 // Version information for an assembly consists of the following four values:
 //
