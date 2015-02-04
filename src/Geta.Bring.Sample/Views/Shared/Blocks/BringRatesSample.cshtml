@@ -1,67 +1,159 @@
-﻿@model Geta.Bring.Sample.BringRatesSampleBlockView
+﻿@using System.Web.Mvc.Ajax
+@using System.Web.Mvc.Html
+@using Geta.Bring.Sample
+@model BringRatesSampleBlockView
 
+@{
+    var ajaxOptions = new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "result", InsertionMode = InsertionMode.Replace };
+}
+
+<div id="result">
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
     <link href="~/Content/BringRatesSample/shipping.css" type="text/css" rel="stylesheet" />
 
     <section class="shipping">
         <header>Levering</header>
 
-        @foreach (var shippingGroup in Model.EstimateGroups)
+        @if (Model.State == BringRatesSampleBlockView.ViewState.SearchForm)
         {
             <fieldset>
+                @using (Ajax.BeginForm("Post", "BringRatesSample", ajaxOptions))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false)
 
-                <!-- Column headings -->
-                <header>
-                    <h3>
-                        <img src="~/Content/BringRatesSample/posten-logo.jpg" alt="Posten logo">
-                        <span>@shippingGroup.MainCategory</span>
-                    </h3>
-                    <div class="shipping-price" aria-hidden="true">Pris</div>
-                    <div class="shipping-arrival" aria-hidden="true">Ankomst</div>
-                </header>
+                    <header>
+                        <h3>
+                            @*<img src="~/Content/BringRatesSample/posten-logo.jpg" alt="Posten logo">*@
+                            <span>Input til fraktguiden</span>
+                        </h3>
+                        <div>
+                        </div>
+                        <div>
+                        </div>
+                    </header>
+                    <div class="shipping-group">
+                        <div>Fra land *: @Html.DropDownListFor(x => x.CountryFrom, Model.CountriesFromList)</div>
+                        <div>Fra postnummer *: @Html.TextBoxFor(x => x.PostalCodeFrom)</div>
+                        <div>Til land *: @Html.DropDownListFor(x => x.CountryTo, Model.CountriesToList)</div>
+                        <div>Til postnummer *: @Html.TextBoxFor(x => x.PostalCodeTo)</div>
+                        <div>Forsendelsesdato: @Html.TextBoxFor(x => x.ShippingDateAndTime)</div>
 
-                <!-- For each group of options, display a <div> with a subheading (if any) -->
-                <div class="shipping-group">
+                        <fieldset>
+                            <div>Vekt (gram): @Html.TextBoxFor(x => x.Weight)</div>
 
-                    <!-- Sub heading, e.g. "Under 2 kilo" -->
-                    <h4></h4>
+                            <fieldset>
+                                <div>Lengde (cm): @Html.TextBoxFor(x => x.Length)</div>
+                                <div>Bredde (cm): @Html.TextBoxFor(x => x.Width)</div>
+                                <div>Høyde (cm): @Html.TextBoxFor(x => x.Height)</div>
+                            </fieldset>
 
-                    <ul>
-                        @foreach (var estimate in shippingGroup.Estimates)
-                        {
-                            <li>
-                                <div class="shipping-option">
-                                    <div class="shipping-tick">
-                                        <input id="shipping_@estimate.Product.Code" value="@estimate.Product.Code" group="ShippingMethod" type="radio" name="shipping_@estimate.Product.Code">
-                                        <label for="shipping_@estimate.Product.Code">@estimate.GuiInformation.DisplayName</label>
-                                    </div>
-                                </div>
-                                <div class="shipping-price">
-                                    <span>Pris:</span>
-                                    @estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT.ToString("0.00") @estimate.PackagePrice.CurrencyIdentificationCode
-                                </div>
-                                <div class="shipping-arrival">
-                                    <span>Ankomst:</span>
-                                    @estimate.ExpectedDelivery.ExpectedDeliveryDate
-                                </div>
-                                <div class="shipping-note">
-                                    @estimate.GuiInformation.Tip
-                                </div>
-                                <div class="shipping-info">
-                                    <p>
-                                        @estimate.GuiInformation.DescriptionText
-                                    </p>
-                                    <button type="button" data-shipping-info-extended-toggle>Mer informasjon</button>
-                                    <div class="shipping-info-extended" data-shipping-info-extended>
-                                        <p>
-                                            @estimate.GuiInformation.HelpText
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                            <div>Volum (liter/dm³): @Html.TextBoxFor(x => x.Volume)</div>
+                        </fieldset>
+
+                        <div>EDI: @Html.CheckBoxFor(x => x.Edi)</div>
+                        <div>Sendt fra postkontoret: @Html.CheckBoxFor(x => x.ShippedFromPostOffice)</div>
+
+                        <div>
+                            <h4>Produkter</h4>
+                            <ul>
+                                @foreach (var product in Model.ProductList)
+                                {
+                                    <li>
+                                        <label for="@product.Value">@product.Text</label>
+                                        <input type="checkbox"
+                                               name="Products"
+                                               value="@product.Value"
+                                               id="@product.Value" />
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Tilleggstjenester</h4>
+                            <ul>
+                                @foreach (var additionalService in Model.AdditionalServiceList)
+                                {
+                                    <li>
+                                        <label for="@additionalService.Value">@additionalService.Text</label>
+                                        <input type="checkbox"
+                                               name="AdditionalServices"
+                                               value="@additionalService.Value"
+                                               id="@additionalService.Value" />
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <input type="submit" value="Vis" />
+                    </div>
+                }
             </fieldset>
         }
-        <footer>Alle priser er med merverdiavgift.</footer>
+
+        @if (Model.State == BringRatesSampleBlockView.ViewState.Results)
+        {
+            foreach (var shippingGroup in Model.EstimateGroups)
+            {
+                <fieldset>
+
+                    <!-- Column headings -->
+                    <header>
+                        <h3>
+                            <img src="~/Content/BringRatesSample/posten-logo.jpg" alt="Posten logo">
+                            <span>@shippingGroup.MainCategory</span>
+                        </h3>
+                        <div class="shipping-price" aria-hidden="true">Pris</div>
+                        <div class="shipping-arrival" aria-hidden="true">Ankomst</div>
+                    </header>
+
+                    <!-- For each group of options, display a <div> with a subheading (if any) -->
+                    <div class="shipping-group">
+
+                        <!-- Sub heading, e.g. "Under 2 kilo" -->
+                        <h4></h4>
+
+                        <ul>
+                            @foreach (var estimate in shippingGroup.Estimates)
+                            {
+                                <li>
+                                    <div class="shipping-option">
+                                        <div class="shipping-tick">
+                                            <input id="shipping_@estimate.Product.Code" value="@estimate.Product.Code" group="ShippingMethod" type="radio" name="shipping_@estimate.Product.Code">
+                                            <label for="shipping_@estimate.Product.Code">@estimate.GuiInformation.DisplayName</label>
+                                        </div>
+                                    </div>
+                                    <div class="shipping-price">
+                                        <span>Pris:</span>
+                                        @estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT.ToString("0.00") @estimate.PackagePrice.CurrencyIdentificationCode
+                                    </div>
+                                    <div class="shipping-arrival">
+                                        <span>Ankomst:</span>
+                                        @estimate.ExpectedDelivery.ExpectedDeliveryDate
+                                    </div>
+                                    <div class="shipping-note">
+                                        @estimate.GuiInformation.Tip
+                                    </div>
+                                    <div class="shipping-info">
+                                        <p>
+                                            @estimate.GuiInformation.DescriptionText
+                                        </p>
+                                        <button type="button" data-shipping-info-extended-toggle>Mer informasjon</button>
+                                        <div class="shipping-info-extended" data-shipping-info-extended>
+                                            <p>
+                                                @estimate.GuiInformation.HelpText
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </fieldset>
+            }
+            <footer>Alle priser er med merverdiavgift.</footer>
+            @Ajax.ActionLink("Search again", "Index", "BringRatesSample", ajaxOptions)
+        }
     </section>
+</div>
