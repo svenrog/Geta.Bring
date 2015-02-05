@@ -23,71 +23,119 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(false)
 
-                    <header>
-                        <h3>
-                            @*<img src="~/Content/BringRatesSample/posten-logo.jpg" alt="Posten logo">*@
-                            <span>Input til fraktguiden</span>
-                        </h3>
-                        <div>
+                    <h3>
+                        <span>Input til fraktguiden</span>
+                    </h3>
+                    <div class="group">
+                        @Html.LabelFor(x => x.CountryFrom)
+                        <div class="input">
+                            @Html.DropDownListFor(x => x.CountryFrom, Model.CountriesFromList)
                         </div>
-                        <div>
+                    </div>
+                    <div class="group">
+                        @Html.LabelFor(x => x.PostalCodeFrom)
+                        <div class="input">
+                            @Html.TextBoxFor(x => x.PostalCodeFrom)
                         </div>
-                    </header>
-                    <div class="shipping-group">
-                        <div>Fra land *: @Html.DropDownListFor(x => x.CountryFrom, Model.CountriesFromList)</div>
-                        <div>Fra postnummer *: @Html.TextBoxFor(x => x.PostalCodeFrom)</div>
-                        <div>Til land *: @Html.DropDownListFor(x => x.CountryTo, Model.CountriesToList)</div>
-                        <div>Til postnummer *: @Html.TextBoxFor(x => x.PostalCodeTo)</div>
-                        <div>Forsendelsesdato: @Html.TextBoxFor(x => x.ShippingDateAndTime)</div>
+                    </div>
+                    <div class="group">
+                        @Html.LabelFor(x => x.CountryTo)
+                        <div class="input">
+                            @Html.DropDownListFor(x => x.CountryTo, Model.CountriesToList)
+                        </div>
+                    </div>
+                    <div class="group">
+                        @Html.LabelFor(x => x.PostalCodeTo)
+                        <div class="input">
+                            @Html.TextBoxFor(x => x.PostalCodeTo)
+                        </div>
+                    </div>
+                    <div class="group">
+                        @Html.LabelFor(x => x.ShippingDateAndTime)
+                        <div class="input">
+                            @Html.TextBoxFor(x => x.ShippingDateAndTime)
+                        </div>
+                    </div>
+                    <fieldset>
+                        <h4>Pakkestørrelse</h4>
+                        <blockquote>Minst en parameter (vekt, dimensjoner eller volum) er nødvendig.</blockquote>
+
+                        <div class="group">
+                            @Html.LabelFor(x => x.Weight)
+                            <div class="input">
+                                @Html.TextBoxFor(x => x.Weight)
+                            </div>
+                        </div>
 
                         <fieldset>
-                            <div>Vekt (gram): @Html.TextBoxFor(x => x.Weight)</div>
-
-                            <fieldset>
-                                <div>Lengde (cm): @Html.TextBoxFor(x => x.Length)</div>
-                                <div>Bredde (cm): @Html.TextBoxFor(x => x.Width)</div>
-                                <div>Høyde (cm): @Html.TextBoxFor(x => x.Height)</div>
-                            </fieldset>
-
-                            <div>Volum (liter/dm³): @Html.TextBoxFor(x => x.Volume)</div>
+                            <div class="group">
+                                @Html.LabelFor(x => x.Length)
+                                <div class="input">
+                                    @Html.TextBoxFor(x => x.Length)
+                                </div>
+                            </div>
+                            <div class="group">
+                                @Html.LabelFor(x => x.Width)
+                                <div class="input">
+                                    @Html.TextBoxFor(x => x.Width)
+                                </div>
+                            </div>
+                            <div class="group">
+                                @Html.LabelFor(x => x.Height)
+                                <div class="input">
+                                    @Html.TextBoxFor(x => x.Height)
+                                </div>
+                            </div>
                         </fieldset>
 
-                        <div>EDI: @Html.CheckBoxFor(x => x.Edi)</div>
-                        <div>Sendt fra postkontoret: @Html.CheckBoxFor(x => x.ShippedFromPostOffice)</div>
-
-                        <div>
-                            <h4>Produkter</h4>
-                            <ul>
-                                @foreach (var product in Model.ProductList)
-                                {
-                                    <li>
-                                        <label for="@product.Value">@product.Text</label>
-                                        <input type="checkbox"
-                                               name="Products"
-                                               value="@product.Value"
-                                               id="@product.Value" />
-                                    </li>
-                                }
-                            </ul>
+                        <div class="group">
+                            @Html.LabelFor(x => x.Volume)
+                            <div class="input">
+                                @Html.TextBoxFor(x => x.Volume)
+                            </div>
                         </div>
-                        <div>
-                            <h4>Tilleggstjenester</h4>
-                            <ul>
-                                @foreach (var additionalService in Model.AdditionalServiceList)
-                                {
-                                    <li>
-                                        <label for="@additionalService.Value">@additionalService.Text</label>
-                                        <input type="checkbox"
-                                               name="AdditionalServices"
-                                               value="@additionalService.Value"
-                                               id="@additionalService.Value" />
-                                    </li>
-                                }
-                            </ul>
-                        </div>
+                    </fieldset>
 
-                        <input type="submit" value="Vis" />
+                    <div class="group">
+                        @Html.LabelFor(x => x.Edi)
+                        @Html.CheckBoxFor(x => x.Edi)
                     </div>
+                    <div class="group">
+                        @Html.LabelFor(x => x.ShippedFromPostOffice)
+                        @Html.CheckBoxFor(x => x.ShippedFromPostOffice)
+                    </div>
+                    <div>
+                        <h4>Produkter</h4>
+                        <ul>
+                            @foreach (var product in Model.ProductList)
+                            {
+                                <li>
+                                    <label for="@product.Value">@product.Text</label>
+                                    <input type="checkbox"
+                                           name="Products"
+                                           value="@product.Value"
+                                           id="@product.Value" />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Tilleggstjenester</h4>
+                        <ul>
+                            @foreach (var additionalService in Model.AdditionalServiceList)
+                            {
+                                <li>
+                                    <label for="@additionalService.Value">@additionalService.Text</label>
+                                    <input type="checkbox"
+                                           name="AdditionalServices"
+                                           value="@additionalService.Value"
+                                           id="@additionalService.Value" />
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <input type="submit" value="Vis" />
                 }
             </fieldset>
         }
