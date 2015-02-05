@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="BringRatesSampleBlockView.cs" />
     <Compile Include="BringRatesSampleController.cs" />
+    <Compile Include="ParameterMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BringRatesSampleBlock.cs" />
   </ItemGroup>
