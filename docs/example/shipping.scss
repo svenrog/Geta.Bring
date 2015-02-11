@@ -1,225 +1,106 @@
 //
-// Settings
+// Imports
 //
 
-// Layout
+@import "shipping-settings";
+@import "shipping-utils";
 
-$shipping-gutter: 1.25rem !default;
-$shipping-max-width: 1200px !default;
-$shipping-column-gutter: $shipping-gutter !default;
-$shipping-first-column-width: $shipping-gutter * 4 !default;
-$shipping-first-column-width-small: $shipping-gutter * 2 !default;
-$shipping-media-small: "screen and (max-width:800px)" !default;
-$shipping-min-width: 320px !default;
-
-
-// Colors
-
-$shipping-color-theme: #5ebd7d !default;
-$shipping-color-subtle: #fafafa !default;
-$shipping-color-background: #eee !default;
-$shipping-font-color-primary: #444 !default;
-$shipping-font-color-secondary: #888 !default;
-$shipping-focus-outline: solid 3px $shipping-color-theme;
-
-// Fonts
-
-$shipping-font-family: "Arial", "Helvetica", sans-serif !default;
-
-// Tick
-
-$shipping-tick-width: $shipping-gutter*1.25 !default;
-$shipping-tick-height: $shipping-gutter*1.25 !default;
-$shipping-tick-y: .25rem !default;
-$shipping-tick-background-color: #fff !default;
-$shipping-tick-border-color: $shipping-color-theme !default;
+//
+// Components
+//
 
 // Panel
 
-$shipping-panel-box-shadow: 0 1px 1px rgba(black, 0.3), 0 -1px 1px rgba(black, .1) !default;
-$shipping-panel-background-color: #fff !default;
+.shipping-panel {
+  @extend %shipping-panel;
+  margin-bottom: $shipping-gutter;
+}
 
-//
-// Mixins
-//
+// Input group
 
-@mixin shipping-first-column($property: padding-left, $add: 0){
-  padding-left: $shipping-first-column-width + $add;
+.shipping-input-group {
+  @include shipping-columns(30%, 70%);
+  margin-bottom: $shipping-gutter/2;
 
-  @media #{$shipping-media-small} {
-    padding-left: $shipping-first-column-width-small + $add;
+  &:last-child{
+  }
+
+  label {
+    @extend %shipping-font-3;
+    text-align: right;
+    padding-right: $shipping-gutter;
+  }
+
+  #{$shipping-text-input-selector},
+  select {
+    @extend %shipping-font-5;
+    padding: $shipping-gutter/2 $shipping-gutter;
+    border: none 0;
+    transition: box-shadow .5s;
+  }
+
+  #{$shipping-text-input-selector}{
+    box-shadow: $shipping-text-input-box-shadow;
+    border: $shipping-text-input-border;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shipping-text-input-focus-box-shadow;
+    }
+  }
+
+  select {
+    box-shadow: $shipping-select-box-shadow;
+    border: $shipping-select-border;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shipping-select-focus-box-shadow;
+    }
   }
 }
 
-@mixin shipping-columns($widths...) {
+.shipping-tick-right {
+  @extend %shipping-tick-right;
+}
 
-  // Clearfix
+// Option list
 
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
+.shipping-option-list {
+
+  &, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  // Child columns
-
-  > * {
-
-    &:last-child {
-      padding-right: 0;
-    }
-
-    $i: 1;
-    @each $width in $widths {
-      &:nth-child(#{$i}){
-        width: $width;
-        float: left;
-        padding-right: $shipping-column-gutter;
-      }
-      $i: $i + 1;
-    }
+  li {
+    @extend %shipping-tick-right;
+    width: 30%;
 
     @media #{$shipping-media-small} {
-      float: none !important;
-      width: 100% !important;
-      padding-right: 0 !important;
+      width: 100%;
     }
+  }
+
+  label {
+    @extend %shipping-font-3;
+    padding-right: $shipping-gutter;
+  }
+}
+
+// Form description
+
+.shipping-form-description {
+  @extend %shipping-font-5;
+  margin: 0 0 $shipping-gutter 0;
+  h2 + & {
+    margin-top: -$shipping-gutter;
   }
 }
 
 //
-// Extends
-//
-
-// Fonts
-
-%shipping-font-base {
-  font-family: $shipping-font-family;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  color: $shipping-font-color-primary;
-}
-
-%shipping-font-1 {
-  font-family: $shipping-font-family;
-  font-size: 2rem;
-  line-height: 2rem;
-  color: $shipping-font-color-primary;
-}
-
-%shipping-font-2 {
-  font-family: $shipping-font-family;
-  font-size: 1.25rem;
-  line-height: 1.5rem;
-  text-transform: uppercase;
-  color: $shipping-font-color-primary;
-}
-
-%shipping-font-3 {
-  font-family: $shipping-font-family;
-  font-size: .75rem;
-  font-weight: normal;
-  line-height: 2.5rem;
-  color: $shipping-font-color-secondary;
-  text-transform: uppercase;
-}
-
-%shipping-font-4 {
-  font-family: $shipping-font-family;
-  font-size: 1rem;
-  font-weight: bold;
-  line-height: 2rem;
-  color: $shipping-font-color-primary;
-}
-
-// Other elements
-
-%shipping-panel {
-  padding: $shipping-gutter;
-  background-color: $shipping-panel-background-color;
-  box-shadow: $shipping-panel-box-shadow;
-}
-
-%shipping-button {
-  @extend %shipping-font-base;
-  display: inline-block;
-  padding: 0;
-  background: transparent;
-  color: $shipping-font-color-secondary;
-  border: none 0;
-  text-align: center;
-  cursor: pointer;
-  transition: box-shadow .5s;
-  border-bottom: solid 1px $shipping-font-color-secondary;
-
-  &:after {
-    content: '\25BE';
-    margin-left: 5px;
-  }
-
-  &:focus {
-    outline: $shipping-focus-outline;
-  }
-}
-
-%shipping-tick {
-  @extend %shipping-font-4;
-  position: relative;
-  @include shipping-first-column;
-
-  > label {
-
-    &:before,
-    &:after {
-      content: '';
-    }
-
-    &:before {
-      position: absolute;
-      top: $shipping-tick-y;
-      left: 0;
-      width: $shipping-tick-width;
-      height: $shipping-tick-width;
-      background-color: $shipping-tick-background-color;
-      border: solid 1px $shipping-tick-border-color;
-      border-radius: 50%;
-    }
-
-    &:after {
-      position: absolute;
-      display: none;
-      top: $shipping-tick-y + ($shipping-tick-height/4);
-      left: $shipping-tick-width/4;
-      width: $shipping-tick-width/2;
-      height: $shipping-tick-height/3;
-      border: 3px solid $shipping-font-color-primary;
-      border-top: none;
-      border-right: none;
-      transform: rotate(-45deg);
-    }
-  }
-
-  > input {
-    position: absolute;
-    top: $shipping-tick-y;
-    left: 0;
-
-    &:checked + label {
-      &:after {
-        display: block;
-      }
-    }
-
-    &:focus + label {
-      &:before {
-        outline: $shipping-focus-outline;
-      }
-    }
-  }
-}
-
-//
-// CSS Output
+// Main container
 //
 
 .shipping {
@@ -229,10 +110,9 @@ $shipping-panel-background-color: #fff !default;
   margin-left: auto;
   margin-right: auto;
   padding: $shipping-gutter/2;
-  background-color: $shipping-color-background;
 
   //
-  // Reset
+  // Reset tags
   //
 
   &, *, *:before, *:after {
@@ -243,6 +123,11 @@ $shipping-panel-background-color: #fff !default;
     margin: 0 0 $shipping-gutter 0;
     font-size: inherit;
     font-weight: inherit;
+  }
+
+  h2 {
+    @extend %shipping-font-3;
+    color: $shipping-font-color-primary;
   }
 
   p {
@@ -256,9 +141,9 @@ $shipping-panel-background-color: #fff !default;
     margin: 0;
   }
 
-  //
-  // Elements
-  //
+  #{$shipping-button-selector}{
+    @extend %shipping-button-primary;
+  }
 
   // Main header
 
@@ -384,7 +269,8 @@ $shipping-panel-background-color: #fff !default;
 
           .shipping-option {
             .shipping-tick {
-              @extend %shipping-tick;
+              @extend %shipping-tick-left;
+              @include shipping-first-column;
 
               @media #{$shipping-media-small} {
                 margin-bottom: $shipping-gutter/2;

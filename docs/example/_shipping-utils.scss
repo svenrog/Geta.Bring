@@ -1,0 +1,258 @@
+//
+// Mixins
+//
+
+@mixin shipping-first-column($property: padding-left, $add: 0){
+  padding-left: $shipping-first-column-width + $add;
+
+  @media #{$shipping-media-small} {
+    padding-left: $shipping-first-column-width-small + $add;
+  }
+}
+
+@mixin shipping-columns($widths...) {
+
+  // Clearfix
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  // Child columns
+
+  > * {
+
+    &:last-child {
+      padding-right: 0;
+    }
+
+    $i: 1;
+    @each $width in $widths {
+      &:nth-child(#{$i}){
+        width: $width;
+        float: left;
+        padding-right: $shipping-column-gutter;
+      }
+      $i: $i + 1;
+    }
+
+    @media #{$shipping-media-small} {
+      float: none !important;
+      width: 100% !important;
+      padding-right: 0 !important;
+    }
+  }
+}
+
+//
+// Extends
+//
+
+// Fonts
+
+%shipping-font-base {
+  font-family: $shipping-font-family;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-1 {
+  font-family: $shipping-font-family;
+  font-size: 2rem;
+  line-height: 2rem;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-2 {
+  font-family: $shipping-font-family;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-3 {
+  font-family: $shipping-font-family;
+  font-size: .75rem;
+  font-weight: normal;
+  line-height: 2.5rem;
+  color: $shipping-font-color-secondary;
+  text-transform: uppercase;
+}
+
+%shipping-font-4 {
+  font-family: $shipping-font-family;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 2rem;
+  color: $shipping-font-color-primary;
+}
+
+%shipping-font-5 {
+  font-family: $shipping-font-family;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: $shipping-font-color-primary;
+}
+
+// Other elements
+
+%shipping-panel {
+  padding: $shipping-gutter;
+  background-color: $shipping-panel-background-color;
+  box-shadow: $shipping-panel-box-shadow;
+}
+
+%shipping-button {
+  @extend %shipping-font-base;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+  color: $shipping-font-color-secondary;
+  border: none 0;
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow .5s;
+  border-bottom: solid 1px $shipping-font-color-secondary;
+
+  &:after {
+    content: '\25BE';
+    margin-left: 5px;
+  }
+
+  &:focus {
+    outline: $shipping-focus-outline;
+  }
+}
+
+%shipping-button-primary {
+  @extend %shipping-font-base;
+  display: inline-block;
+  padding: ($shipping-gutter/2) ($shipping-gutter*2);
+  background: $shipping-color-theme;
+  color: $shipping-color-subtle;
+  border: none 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: box-shadow .5s;
+}
+
+%shipping-tick-base {
+  @extend %shipping-font-4;
+  position: relative;
+
+  > label {
+
+    &:before,
+    &:after {
+      content: '';
+    }
+
+    &:before {
+      position: absolute;
+      top: $shipping-tick-y;
+      width: $shipping-tick-width;
+      height: $shipping-tick-width;
+      background-color: $shipping-tick-background-color;
+      box-shadow: 0 0 0 1px $shipping-tick-border-color;
+      transform: translateZ(0);
+      transition: all .25s;
+    }
+
+    &:after {
+      position: absolute;
+      display: none;
+      top: $shipping-tick-y + ($shipping-tick-height/4);
+      width: $shipping-tick-width/2;
+      height: $shipping-tick-height/3;
+      border: 3px solid $shipping-font-color-primary;
+      border-top: none;
+      border-right: none;
+      transform: rotate(-45deg);
+    }
+  }
+
+  > input {
+    position: absolute;
+    top: $shipping-tick-y;
+
+    &:checked ~ label {
+      &:after {
+        display: block;
+      }
+    }
+
+    &:focus ~ label:before {
+      outline: none;
+      box-shadow: $shipping-focus-outline-box-shadow;
+    }
+  }
+
+  // Radio
+
+  > [type="radio"] ~ label:before {
+    border-radius: 50%;
+  }
+}
+
+%shipping-tick-left {
+  @extend %shipping-tick-base;
+
+  > label {
+    &:before {
+      left: 0;
+    }
+
+    &:after {
+      left: $shipping-tick-width/4;
+    }
+  }
+
+  > input {
+    left: 0;
+  }
+}
+
+%shipping-tick-right {
+  @extend %shipping-tick-base;
+  padding-right: 0 !important;
+
+  > label {
+    display: block;
+    text-align: right;
+
+    @media #{$shipping-media-small} {
+      text-align: left !important;
+    }
+
+    &:before {
+      right: -$shipping-tick-width;
+      margin-right: -1px;
+
+      @media #{$shipping-media-small} {
+        right: 0;
+      }
+    }
+
+    &:after {
+      right: -$shipping-tick-width*.75;
+      margin-right: -1px;
+
+      @media #{$shipping-media-small} {
+        right: $shipping-tick-width*.25;
+      }
+    }
+  }
+
+  > input {
+    right: -$shipping-tick-width;
+
+    @media #{$shipping-media-small} {
+      right: 0;
+    }
+  }
+}

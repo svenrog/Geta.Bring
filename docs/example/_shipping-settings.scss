@@ -1,0 +1,57 @@
+//
+// Settings
+//
+
+// Selectors
+
+$shipping-text-input-selector: 'textarea, input[type=date], input[type=datetime], input[type=datetime-local], input[type=email], input[type=file], input[type=image], input[type=month], input[type=password], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], input[type=week]';
+$shipping-button-selector: 'button, [type="submit"], [type="button"]';
+
+// Layout
+
+$shipping-gutter: 1.25rem !default;
+$shipping-max-width: 1200px !default;
+$shipping-column-gutter: $shipping-gutter !default;
+$shipping-first-column-width: $shipping-gutter * 4 !default;
+$shipping-first-column-width-small: $shipping-gutter * 2 !default;
+$shipping-media-small: "screen and (max-width:800px)" !default;
+$shipping-min-width: 320px !default;
+
+
+// Colors
+
+$shipping-color-theme: #5ebd7d !default;
+$shipping-color-subtle: #fafafa !default;
+$shipping-font-color-primary: #444 !default;
+$shipping-font-color-secondary: #888 !default;
+$shipping-focus-outline: solid 3px $shipping-color-theme;
+$shipping-focus-outline-box-shadow: 0 0 0 3px $shipping-color-theme;
+
+// Fonts
+
+$shipping-font-family: "Arial", "Helvetica", sans-serif !default;
+
+// Tick
+
+$shipping-tick-width: $shipping-gutter*1.25 !default;
+$shipping-tick-height: $shipping-gutter*1.25 !default;
+$shipping-tick-y: .25rem !default;
+$shipping-tick-background-color: #fff !default;
+$shipping-tick-border-color: $shipping-color-theme !default;
+
+// Panel
+
+$shipping-panel-box-shadow: 0 1px 1px rgba(black, 0.3), 0 -1px 1px rgba(black, .1) !default;
+$shipping-panel-background-color: #fff !default;
+
+// Input
+
+$shipping-text-input-border: solid 1px $shipping-color-theme;
+$shipping-text-input-box-shadow: inset 0 0 0 2px rgba($shipping-color-theme, 0);
+$shipping-text-input-focus-box-shadow: inset 0 0 0 2px rgba($shipping-color-theme, 1);
+
+// Select
+
+$shipping-select-border: $shipping-text-input-border;
+$shipping-select-box-shadow: $shipping-text-input-box-shadow;
+$shipping-select-focus-box-shadow: $shipping-text-input-focus-box-shadow;

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="shipping.css">
+    <style>
+        body {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<section class="shipping">
+    <header>Levering</header>
+
+    <fieldset>
+        <form action="#">
+            <div class="validation-summary-valid" data-valmsg-summary="true">
+                <ul>
+                    <li style="display:none"></li>
+                </ul>
+            </div>
+            <h2>Input til fraktguiden</h2>
+            <div class="shipping-panel">
+                <div class="shipping-input-group">
+                    <label for="CountryFrom">CountryFrom</label>
+                    <select data-val="true" data-val-required="The CountryFrom field is required." id="CountryFrom" name="CountryFrom">
+                        <option value="NO">Norway</option>
+                        <option value="SE">Sweden</option>
+                        <option value="FI">Finland</option>
+                        <option value="DK">Denmark</option>
+                    </select>
+                </div>
+                <div class="shipping-input-group">
+                    <label for="PostalCodeFrom">PostalCodeFrom</label>
+                    <input data-val="true" data-val-required="Fra postnummer nødvendig." id="PostalCodeFrom" name="PostalCodeFrom" type="text" value="">
+                </div>
+                <div class="shipping-input-group">
+                    <label for="CountryTo">CountryTo</label>
+                    <select data-val="true" data-val-required="The CountryTo field is required." id="CountryTo" name="CountryTo">
+                        <option value="NO">Norway</option>
+                        <option value="SE">Sweden</option>
+                        <option value="FI">Finland</option>
+                        <option value="DK">Denmark</option>
+                    </select>
+                </div>
+                <div class="shipping-input-group">
+                    <label for="PostalCodeTo">PostalCodeTo</label>
+                    <input data-val="true" data-val-required="Til postnummer nødvendig." id="PostalCodeTo" name="PostalCodeTo" type="text" value="">
+                </div>
+                <div class="shipping-input-group">
+                    <label for="ShippingDateAndTime">ShippingDateAndTime</label>
+                    <input data-val="true" data-val-date="The field ShippingDateAndTime must be a date." id="ShippingDateAndTime" name="ShippingDateAndTime" type="text" value="">
+                </div>
+            </div>
+            <h2>Pakkestørrelse</h2>
+            <div class="shipping-form-description">Minst en parameter (vekt, dimensjoner eller volum) er nødvendig.</div>
+            <div class="shipping-panel">
+                <fieldset>
+                    <div class="shipping-input-group">
+                        <label for="Weight">Weight</label>
+                        <input data-val="true" data-val-number="The field Weight must be a number." id="Weight" name="Weight" type="text" value="">
+                    </div>
+
+                    <fieldset>
+                        <div class="shipping-input-group">
+                            <label for="Length">Length</label>
+                            <input data-val="true" data-val-number="The field Length must be a number." id="Length" name="Length" type="text" value="">
+                        </div>
+                        <div class="shipping-input-group">
+                            <label for="Width">Width</label>
+                            <input data-val="true" data-val-number="The field Width must be a number." id="Width" name="Width" type="text" value="">
+                        </div>
+                        <div class="shipping-input-group">
+                            <label for="Height">Height</label>
+                            <input data-val="true" data-val-number="The field Height must be a number." id="Height" name="Height" type="text" value="">
+                        </div>
+                    </fieldset>
+                    <div class="shipping-input-group">
+                        <label for="Volume">Volume</label>
+                        <input data-val="true" data-val-number="The field Volume must be a number." id="Volume" name="Volume" type="text" value="">
+                    </div>
+                </fieldset>
+                <div class="shipping-input-group">
+                    <div class="shipping-tick-right">
+                        <input data-val="true" data-val-required="The Edi field is required." id="Edi" name="Edi" type="checkbox" value="true"><input name="Edi" type="hidden" value="false">
+                        <label for="Edi">Edi</label>
+                    </div>
+                </div>
+                <div class="shipping-input-group">
+                    <div class="shipping-tick-right">
+                        <input data-val="true" data-val-required="The ShippedFromPostOffice field is required." id="ShippedFromPostOffice" name="ShippedFromPostOffice" type="checkbox" value="true"><input name="ShippedFromPostOffice" type="hidden" value="false">
+                        <label for="ShippedFromPostOffice">ShippedFromPostOffice</label>
+                    </div>
+                </div>
+            </div>
+            <h2>Produkter</h2>
+            <div class="shipping-panel">
+                <ul class="shipping-option-list">
+                    <li>
+                        <input type="checkbox" name="Products" value="SERVICEPAKKE" id="SERVICEPAKKE">
+                        <label for="SERVICEPAKKE">Klimanøytral Servicepakke</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="PA_DOREN" id="PA_DOREN">
+                        <label for="PA_DOREN">På Døren</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="BPAKKE_DOR-DOR" id="BPAKKE_DOR-DOR">
+                        <label for="BPAKKE_DOR-DOR">Bedriftspakke</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="EKSPRESS09" id="EKSPRESS09">
+                        <label for="EKSPRESS09">Bedriftspakke Ekspress-Over natten</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="MINIPAKKE" id="MINIPAKKE">
+                        <label for="MINIPAKKE">Minipakke</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="A-POST" id="A-POST">
+                        <label for="A-POST">A-Prioritert</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="B-POST" id="B-POST">
+                        <label for="B-POST">B-Økonomi</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="SMAAPAKKER_A-POST" id="SMAAPAKKER_A-POST">
+                        <label for="SMAAPAKKER_A-POST">Småpakker A-Post</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="SMAAPAKKER_B-POST" id="SMAAPAKKER_B-POST">
+                        <label for="SMAAPAKKER_B-POST">Småpakker B-Post</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="QUICKPACK_SAMEDAY" id="QUICKPACK_SAMEDAY">
+                        <label for="QUICKPACK_SAMEDAY">QuickPack SameDay</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="QUICKPACK_OVER_NIGHT_0900" id="QUICKPACK_OVER_NIGHT_0900">
+                        <label for="QUICKPACK_OVER_NIGHT_0900">Quickpack Over Night 0900</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="QUICKPACK_OVER_NIGHT_1200" id="QUICKPACK_OVER_NIGHT_1200">
+                        <label for="QUICKPACK_OVER_NIGHT_1200">Quickpack Over Night 1200</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="QUICKPACK_DAY_CERTAIN" id="QUICKPACK_DAY_CERTAIN">
+                        <label for="QUICKPACK_DAY_CERTAIN">Quickpack Day Certain</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="QUICKPACK_EXPRESS_ECONOMY" id="QUICKPACK_EXPRESS_ECONOMY">
+                        <label for="QUICKPACK_EXPRESS_ECONOMY">Quickpack Express Economy</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="CARGO_GROUPAGE" id="CARGO_GROUPAGE">
+                        <label for="CARGO_GROUPAGE">Cargo</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="CARRYON_BUSINESS" id="CARRYON_BUSINESS">
+                        <label for="CARRYON_BUSINESS">CarryOn Business</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="CARRYON_HOMESHOPPING" id="CARRYON_HOMESHOPPING">
+                        <label for="CARRYON_HOMESHOPPING">CarryOn HomeShopping</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="HOMEDELIVERY_CURBSIDE_DAG" id="HOMEDELIVERY_CURBSIDE_DAG">
+                        <label for="HOMEDELIVERY_CURBSIDE_DAG">HomeDelivery Curb Side</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="COURIER_VIP" id="COURIER_VIP">
+                        <label for="COURIER_VIP">Bud VIP</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="COURIER_1H" id="COURIER_1H">
+                        <label for="COURIER_1H">Bud 1 time</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="COURIER_2H" id="COURIER_2H">
+                        <label for="COURIER_2H">Bud 2 timer</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="COURIER_4H" id="COURIER_4H">
+                        <label for="COURIER_4H">Bud 4 timer</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="COURIER_6H" id="COURIER_6H">
+                        <label for="COURIER_6H">Bud 6 timer</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="Products" value="OX" id="OX">
+                        <label for="OX">Oil Express</label>
+                    </li>
+                </ul>
+            </div>
+            <h2>Tilleggstjenester</h2>
+            <div class="shipping-panel">
+                <ul class="shipping-option-list">
+                    <li>
+                        <input type="checkbox" name="AdditionalServices" value="EVARSLING" id="EVARSLING">
+                        <label for="EVARSLING">Recipient notification over SMS or E-Mail</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="AdditionalServices" value="POSTOPPKRAV" id="POSTOPPKRAV">
+                        <label for="POSTOPPKRAV">Cash on Delivery</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="AdditionalServices" value="LORDAGSUTKJORING" id="LORDAGSUTKJORING">
+                        <label for="LORDAGSUTKJORING">Delivery on Saturdays</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="AdditionalServices" value="ENVELOPE" id="ENVELOPE">
+                        <label for="ENVELOPE">QuickPack Envelope</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="AdditionalServices" value="ADVISERING" id="ADVISERING">
+                        <label for="ADVISERING">Bring contacts recipient</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" name="AdditionalServices" value="PICKUP_POINT" id="PICKUP_POINT">
+                        <label for="PICKUP_POINT">Delivery to pickup point</label>
+                    </li>
+                </ul>
+            </div>
+            <input type="submit" value="Vis">
+        </form>
+    </fieldset>
+
+</section>
+</body>
+</html>
