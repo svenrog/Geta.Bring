@@ -194,7 +194,7 @@ There is available sample view on [GitHub](https://github.com/Geta/Geta.Bring/tr
 
 To configure shipping methods you have to go to *Commerce Manager* - *Administration* and under *Order System* - *Shipping* - *Shipping Methods* - *language* start creating new shipping method by clicking *New*. Provide shipping method details in *Overview* tab and use *Bring Shipping Gateway* as *Provider*. Click *OK* and open again newly created method. In *Parameters* tab provide Bring Product, customer number, ship from postal code, price rounding and other parameters.
 
-![Configuration](https://raw.githubusercontent.com/Geta/Geta.Bring/master/docs/config.png?token=AAncmktBM5if2fDDP3ZTTGD5K9_0TwbTks5U2bmRwA%3D%3D)
+![Configuration](https://github.com/Geta/Geta.Bring/blob/master/docs/config.png?raw=true)
 
 ## More info about Bring API
 
