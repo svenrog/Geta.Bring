@@ -10,7 +10,7 @@
   line-height: 2rem;
   color: #444; }
 
-.shipping-input-group label, .shipping-option-list label, .shipping h2, .shipping > fieldset > header, .shipping > footer {
+.shipping-input-group label, .shipping-input-group-small label, .shipping-input-group-medium label, .shipping .shipping-fieldset > header, .shipping-option-list label, .shipping h2, .shipping > fieldset > header, .shipping > footer {
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: .75rem;
   font-weight: normal;
@@ -27,8 +27,10 @@
   line-height: 2rem;
   color: #444; }
 
-.shipping-input-group textarea, .shipping-input-group input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group input[type=file], .shipping-input-group input[type=image], .shipping-input-group input[type=month], .shipping-input-group input[type=password], .shipping-input-group input[type=search], .shipping-input-group input[type=tel], .shipping-input-group input[type=text], .shipping-input-group input[type=time], .shipping-input-group input[type=url], .shipping-input-group input[type=week],
-.shipping-input-group select, .shipping-form-description {
+.shipping-input-group textarea, .shipping-input-group-small textarea, .shipping-input-group-medium textarea, .shipping-input-group input[type=date], .shipping-input-group-small input[type=date], .shipping-input-group-medium input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group-small input[type=datetime], .shipping-input-group-medium input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group-small input[type=datetime-local], .shipping-input-group-medium input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group-small input[type=email], .shipping-input-group-medium input[type=email], .shipping-input-group input[type=file], .shipping-input-group-small input[type=file], .shipping-input-group-medium input[type=file], .shipping-input-group input[type=image], .shipping-input-group-small input[type=image], .shipping-input-group-medium input[type=image], .shipping-input-group input[type=month], .shipping-input-group-small input[type=month], .shipping-input-group-medium input[type=month], .shipping-input-group input[type=password], .shipping-input-group-small input[type=password], .shipping-input-group-medium input[type=password], .shipping-input-group input[type=search], .shipping-input-group-small input[type=search], .shipping-input-group-medium input[type=search], .shipping-input-group input[type=tel], .shipping-input-group-small input[type=tel], .shipping-input-group-medium input[type=tel], .shipping-input-group input[type=text], .shipping-input-group-small input[type=text], .shipping-input-group-medium input[type=text], .shipping-input-group input[type=time], .shipping-input-group-small input[type=time], .shipping-input-group-medium input[type=time], .shipping-input-group input[type=url], .shipping-input-group-small input[type=url], .shipping-input-group-medium input[type=url], .shipping-input-group input[type=week], .shipping-input-group-small input[type=week], .shipping-input-group-medium input[type=week],
+.shipping-input-group select,
+.shipping-input-group-small select,
+.shipping-input-group-medium select, .shipping-form-description {
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 1rem;
   line-height: 1rem;
@@ -133,50 +135,78 @@
       .shipping-tick-right > input, .shipping-option-list li > input {
         right: 0; } }
 
-.shipping-panel {
-  margin-bottom: 1.25rem; }
-
-.shipping-input-group {
+.shipping-input-group, .shipping-input-group-small, .shipping-input-group-medium {
   margin-bottom: 0.625rem; }
-  .shipping-input-group:after {
+  .shipping-input-group:after, .shipping-input-group-small:after, .shipping-input-group-medium:after {
     content: "";
     display: table;
     clear: both; }
-  .shipping-input-group > *:last-child {
+  .shipping-input-group > *:last-child, .shipping-input-group-small > *:last-child, .shipping-input-group-medium > *:last-child {
     padding-right: 0; }
-  .shipping-input-group > *:nth-child(1) {
+  .shipping-input-group > *:nth-child(1), .shipping-input-group-small > *:nth-child(1), .shipping-input-group-medium > *:nth-child(1) {
     width: 30%;
     float: left;
     padding-right: 1.25rem; }
-  .shipping-input-group > *:nth-child(2) {
+  .shipping-input-group > *:nth-child(2), .shipping-input-group-small > *:nth-child(2), .shipping-input-group-medium > *:nth-child(2) {
     width: 70%;
     float: left;
     padding-right: 1.25rem; }
   @media screen and (max-width: 800px) {
-    .shipping-input-group > * {
+    .shipping-input-group > *, .shipping-input-group-small > *, .shipping-input-group-medium > * {
       float: none !important;
       width: 100% !important;
       padding-right: 0 !important; } }
-  .shipping-input-group label {
+  .shipping-input-group label, .shipping-input-group-small label, .shipping-input-group-medium label {
     text-align: right;
     padding-right: 1.25rem; }
-  .shipping-input-group textarea, .shipping-input-group input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group input[type=file], .shipping-input-group input[type=image], .shipping-input-group input[type=month], .shipping-input-group input[type=password], .shipping-input-group input[type=search], .shipping-input-group input[type=tel], .shipping-input-group input[type=text], .shipping-input-group input[type=time], .shipping-input-group input[type=url], .shipping-input-group input[type=week],
-  .shipping-input-group select {
+    @media screen and (max-width: 800px) {
+      .shipping-input-group label, .shipping-input-group-small label, .shipping-input-group-medium label {
+        display: block;
+        text-align: left;
+        width: 100% !important; } }
+  .shipping-input-group textarea, .shipping-input-group-small textarea, .shipping-input-group-medium textarea, .shipping-input-group input[type=date], .shipping-input-group-small input[type=date], .shipping-input-group-medium input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group-small input[type=datetime], .shipping-input-group-medium input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group-small input[type=datetime-local], .shipping-input-group-medium input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group-small input[type=email], .shipping-input-group-medium input[type=email], .shipping-input-group input[type=file], .shipping-input-group-small input[type=file], .shipping-input-group-medium input[type=file], .shipping-input-group input[type=image], .shipping-input-group-small input[type=image], .shipping-input-group-medium input[type=image], .shipping-input-group input[type=month], .shipping-input-group-small input[type=month], .shipping-input-group-medium input[type=month], .shipping-input-group input[type=password], .shipping-input-group-small input[type=password], .shipping-input-group-medium input[type=password], .shipping-input-group input[type=search], .shipping-input-group-small input[type=search], .shipping-input-group-medium input[type=search], .shipping-input-group input[type=tel], .shipping-input-group-small input[type=tel], .shipping-input-group-medium input[type=tel], .shipping-input-group input[type=text], .shipping-input-group-small input[type=text], .shipping-input-group-medium input[type=text], .shipping-input-group input[type=time], .shipping-input-group-small input[type=time], .shipping-input-group-medium input[type=time], .shipping-input-group input[type=url], .shipping-input-group-small input[type=url], .shipping-input-group-medium input[type=url], .shipping-input-group input[type=week], .shipping-input-group-small input[type=week], .shipping-input-group-medium input[type=week],
+  .shipping-input-group select,
+  .shipping-input-group-small select,
+  .shipping-input-group-medium select {
     padding: 0.625rem 1.25rem;
     border: none 0;
     transition: box-shadow .5s; }
-  .shipping-input-group textarea, .shipping-input-group input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group input[type=file], .shipping-input-group input[type=image], .shipping-input-group input[type=month], .shipping-input-group input[type=password], .shipping-input-group input[type=search], .shipping-input-group input[type=tel], .shipping-input-group input[type=text], .shipping-input-group input[type=time], .shipping-input-group input[type=url], .shipping-input-group input[type=week] {
+  .shipping-input-group textarea, .shipping-input-group-small textarea, .shipping-input-group-medium textarea, .shipping-input-group input[type=date], .shipping-input-group-small input[type=date], .shipping-input-group-medium input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group-small input[type=datetime], .shipping-input-group-medium input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group-small input[type=datetime-local], .shipping-input-group-medium input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group-small input[type=email], .shipping-input-group-medium input[type=email], .shipping-input-group input[type=file], .shipping-input-group-small input[type=file], .shipping-input-group-medium input[type=file], .shipping-input-group input[type=image], .shipping-input-group-small input[type=image], .shipping-input-group-medium input[type=image], .shipping-input-group input[type=month], .shipping-input-group-small input[type=month], .shipping-input-group-medium input[type=month], .shipping-input-group input[type=password], .shipping-input-group-small input[type=password], .shipping-input-group-medium input[type=password], .shipping-input-group input[type=search], .shipping-input-group-small input[type=search], .shipping-input-group-medium input[type=search], .shipping-input-group input[type=tel], .shipping-input-group-small input[type=tel], .shipping-input-group-medium input[type=tel], .shipping-input-group input[type=text], .shipping-input-group-small input[type=text], .shipping-input-group-medium input[type=text], .shipping-input-group input[type=time], .shipping-input-group-small input[type=time], .shipping-input-group-medium input[type=time], .shipping-input-group input[type=url], .shipping-input-group-small input[type=url], .shipping-input-group-medium input[type=url], .shipping-input-group input[type=week], .shipping-input-group-small input[type=week], .shipping-input-group-medium input[type=week] {
     box-shadow: inset 0 0 0 2px rgba(94, 189, 125, 0);
     border: solid 1px #5ebd7d; }
-    .shipping-input-group textarea:focus, .shipping-input-group input[type=date]:focus, .shipping-input-group input[type=datetime]:focus, .shipping-input-group input[type=datetime-local]:focus, .shipping-input-group input[type=email]:focus, .shipping-input-group input[type=file]:focus, .shipping-input-group input[type=image]:focus, .shipping-input-group input[type=month]:focus, .shipping-input-group input[type=password]:focus, .shipping-input-group input[type=search]:focus, .shipping-input-group input[type=tel]:focus, .shipping-input-group input[type=text]:focus, .shipping-input-group input[type=time]:focus, .shipping-input-group input[type=url]:focus, .shipping-input-group input[type=week]:focus {
+    .shipping-input-group textarea:focus, .shipping-input-group-small textarea:focus, .shipping-input-group-medium textarea:focus, .shipping-input-group input[type=date]:focus, .shipping-input-group-small input[type=date]:focus, .shipping-input-group-medium input[type=date]:focus, .shipping-input-group input[type=datetime]:focus, .shipping-input-group-small input[type=datetime]:focus, .shipping-input-group-medium input[type=datetime]:focus, .shipping-input-group input[type=datetime-local]:focus, .shipping-input-group-small input[type=datetime-local]:focus, .shipping-input-group-medium input[type=datetime-local]:focus, .shipping-input-group input[type=email]:focus, .shipping-input-group-small input[type=email]:focus, .shipping-input-group-medium input[type=email]:focus, .shipping-input-group input[type=file]:focus, .shipping-input-group-small input[type=file]:focus, .shipping-input-group-medium input[type=file]:focus, .shipping-input-group input[type=image]:focus, .shipping-input-group-small input[type=image]:focus, .shipping-input-group-medium input[type=image]:focus, .shipping-input-group input[type=month]:focus, .shipping-input-group-small input[type=month]:focus, .shipping-input-group-medium input[type=month]:focus, .shipping-input-group input[type=password]:focus, .shipping-input-group-small input[type=password]:focus, .shipping-input-group-medium input[type=password]:focus, .shipping-input-group input[type=search]:focus, .shipping-input-group-small input[type=search]:focus, .shipping-input-group-medium input[type=search]:focus, .shipping-input-group input[type=tel]:focus, .shipping-input-group-small input[type=tel]:focus, .shipping-input-group-medium input[type=tel]:focus, .shipping-input-group input[type=text]:focus, .shipping-input-group-small input[type=text]:focus, .shipping-input-group-medium input[type=text]:focus, .shipping-input-group input[type=time]:focus, .shipping-input-group-small input[type=time]:focus, .shipping-input-group-medium input[type=time]:focus, .shipping-input-group input[type=url]:focus, .shipping-input-group-small input[type=url]:focus, .shipping-input-group-medium input[type=url]:focus, .shipping-input-group input[type=week]:focus, .shipping-input-group-small input[type=week]:focus, .shipping-input-group-medium input[type=week]:focus {
       outline: none;
       box-shadow: inset 0 0 0 2px #5ebd7d; }
-  .shipping-input-group select {
+  .shipping-input-group select, .shipping-input-group-small select, .shipping-input-group-medium select {
     box-shadow: inset 0 0 0 2px rgba(94, 189, 125, 0);
     border: solid 1px #5ebd7d; }
-    .shipping-input-group select:focus {
+    .shipping-input-group select:focus, .shipping-input-group-small select:focus, .shipping-input-group-medium select:focus {
       outline: none;
       box-shadow: inset 0 0 0 2px #5ebd7d; }
+
+.shipping-panel {
+  margin-bottom: 1.25rem; }
+
+.shipping .shipping-fieldset {
+  border-bottom: solid 1px #ccc;
+  margin: 0 -1.25rem 1.25rem;
+  padding: 0 1.25rem 1.25rem; }
+  .shipping .shipping-fieldset:last-child {
+    border-bottom: none 0;
+    margin-bottom: 0;
+    padding-bottom: 1.25rem; }
+  .shipping .shipping-fieldset > header {
+    color: #444; }
+  .shipping .shipping-fieldset .shipping-input-group:last-child, .shipping .shipping-fieldset .shipping-input-group-small:last-child, .shipping .shipping-fieldset .shipping-input-group-medium:last-child {
+    margin-bottom: 0; }
+
+.shipping-input-group-small textarea, .shipping-input-group-small input[type=date], .shipping-input-group-small input[type=datetime], .shipping-input-group-small input[type=datetime-local], .shipping-input-group-small input[type=email], .shipping-input-group-small input[type=file], .shipping-input-group-small input[type=image], .shipping-input-group-small input[type=month], .shipping-input-group-small input[type=password], .shipping-input-group-small input[type=search], .shipping-input-group-small input[type=tel], .shipping-input-group-small input[type=text], .shipping-input-group-small input[type=time], .shipping-input-group-small input[type=url], .shipping-input-group-small input[type=week],
+.shipping-input-group-small select {
+  max-width: 180px; }
+
+.shipping-input-group-medium textarea, .shipping-input-group-medium input[type=date], .shipping-input-group-medium input[type=datetime], .shipping-input-group-medium input[type=datetime-local], .shipping-input-group-medium input[type=email], .shipping-input-group-medium input[type=file], .shipping-input-group-medium input[type=image], .shipping-input-group-medium input[type=month], .shipping-input-group-medium input[type=password], .shipping-input-group-medium input[type=search], .shipping-input-group-medium input[type=tel], .shipping-input-group-medium input[type=text], .shipping-input-group-medium input[type=time], .shipping-input-group-medium input[type=url], .shipping-input-group-medium input[type=week],
+.shipping-input-group-medium select {
+  max-width: 360px; }
 
 .shipping-option-list, .shipping-option-list li {
   margin: 0;
@@ -187,6 +217,8 @@
   @media screen and (max-width: 800px) {
     .shipping-option-list li {
       width: 100%; } }
+.shipping-option-list input {
+  opacity: 0; }
 .shipping-option-list label {
   padding-right: 1.25rem; }
 
