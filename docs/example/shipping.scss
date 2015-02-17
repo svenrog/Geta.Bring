@@ -16,47 +16,50 @@
   margin-bottom: $shipping-gutter;
 }
 
+// Divider
+
+.shipping .shipping-fieldset {
+  border-bottom: solid 1px $shipping-color-divider;
+  margin: 0 (-$shipping-gutter) $shipping-gutter;
+  padding: 0 $shipping-gutter $shipping-gutter;
+
+  &:last-child {
+    border-bottom: none 0;
+    margin-bottom: 0;
+    padding-bottom: $shipping-gutter;
+  }
+
+  > header {
+    @extend %shipping-font-3;
+    color: $shipping-font-color-primary;
+  }
+
+  %shipping-input-group:last-child {
+    margin-bottom: 0;
+  }
+}
+
 // Input group
 
 .shipping-input-group {
-  @include shipping-columns(30%, 70%);
-  margin-bottom: $shipping-gutter/2;
+  @extend %shipping-input-group;
+}
 
-  &:last-child{
-  }
-
-  label {
-    @extend %shipping-font-3;
-    text-align: right;
-    padding-right: $shipping-gutter;
-  }
+.shipping-input-group-small{
+  @extend %shipping-input-group;
 
   #{$shipping-text-input-selector},
   select {
-    @extend %shipping-font-5;
-    padding: $shipping-gutter/2 $shipping-gutter;
-    border: none 0;
-    transition: box-shadow .5s;
+    max-width: 180px;
   }
+}
 
-  #{$shipping-text-input-selector}{
-    box-shadow: $shipping-text-input-box-shadow;
-    border: $shipping-text-input-border;
+.shipping-input-group-medium{
+  @extend %shipping-input-group;
 
-    &:focus {
-      outline: none;
-      box-shadow: $shipping-text-input-focus-box-shadow;
-    }
-  }
-
+  #{$shipping-text-input-selector},
   select {
-    box-shadow: $shipping-select-box-shadow;
-    border: $shipping-select-border;
-
-    &:focus {
-      outline: none;
-      box-shadow: $shipping-select-focus-box-shadow;
-    }
+    max-width: 360px;
   }
 }
 
@@ -81,6 +84,10 @@
     @media #{$shipping-media-small} {
       width: 100%;
     }
+  }
+
+  input {
+    top: -10000px !important;
   }
 
   label {

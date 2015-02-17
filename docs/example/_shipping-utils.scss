@@ -256,3 +256,51 @@
     }
   }
 }
+
+%shipping-input-group {
+  @include shipping-columns(30%, 70%);
+  margin-bottom: $shipping-gutter/2;
+
+  &:last-child{
+  }
+
+  label {
+    @extend %shipping-font-3;
+    text-align: right;
+    padding-right: $shipping-gutter;
+
+    @media #{$shipping-media-small} {
+      display: block;
+      text-align: left;
+      width: 100% !important;
+    }
+  }
+
+  #{$shipping-text-input-selector},
+  select {
+    @extend %shipping-font-5;
+    padding: $shipping-gutter/2 $shipping-gutter;
+    border: none 0;
+    transition: box-shadow .5s;
+  }
+
+  #{$shipping-text-input-selector}{
+    box-shadow: $shipping-text-input-box-shadow;
+    border: $shipping-text-input-border;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shipping-text-input-focus-box-shadow;
+    }
+  }
+
+  select {
+    box-shadow: $shipping-select-box-shadow;
+    border: $shipping-select-border;
+
+    &:focus {
+      outline: none;
+      box-shadow: $shipping-select-focus-box-shadow;
+    }
+  }
+}
