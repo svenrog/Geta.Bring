@@ -16,7 +16,7 @@ namespace Geta.Bring.Sample
         [DisplayName("Fra land")]
         public string CountryFrom { get; set; }
 
-        [Required(ErrorMessage = "Fra postnummer nødvendig.")]
+        [Required(ErrorMessage = "Fra postnummer er påkrevd")]
         [DisplayName("Fra postnummer *")]
         public string PostalCodeFrom { get; set; }
 
@@ -25,7 +25,7 @@ namespace Geta.Bring.Sample
         public string CountryTo { get; set; }
 
         [DisplayName("Til postnummer *")]
-        [Required(ErrorMessage = "Til postnummer nødvendig.")]
+        [Required(ErrorMessage = "Til postnummer er påkrevd")]
         public string PostalCodeTo { get; set; }
 
         [DisplayName("Forsendelsesdato")]
@@ -49,7 +49,7 @@ namespace Geta.Bring.Sample
         [DisplayName("EDI")]
         public bool Edi { get; set; }
 
-        [DisplayName("Sendt fra postkontoret")]
+        [DisplayName("Sendes fra postkontoret")]
         public bool ShippedFromPostOffice { get; set; }
 
         [DisplayName("Produkter")]
