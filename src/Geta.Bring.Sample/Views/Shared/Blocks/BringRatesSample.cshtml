@@ -100,11 +100,11 @@
                             @foreach (var product in Model.ProductList)
                             {
                                 <li>
-                                    <label for="@product.Value">@product.Text</label>
                                     <input type="checkbox"
                                            name="@Html.IdFor(x => x.Products)"
                                            value="@product.Value"
                                            id="@product.Value" />
+                                    <label for="@product.Value">@product.Text</label>
                                 </li>
                             }
                         </ul>
@@ -116,11 +116,11 @@
                             @foreach (var additionalService in Model.AdditionalServiceList)
                             {
                                 <li>
-                                    <label for="@additionalService.Value">@additionalService.Text</label>
                                     <input type="checkbox"
                                            name="@Html.IdFor(x => x.AdditionalServices)"
                                            value="@additionalService.Value"
                                            id="@additionalService.Value" />
+                                    <label for="@additionalService.Value">@additionalService.Text</label>
                                 </li>
                             }
                         </ul>
