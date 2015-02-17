@@ -173,8 +173,8 @@
     <Content Include="Content\BringRatesSample\posten-logo-block.png" />
     <Content Include="Content\BringRatesSample\posten-logo.jpg" />
     <Content Include="Content\BringRatesSample\posten-logo.png" />
-    <Content Include="Content\BringRatesSample\shipping.css" />
     <None Include="packages.config" />
+    <Content Include="Content\BringRatesSample\shipping.css" />
     <Content Include="Views\Shared\Blocks\BringRatesSample.cshtml" />
   </ItemGroup>
   <ItemGroup />

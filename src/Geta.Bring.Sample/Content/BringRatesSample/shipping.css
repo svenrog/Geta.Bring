@@ -1,4 +1,4 @@
-.shipping > fieldset > .shipping-group > ul > li .shipping-info > button, .shipping p, .shipping > fieldset > .shipping-group > ul > li .shipping-info > p, .shipping > fieldset > .shipping-group > ul > li .shipping-info .shipping-info-extended {
+.shipping > fieldset > .shipping-group > ul > li .shipping-info > button, .shipping button, .shipping [type="submit"], .shipping [type="button"], .shipping p, .shipping > fieldset > .shipping-group > ul > li .shipping-info > p, .shipping > fieldset > .shipping-group > ul > li .shipping-info .shipping-info-extended {
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -10,7 +10,7 @@
   line-height: 2rem;
   color: #444; }
 
-.shipping > fieldset > header, .shipping > footer {
+.shipping-input-group label, .shipping-option-list label, .shipping h2, .shipping > fieldset > header, .shipping > footer {
   font-family: "Arial", "Helvetica", sans-serif;
   font-size: .75rem;
   font-weight: normal;
@@ -18,7 +18,7 @@
   color: #888;
   text-transform: uppercase; }
 
-.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick, .shipping > fieldset > .shipping-group > h4, .shipping > fieldset > .shipping-group > ul > li .shipping-price,
+.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick, .shipping-tick-right, .shipping-option-list li, .shipping > fieldset > .shipping-group > h4, .shipping > fieldset > .shipping-group > ul > li .shipping-price,
 .shipping > fieldset > .shipping-group > ul > li .shipping-arrival,
 .shipping > fieldset > .shipping-group > ul > li .shipping-note {
   font-family: "Arial", "Helvetica", sans-serif;
@@ -27,7 +27,14 @@
   line-height: 2rem;
   color: #444; }
 
-.shipping > fieldset > header > h3 > img, .shipping > fieldset > .shipping-group > h4, .shipping > fieldset > .shipping-group > ul {
+.shipping-input-group textarea, .shipping-input-group input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group input[type=file], .shipping-input-group input[type=image], .shipping-input-group input[type=month], .shipping-input-group input[type=password], .shipping-input-group input[type=search], .shipping-input-group input[type=tel], .shipping-input-group input[type=text], .shipping-input-group input[type=time], .shipping-input-group input[type=url], .shipping-input-group input[type=week],
+.shipping-input-group select, .shipping-form-description {
+  font-family: "Arial", "Helvetica", sans-serif;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: #444; }
+
+.shipping-panel, .shipping > fieldset > header > h3 > img, .shipping > fieldset > .shipping-group > h4, .shipping > fieldset > .shipping-group > ul {
   padding: 1.25rem;
   background-color: #fff;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 -1px 1px rgba(0, 0, 0, 0.1); }
@@ -48,42 +55,145 @@
   .shipping > fieldset > .shipping-group > ul > li .shipping-info > button:focus {
     outline: solid 3px #5ebd7d; }
 
-.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick {
-  position: relative;
-  padding-left: 5rem; }
-  @media screen and (max-width: 800px) {
-    .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick {
-      padding-left: 2.5rem; } }
-  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:before, .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:after {
+.shipping button, .shipping [type="submit"], .shipping [type="button"] {
+  display: inline-block;
+  padding: 0.625rem 2.5rem;
+  background: #5ebd7d;
+  color: #fafafa;
+  border: none 0;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: box-shadow .5s; }
+
+.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick, .shipping-tick-right, .shipping-option-list li {
+  position: relative; }
+  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:before, .shipping-tick-right > label:before, .shipping-option-list li > label:before, .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:after, .shipping-tick-right > label:after, .shipping-option-list li > label:after {
     content: ''; }
-  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:before {
+  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:before, .shipping-tick-right > label:before, .shipping-option-list li > label:before {
     position: absolute;
     top: 0.25rem;
-    left: 0;
     width: 1.5625rem;
     height: 1.5625rem;
     background-color: #fff;
-    border: solid 1px #5ebd7d;
-    border-radius: 50%; }
-  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:after {
+    box-shadow: 0 0 0 1px #5ebd7d;
+    transform: translateZ(0);
+    transition: all .25s; }
+  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:after, .shipping-tick-right > label:after, .shipping-option-list li > label:after {
     position: absolute;
     display: none;
     top: 0.64063rem;
-    left: 0.39063rem;
     width: 0.78125rem;
     height: 0.52083rem;
     border: 3px solid #444;
     border-top: none;
     border-right: none;
     transform: rotate(-45deg); }
-  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input {
+  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input, .shipping-tick-right > input, .shipping-option-list li > input {
     position: absolute;
-    top: 0.25rem;
-    left: 0; }
-    .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input:checked + label:after {
+    top: 0.25rem; }
+    .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input:checked ~ label:after, .shipping-tick-right > input:checked ~ label:after, .shipping-option-list li > input:checked ~ label:after {
       display: block; }
-    .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input:focus + label:before {
-      outline: solid 3px #5ebd7d; }
+    .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input:focus ~ label:before, .shipping-tick-right > input:focus ~ label:before, .shipping-option-list li > input:focus ~ label:before {
+      outline: none;
+      box-shadow: 0 0 0 3px #5ebd7d; }
+  .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > [type="radio"] ~ label:before, .shipping-tick-right > [type="radio"] ~ label:before, .shipping-option-list li > [type="radio"] ~ label:before {
+    border-radius: 50%; }
+
+.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:before {
+  left: 0; }
+.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > label:after {
+  left: 0.39063rem; }
+.shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick > input {
+  left: 0; }
+
+.shipping-tick-right, .shipping-option-list li {
+  padding-right: 0 !important; }
+  .shipping-tick-right > label, .shipping-option-list li > label {
+    display: block;
+    text-align: right; }
+    @media screen and (max-width: 800px) {
+      .shipping-tick-right > label, .shipping-option-list li > label {
+        text-align: left !important; } }
+    .shipping-tick-right > label:before, .shipping-option-list li > label:before {
+      right: -1.5625rem;
+      margin-right: -1px; }
+      @media screen and (max-width: 800px) {
+        .shipping-tick-right > label:before, .shipping-option-list li > label:before {
+          right: 0; } }
+    .shipping-tick-right > label:after, .shipping-option-list li > label:after {
+      right: -1.17188rem;
+      margin-right: -1px; }
+      @media screen and (max-width: 800px) {
+        .shipping-tick-right > label:after, .shipping-option-list li > label:after {
+          right: 0.39063rem; } }
+  .shipping-tick-right > input, .shipping-option-list li > input {
+    right: -1.5625rem; }
+    @media screen and (max-width: 800px) {
+      .shipping-tick-right > input, .shipping-option-list li > input {
+        right: 0; } }
+
+.shipping-panel {
+  margin-bottom: 1.25rem; }
+
+.shipping-input-group {
+  margin-bottom: 0.625rem; }
+  .shipping-input-group:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .shipping-input-group > *:last-child {
+    padding-right: 0; }
+  .shipping-input-group > *:nth-child(1) {
+    width: 30%;
+    float: left;
+    padding-right: 1.25rem; }
+  .shipping-input-group > *:nth-child(2) {
+    width: 70%;
+    float: left;
+    padding-right: 1.25rem; }
+  @media screen and (max-width: 800px) {
+    .shipping-input-group > * {
+      float: none !important;
+      width: 100% !important;
+      padding-right: 0 !important; } }
+  .shipping-input-group label {
+    text-align: right;
+    padding-right: 1.25rem; }
+  .shipping-input-group textarea, .shipping-input-group input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group input[type=file], .shipping-input-group input[type=image], .shipping-input-group input[type=month], .shipping-input-group input[type=password], .shipping-input-group input[type=search], .shipping-input-group input[type=tel], .shipping-input-group input[type=text], .shipping-input-group input[type=time], .shipping-input-group input[type=url], .shipping-input-group input[type=week],
+  .shipping-input-group select {
+    padding: 0.625rem 1.25rem;
+    border: none 0;
+    transition: box-shadow .5s; }
+  .shipping-input-group textarea, .shipping-input-group input[type=date], .shipping-input-group input[type=datetime], .shipping-input-group input[type=datetime-local], .shipping-input-group input[type=email], .shipping-input-group input[type=file], .shipping-input-group input[type=image], .shipping-input-group input[type=month], .shipping-input-group input[type=password], .shipping-input-group input[type=search], .shipping-input-group input[type=tel], .shipping-input-group input[type=text], .shipping-input-group input[type=time], .shipping-input-group input[type=url], .shipping-input-group input[type=week] {
+    box-shadow: inset 0 0 0 2px rgba(94, 189, 125, 0);
+    border: solid 1px #5ebd7d; }
+    .shipping-input-group textarea:focus, .shipping-input-group input[type=date]:focus, .shipping-input-group input[type=datetime]:focus, .shipping-input-group input[type=datetime-local]:focus, .shipping-input-group input[type=email]:focus, .shipping-input-group input[type=file]:focus, .shipping-input-group input[type=image]:focus, .shipping-input-group input[type=month]:focus, .shipping-input-group input[type=password]:focus, .shipping-input-group input[type=search]:focus, .shipping-input-group input[type=tel]:focus, .shipping-input-group input[type=text]:focus, .shipping-input-group input[type=time]:focus, .shipping-input-group input[type=url]:focus, .shipping-input-group input[type=week]:focus {
+      outline: none;
+      box-shadow: inset 0 0 0 2px #5ebd7d; }
+  .shipping-input-group select {
+    box-shadow: inset 0 0 0 2px rgba(94, 189, 125, 0);
+    border: solid 1px #5ebd7d; }
+    .shipping-input-group select:focus {
+      outline: none;
+      box-shadow: inset 0 0 0 2px #5ebd7d; }
+
+.shipping-option-list, .shipping-option-list li {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+.shipping-option-list li {
+  width: 30%; }
+  @media screen and (max-width: 800px) {
+    .shipping-option-list li {
+      width: 100%; } }
+.shipping-option-list label {
+  padding-right: 1.25rem; }
+
+.shipping-form-description {
+  margin: 0 0 1.25rem 0; }
+  h2 + .shipping-form-description {
+    margin-top: -1.25rem; }
 
 .shipping {
   width: 100%;
@@ -91,14 +201,15 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0.625rem;
-  background-color: #eee; }
+  padding: 0.625rem; }
   .shipping, .shipping *, .shipping *:before, .shipping *:after {
     box-sizing: border-box; }
   .shipping h2, .shipping h3, .shipping h4, .shipping h5, .shipping h6 {
     margin: 0 0 1.25rem 0;
     font-size: inherit;
     font-weight: inherit; }
+  .shipping h2 {
+    color: #444; }
   .shipping p {
     margin: 0; }
   .shipping fieldset {
@@ -224,9 +335,14 @@
             margin-bottom: 0;
             padding-bottom: 0;
             border-bottom: none 0; }
-          @media screen and (max-width: 800px) {
-            .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick {
-              margin-bottom: 0.625rem; } }
+          .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick {
+            padding-left: 5rem; }
+            @media screen and (max-width: 800px) {
+              .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick {
+                padding-left: 2.5rem; } }
+            @media screen and (max-width: 800px) {
+              .shipping > fieldset > .shipping-group > ul > li .shipping-option .shipping-tick {
+                margin-bottom: 0.625rem; } }
           .shipping > fieldset > .shipping-group > ul > li .shipping-price,
           .shipping > fieldset > .shipping-group > ul > li .shipping-arrival,
           .shipping > fieldset > .shipping-group > ul > li .shipping-note {
