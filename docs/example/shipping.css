@@ -218,7 +218,7 @@
     .shipping-option-list li {
       width: 100%; } }
 .shipping-option-list input {
-  top: -10000px !important; }
+  opacity: 0; }
 .shipping-option-list label {
   padding-right: 1.25rem; }
 

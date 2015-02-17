@@ -17,118 +17,123 @@
 
         @if (Model.State == BringRatesSampleBlockView.ViewState.SearchForm)
         {
-            <fieldset>
-                @using (Ajax.BeginForm("Post", "BringRatesSample", ajaxOptions))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(false)
+            using (Ajax.BeginForm("Post", "BringRatesSample", ajaxOptions))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
 
-                    <h2>Input til fraktguiden</h2>
+                <h2>Input til fraktguiden</h2>
 
-                    <div class="shipping-panel">
+                <div class="shipping-panel">
+                    <fieldset class="shipping-fieldset">
                         <div class="shipping-input-group">
                             @Html.LabelFor(x => x.CountryFrom)
                             @Html.DropDownListFor(x => x.CountryFrom, Model.CountriesFromList)
                         </div>
-                        <div class="shipping-input-group">
+                        <div class="shipping-input-group-medium">
                             @Html.LabelFor(x => x.PostalCodeFrom)
                             @Html.TextBoxFor(x => x.PostalCodeFrom)
                         </div>
+                    </fieldset>
+                    <fieldset class="shipping-fieldset">
                         <div class="shipping-input-group">
                             @Html.LabelFor(x => x.CountryTo)
                             @Html.DropDownListFor(x => x.CountryTo, Model.CountriesToList)
                         </div>
-                        <div class="shipping-input-group">
+                        <div class="shipping-input-group-medium">
                             @Html.LabelFor(x => x.PostalCodeTo)
                             @Html.TextBoxFor(x => x.PostalCodeTo)
                         </div>
-                        <div class="shipping-input-group">
+                    </fieldset>
+                    <fieldset class="shipping-fieldset">
+                        <div class="shipping-input-group-medium">
                             @Html.LabelFor(x => x.ShippingDateAndTime)
                             @Html.TextBoxFor(x => x.ShippingDateAndTime)
                         </div>
-                    </div>
+                    </fieldset>
+                </div>
 
-                    <h2>Pakkestørrelse</h2>
-                    <div class="shipping-form-description">Minst en parameter (vekt, dimensjoner eller volum) er nødvendig.</div>
+                <h2>Pakkestørrelse</h2>
+                <div class="shipping-form-description">Minst en parameter (vekt, dimensjoner eller volum) er nødvendig.</div>
 
-                    <div class="shipping-panel">
-                        <fieldset>
-                            <div class="shipping-input-group">
-                                @Html.LabelFor(x => x.Weight)
-                                @Html.TextBoxFor(x => x.Weight)
-                            </div>
-
-                            <fieldset>
-                                <div class="shipping-input-group">
-                                    @Html.LabelFor(x => x.Length)
-                                    @Html.TextBoxFor(x => x.Length)
-                                </div>
-                                <div class="shipping-input-group">
-                                    @Html.LabelFor(x => x.Width)
-                                    @Html.TextBoxFor(x => x.Width)
-                                </div>
-                                <div class="shipping-input-group">
-                                    @Html.LabelFor(x => x.Height)
-                                    @Html.TextBoxFor(x => x.Height)
-                                </div>
-                            </fieldset>
-
-                            <div class="shipping-input-group">
-                                @Html.LabelFor(x => x.Volume)
-                                @Html.TextBoxFor(x => x.Volume)
-                            </div>
-                        </fieldset>
-
-                        <div class="shipping-input-group">
-                            <div class="shipping-tick-right">
-                                @Html.CheckBoxFor(x => x.Edi)
-                                @Html.LabelFor(x => x.Edi)
-                            </div>
+                <div class="shipping-panel">
+                    <fieldset class="shipping-fieldset">
+                        <div class="shipping-input-group-small">
+                            @Html.LabelFor(x => x.Weight)
+                            @Html.TextBoxFor(x => x.Weight)
                         </div>
-                        <div class="shipping-input-group">
-                            <div class="shipping-tick-right">
-                                @Html.CheckBoxFor(x => x.ShippedFromPostOffice)
-                                @Html.LabelFor(x => x.ShippedFromPostOffice)
-                            </div>
+                    </fieldset>
+                    <fieldset class="shipping-fieldset">
+                        <div class="shipping-input-group-small">
+                            @Html.LabelFor(x => x.Length)
+                            @Html.TextBoxFor(x => x.Length)
+                        </div>
+                        <div class="shipping-input-group-small">
+                            @Html.LabelFor(x => x.Width)
+                            @Html.TextBoxFor(x => x.Width)
+                        </div>
+                        <div class="shipping-input-group-small">
+                            @Html.LabelFor(x => x.Height)
+                            @Html.TextBoxFor(x => x.Height)
+                        </div>
+                    </fieldset>
+                    <fieldset class="shipping-fieldset">
+                        <div class="shipping-input-group-small">
+                            @Html.LabelFor(x => x.Volume)
+                            @Html.TextBoxFor(x => x.Volume)
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="shipping-panel">
+                    <div class="shipping-input-group-small">
+                        <div class="shipping-tick-right">
+                            @Html.CheckBoxFor(x => x.Edi)
+                            @Html.LabelFor(x => x.Edi)
                         </div>
                     </div>
-
-                    <h2>@Html.DisplayNameFor(x => x.Products)</h2>
-
-                    <div class="shipping-panel">
-                        <ul class="shipping-option-list">
-                            @foreach (var product in Model.ProductList)
-                            {
-                                <li>
-                                    <input type="checkbox"
-                                           name="@Html.IdFor(x => x.Products)"
-                                           value="@product.Value"
-                                           id="@product.Value" />
-                                    <label for="@product.Value">@product.Text</label>
-                                </li>
-                            }
-                        </ul>
+                    <div class="shipping-input-group-small">
+                        <div class="shipping-tick-right">
+                            @Html.CheckBoxFor(x => x.ShippedFromPostOffice)
+                            @Html.LabelFor(x => x.ShippedFromPostOffice)
+                        </div>
                     </div>
+                </div>
+            
+                <h2>@Html.DisplayNameFor(x => x.Products)</h2>
 
-                    <h2>@Html.DisplayNameFor(x => x.AdditionalServices)</h2>
-                    <div class="shipping-panel">
-                        <ul class="shipping-option-list">
-                            @foreach (var additionalService in Model.AdditionalServiceList)
-                            {
-                                <li>
-                                    <input type="checkbox"
-                                           name="@Html.IdFor(x => x.AdditionalServices)"
-                                           value="@additionalService.Value"
-                                           id="@additionalService.Value" />
-                                    <label for="@additionalService.Value">@additionalService.Text</label>
-                                </li>
-                            }
-                        </ul>
-                    </div>
+                <div class="shipping-panel">
+                    <ul class="shipping-option-list">
+                        @foreach (var product in Model.ProductList)
+                        {
+                            <li>
+                                <input type="checkbox"
+                                        name="@Html.IdFor(x => x.Products)"
+                                        value="@product.Value"
+                                        id="@product.Value" />
+                                <label for="@product.Value">@product.Text</label>
+                            </li>
+                        }
+                    </ul>
+                </div>
 
-                    <input type="submit" value="Vis" />
-                }
-            </fieldset>
+                <h2>@Html.DisplayNameFor(x => x.AdditionalServices)</h2>
+                <div class="shipping-panel">
+                    <ul class="shipping-option-list">
+                        @foreach (var additionalService in Model.AdditionalServiceList)
+                        {
+                            <li>
+                                <input type="checkbox"
+                                        name="@Html.IdFor(x => x.AdditionalServices)"
+                                        value="@additionalService.Value"
+                                        id="@additionalService.Value" />
+                                <label for="@additionalService.Value">@additionalService.Text</label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+                <input type="submit" value="Vis" />
+            }
         }
 
         @if (Model.State == BringRatesSampleBlockView.ViewState.Results)
