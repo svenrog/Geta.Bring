@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Geta.Bring.Shipping.Infrastructure;
 using Newtonsoft.Json;
@@ -10,7 +9,6 @@ namespace Geta.Bring.Shipping.Model
     {
         public ShippingResponse(IEnumerable<ProductResponse> product, TraceMessages traceMessages)
         {
-            if (product == null) throw new ArgumentNullException("product");
             Product = product;
             TraceMessages = traceMessages ?? new TraceMessages(Enumerable.Empty<string>());
         }
