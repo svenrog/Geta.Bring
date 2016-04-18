@@ -9,7 +9,7 @@ namespace Geta.Bring.Shipping.Model
     {
         public ShippingResponse(IEnumerable<ProductResponse> product, TraceMessages traceMessages)
         {
-            Product = product;
+            Product = product ?? Enumerable.Empty<ProductResponse>();
             TraceMessages = traceMessages ?? new TraceMessages(Enumerable.Empty<string>());
         }
 
