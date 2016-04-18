@@ -1,4 +1,7 @@
-﻿namespace Geta.Bring.Shipping.Model
+﻿using Geta.Bring.Shipping.Infrastructure;
+using Newtonsoft.Json;
+
+namespace Geta.Bring.Shipping.Model
 {
     /// <summary>
     /// GUI information.
@@ -70,6 +73,7 @@
         /// <summary>
         /// Max weight in kilograms.
         /// </summary>
+        [JsonConverter(typeof(DefaultingPropertyConverter<int>))]
         public int MaxWeightInKgs { get; private set; }
     }
 }

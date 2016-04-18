@@ -45,11 +45,11 @@ namespace Geta.Bring.Shipping.Model
         public static Product BPost = new Product("B-Økonomi", "B-POST", true, true);
         public static Product SmaapakkerAPost = new Product("Småpakker A-Post", "SMAAPAKKER_A-POST", true, true);
         public static Product SmaapakkerBPost = new Product("Småpakker B-Post", "SMAAPAKKER_B-POST", true, true);
-        public static Product QuickpackSameday = new Product("QuickPack SameDay", "QUICKPACK_SAMEDAY", true, true);
-        public static Product QuickpackOverNight0900 = new Product("Quickpack Over Night 0900", "QUICKPACK_OVER_NIGHT_0900", true, true);
-        public static Product QuickpackOverNight1200 = new Product("Quickpack Over Night 1200", "QUICKPACK_OVER_NIGHT_1200", true, true);
-        public static Product QuickpackDayCertain = new Product("Quickpack Day Certain", "QUICKPACK_DAY_CERTAIN", true, true);
-        public static Product QuickpackExpressEconomy = new Product("Quickpack Express Economy", "QUICKPACK_EXPRESS_ECONOMY", true, true);
+        public static Product QuickpackSameday = new Product("Quickpack SameDay", "EXPRESS_NORDIC_SAME_DAY", true, true);
+        public static Product QuickpackOverNight0900 = new Product("Quickpack Over Night 0900", "EXPRESS_INTERNATIONAL_0900", true, true);
+        public static Product QuickpackOverNight1200 = new Product("Quickpack Over Night 1200", "EXPRESS_INTERNATIONAL_1200", true, true);
+        public static Product QuickpackDayCertain = new Product("Quickpack Day Certain", "EXPRESS_INTERNATIONAL", true, true);
+        public static Product QuickpackExpressEconomy = new Product("Quickpack Express Economy", "EXPRESS_ECONOMY", true, true);
         public static Product CargoGroupage = new Product("Cargo", "CARGO_GROUPAGE", true, true);
         public static Product CarryonBusiness = new Product("CarryOn Business", "CARRYON_BUSINESS", true, true);
         public static Product CarryonHomeshopping = new Product("CarryOn HomeShopping", "CARRYON_HOMESHOPPING", true, true);

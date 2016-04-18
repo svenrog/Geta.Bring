@@ -74,6 +74,7 @@
     <Compile Include="Booking\Model\Party.cs" />
     <Compile Include="Booking\Model\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shipping\Infrastructure\DefaultingPropertyConverter.cs" />
     <Compile Include="Shipping\Infrastructure\DeliveryDateToDateTimeConverter.cs" />
     <Compile Include="Shipping\Infrastructure\ObjectToArrayConverter.cs" />
     <Compile Include="Shipping\IShippingClient.cs" />
