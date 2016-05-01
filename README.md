@@ -1,5 +1,6 @@
-Bring .NET API and EPiServer Commerce module
-==================
+# Bring .NET API and EPiServer Commerce module
+
+![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_GetaBring_GetaBringDebug)/statusIcon)
 
 ## What is it?
 
