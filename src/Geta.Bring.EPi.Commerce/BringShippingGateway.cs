@@ -114,7 +114,9 @@ namespace Geta.Bring.EPi.Commerce
 
             if (priceAdjustmentPercent > 0)
             {
-                var priceAdjustmentAdd = bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentOperator, "true"));
+                bool priceAdjustmentAdd;
+                bool.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentOperator, "true"), out priceAdjustmentAdd);
+
                 yield return priceAdjustmentAdd ? PriceAdjustment.IncreasePercent(priceAdjustmentPercent) : PriceAdjustment.DecreasePercent(priceAdjustmentPercent);
             }
 
@@ -154,7 +156,11 @@ namespace Geta.Bring.EPi.Commerce
             EstimateResult<ShipmentEstimate> result)
         {
             var estimate = result.Estimates.First();
-            var amount = AdjustPrice(shippingMethod, (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT);
+
+            var usesAdditionalServices = !string.IsNullOrEmpty(shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices));
+
+            var amount = AdjustPrice(shippingMethod, usesAdditionalServices ? (decimal)estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT :
+                                                                              (decimal)estimate.PackagePrice.PackagePriceWithoutAdditionalServices.AmountWithVAT);
 
             var moneyAmount = new Money(
                 amount,
