@@ -6,7 +6,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe package size.
     /// </summary>
-    public class PackageSize : IQueryParameter
+    public class PackageSize : IShippingQueryParameter
     {
         private PackageSize() { }
 

@@ -100,7 +100,7 @@ namespace Geta.Bring.EPi.Commerce
                 additionalParameters.ToArray());
         }
 
-        private static IEnumerable<IQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
+        private static IEnumerable<IShippingQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
         {
             var hasEdi = bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.Edi, "true"));
             yield return new Edi(hasEdi);
@@ -108,6 +108,15 @@ namespace Geta.Bring.EPi.Commerce
             var shippedFromPostOffice =
                 bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PostingAtPostOffice, "false"));
             yield return new ShippedFromPostOffice(shippedFromPostOffice);
+
+            int priceAdjustmentPercent;
+            int.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentPercent, "0"), out priceAdjustmentPercent);
+
+            if (priceAdjustmentPercent > 0)
+            {
+                var priceAdjustmentAdd = bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentOperator, "true"));
+                yield return priceAdjustmentAdd ? PriceAdjustment.IncreasePercent(priceAdjustmentPercent) : PriceAdjustment.DecreasePercent(priceAdjustmentPercent);
+            }
 
             var productCode = shippingMethod.GetShippingMethodParameterValue(ParameterNames.BringProductId, null)
                               ?? Product.Servicepakke.Code;
@@ -185,6 +194,8 @@ namespace Geta.Bring.EPi.Commerce
             public const string Edi = "EDI";
             public const string AdditionalServices = "AdditionalServices";
             public const string PriceRounding = "PriceRounding";
+            public const string PriceAdjustmentOperator = "PriceAdjustmentOperator";
+            public const string PriceAdjustmentPercent = "PriceAdjustmentPercent";
         }
 
         internal static class ErrorMessages

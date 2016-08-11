@@ -5,7 +5,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe if shipped from post office.
     /// </summary>
-    public class ShippedFromPostOffice : IQueryParameter
+    public class ShippedFromPostOffice : IShippingQueryParameter
     {
         /// <summary>
         /// Initializes new instance of <see cref="ShippedFromPostOffice"/>.

@@ -6,7 +6,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe package shipping date and/or time to Bring.
     /// </summary>
-    public class ShippingDateAndTime : IQueryParameter
+    public class ShippingDateAndTime : IShippingQueryParameter
     {
         /// <summary>
         /// Initializes new instance of <see cref="ShippingDateAndTime"/> with date.

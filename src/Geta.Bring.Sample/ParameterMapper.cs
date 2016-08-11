@@ -21,9 +21,9 @@ namespace Geta.Bring.Sample
             return GetPackageSizes(view).First();
         }
 
-        public static IQueryParameter[] GetAdditionalParameters(BringRatesSampleBlockView view)
+        public static IShippingQueryParameter[] GetAdditionalParameters(BringRatesSampleBlockView view)
         {
-            var parameters = new List<IQueryParameter>();
+            var parameters = new List<IShippingQueryParameter>();
 
             var additionalPackageSizes = GetPackageSizes(view).Skip(1);
             parameters.AddRange(additionalPackageSizes);

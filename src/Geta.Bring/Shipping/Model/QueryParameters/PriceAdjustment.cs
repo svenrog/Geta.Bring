@@ -6,7 +6,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe price adjustments.
     /// </summary>
-    public class PriceAdjustment : IQueryParameter
+    public class PriceAdjustment : IShippingQueryParameter
     {
         private const string ParameterName = "priceAdjustment";
         private const string IncreaseFormat = "p{0}";
