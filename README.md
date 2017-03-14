@@ -201,7 +201,7 @@ To configure shipping methods you have to go to *Commerce Manager* - *Administra
 
 ### Shipping Guide API
 
-http://developer.bring.com/api/shippingguideapi.html
+http://developer.bring.com/api/shipping-guide/
 
 *Demo*
 
