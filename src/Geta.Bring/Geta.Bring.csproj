@@ -94,6 +94,7 @@
     <Compile Include="Shipping\Model\Product.cs" />
     <Compile Include="Shipping\Model\ProductResponse.cs" />
     <Compile Include="Shipping\Model\QueryParameters\AdditionalServices.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\CustomerNumber.cs" />
     <Compile Include="Shipping\Model\QueryParameters\Edi.cs" />
     <Compile Include="Shipping\Model\QueryParameters\PackageSize.cs" />
     <Compile Include="Shipping\Model\QueryParameters\PriceAdjustment.cs" />

@@ -113,6 +113,12 @@ namespace Geta.Bring.EPi.Commerce
                               ?? Product.Servicepakke.Code;
             yield return new Products(Product.GetByCode(productCode));
 
+            var customerNumber = shippingMethod.GetShippingMethodParameterValue(ParameterNames.BringCustomerNumber, null);
+            if (!string.IsNullOrWhiteSpace(customerNumber))
+            {
+                yield return new CustomerNumber(customerNumber);
+            }
+
             var additionalServicesCodes = shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices);
             var services = additionalServicesCodes.Split(',')
                 .Select(code => AdditionalService.All.FirstOrDefault(x => x.Code == code))
@@ -185,6 +191,7 @@ namespace Geta.Bring.EPi.Commerce
             public const string Edi = "EDI";
             public const string AdditionalServices = "AdditionalServices";
             public const string PriceRounding = "PriceRounding";
+            public const string BringCustomerNumber = "BringCustomerNumber";
         }
 
         internal static class ErrorMessages
