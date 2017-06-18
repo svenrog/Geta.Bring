@@ -65,6 +65,16 @@ namespace Geta.Bring.Shipping
         private HttpClient CreateClient()
         {
             var client = new HttpClient();
+            if (Settings.Uid != null)
+            {
+                client.DefaultRequestHeaders.Add("X-MyBring-API-Uid", Settings.Uid);
+            }
+
+            if (Settings.Key != null)
+            {
+                client.DefaultRequestHeaders.Add("X-MyBring-API-Key", Settings.Key);
+            }
+
             client.DefaultRequestHeaders.Add("X-Bring-Client-URL", Settings.ClientUri.ToString());
             return client;
         }
