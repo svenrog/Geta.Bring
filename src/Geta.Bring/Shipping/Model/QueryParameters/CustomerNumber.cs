@@ -5,7 +5,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter for CustomerNumber
     /// </summary>
-    public class CustomerNumber : IQueryParameter
+    public class CustomerNumber : IShippingQueryParameter
     {
         /// <summary>
         /// Initializes new instance of <see cref="CustomerNumber"/>.
