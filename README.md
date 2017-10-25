@@ -201,7 +201,7 @@ To configure shipping methods you have to go to *Commerce Manager* - *Administra
 
 ### Shipping Guide API
 
-http://developer.bring.com/api/shippingguideapi.html
+http://developer.bring.com/api/shipping-guide/
 
 *Demo*
 
@@ -209,8 +209,8 @@ http://fraktguide.bring.no/fraktguide/demoVelgFraktalternativ.do?from=0484&to=04
 
 ### Tracking API
 
-http://developer.bring.com/api/trackingapi.html
+http://developer.bring.com/api/tracking/
 
 ### Booking API
 
-http://developer.bring.com/api/bookingapi.html
+http://developer.bring.com/api/booking
