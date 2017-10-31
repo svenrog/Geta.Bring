@@ -19,7 +19,7 @@ namespace Geta.Bring.Shipping.Model
         public EstimateQuery(
             ShipmentLeg shipmentLeg, 
             PackageSize packageSize,
-            params IQueryParameter[] additionalParameters)
+            params IShippingQueryParameter[] additionalParameters)
         {
             if (shipmentLeg == null) throw new ArgumentNullException("shipmentLeg");
             if (packageSize == null) throw new ArgumentNullException("packageSize");

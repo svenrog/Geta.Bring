@@ -7,7 +7,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe required additional services of type <see cref="AdditionalService"/>.
     /// </summary>
-    public class AdditionalServices : IQueryParameter
+    public class AdditionalServices : IShippingQueryParameter
     {
         private const string ParameterName = "additional";
 

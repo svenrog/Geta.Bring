@@ -100,7 +100,7 @@ namespace Geta.Bring.EPi.Commerce
                 additionalParameters.ToArray());
         }
 
-        private static IEnumerable<IQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
+        private static IEnumerable<IShippingQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
         {
             var hasEdi = bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.Edi, "true"));
             yield return new Edi(hasEdi);
@@ -108,6 +108,17 @@ namespace Geta.Bring.EPi.Commerce
             var shippedFromPostOffice =
                 bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PostingAtPostOffice, "false"));
             yield return new ShippedFromPostOffice(shippedFromPostOffice);
+
+            int priceAdjustmentPercent;
+            int.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentPercent, "0"), out priceAdjustmentPercent);
+
+            if (priceAdjustmentPercent > 0)
+            {
+                bool priceAdjustmentAdd;
+                bool.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentOperator, "true"), out priceAdjustmentAdd);
+
+                yield return priceAdjustmentAdd ? PriceAdjustment.IncreasePercent(priceAdjustmentPercent) : PriceAdjustment.DecreasePercent(priceAdjustmentPercent);
+            }
 
             var productCode = shippingMethod.GetShippingMethodParameterValue(ParameterNames.BringProductId, null)
                               ?? Product.Servicepakke.Code;
@@ -151,7 +162,11 @@ namespace Geta.Bring.EPi.Commerce
             EstimateResult<ShipmentEstimate> result)
         {
             var estimate = result.Estimates.First();
-            var amount = AdjustPrice(shippingMethod, (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT);
+
+            var usesAdditionalServices = !string.IsNullOrEmpty(shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices));
+
+            var amount = AdjustPrice(shippingMethod, usesAdditionalServices ? (decimal)estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT :
+                                                                              (decimal)estimate.PackagePrice.PackagePriceWithoutAdditionalServices.AmountWithVAT);
 
             var moneyAmount = new Money(
                 amount,
@@ -191,6 +206,8 @@ namespace Geta.Bring.EPi.Commerce
             public const string Edi = "EDI";
             public const string AdditionalServices = "AdditionalServices";
             public const string PriceRounding = "PriceRounding";
+            public const string PriceAdjustmentOperator = "PriceAdjustmentOperator";
+            public const string PriceAdjustmentPercent = "PriceAdjustmentPercent";
             public const string BringCustomerNumber = "BringCustomerNumber";
         }
 

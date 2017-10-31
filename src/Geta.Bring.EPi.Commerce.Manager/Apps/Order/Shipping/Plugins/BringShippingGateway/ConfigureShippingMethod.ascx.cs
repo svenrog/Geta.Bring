@@ -27,6 +27,8 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var postingAtPostOfficeRow = GetOrCreateParameterRow("PostingAtPostOffice");
                 var additionalServicesRow = GetOrCreateParameterRow("AdditionalServices");
                 var priceRoundingRow = GetOrCreateParameterRow("PriceRounding");
+                var priceAdjustmentOperatorRow = GetOrCreateParameterRow("PriceAdjustmentOperator");
+                var priceAdjustmentPercentRow = GetOrCreateParameterRow("PriceAdjustmentPercent");
 
                 productIdRow.Value = ddlBringProducts.SelectedValue;
                 customerNumberRow.Value = txtCustomerNumber.Text;
@@ -35,6 +37,8 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 postingAtPostOfficeRow.Value = cbPostingAtPostOffice.Checked.ToString();
                 additionalServicesRow.Value = GetSelectedListItemsString(cblAdditionalServices.Items);
                 priceRoundingRow.Value = cbPriceRounding.Checked.ToString();
+                priceAdjustmentOperatorRow.Value = rbPriceAdjustmentAdd.Checked.ToString();
+                priceAdjustmentPercentRow.Value = txtPercentAdjustment.Text;
 
                 AttachParameterRow(productIdRow);
                 AttachParameterRow(customerNumberRow);
@@ -43,6 +47,8 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 AttachParameterRow(postingAtPostOfficeRow);
                 AttachParameterRow(additionalServicesRow);
                 AttachParameterRow(priceRoundingRow);
+                AttachParameterRow(priceAdjustmentOperatorRow);
+                AttachParameterRow(priceAdjustmentPercentRow);
             }
         }
 
@@ -65,6 +71,8 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var ediRow = GetParameterRow("EDI");
                 var postingAtPostOfficeRow = GetParameterRow("PostingAtPostOffice");
                 var priceRoundingRow = GetParameterRow("PriceRounding");
+                var priceAdjustmentOperatorRow = GetParameterRow("PriceAdjustmentOperator");
+                var priceAdjustmentPercentRow = GetParameterRow("PriceAdjustmentPercent");
 
                 if (productIdRow != null)
                 {
@@ -91,6 +99,19 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 if (priceRoundingRow != null)
                 {
                     cbPriceRounding.Checked = priceRoundingRow.Value.Equals("true", StringComparison.InvariantCultureIgnoreCase);
+                }
+
+                if (priceAdjustmentOperatorRow != null)
+                {
+                    var add = priceAdjustmentOperatorRow.Value.Equals("true", StringComparison.InvariantCultureIgnoreCase);
+
+                    rbPriceAdjustmentAdd.Checked = add;
+                    rbPriceAdjustmentSubtract.Checked = !add;
+                }
+
+                if (priceAdjustmentPercentRow != null)
+                {
+                    txtPercentAdjustment.Text = priceAdjustmentPercentRow.Value;
                 }
             }
         }

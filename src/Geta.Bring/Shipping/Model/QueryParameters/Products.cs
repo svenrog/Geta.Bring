@@ -7,7 +7,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe required products of type <see cref="Product"/>.
     /// </summary>
-    public class Products : IQueryParameter
+    public class Products : IShippingQueryParameter
     {
         private const string ParameterName = "product";
 

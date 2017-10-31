@@ -5,7 +5,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe if EDI is used.
     /// </summary>
-    public class Edi : IQueryParameter
+    public class Edi : IShippingQueryParameter
     {
         /// <summary>
         /// Initializes new instance of <see cref="Edi"/>.

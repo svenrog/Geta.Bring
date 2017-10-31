@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Caching;
 using Geta.Bring.Shipping.Model;
 using Newtonsoft.Json;
 
@@ -40,6 +42,13 @@ namespace Geta.Bring.Shipping
         {
             string jsonResponse;
             var requestUri = CreateRequestUri(query);
+            var cacheKey = CreateCacheKey(requestUri);
+
+            var cached = HttpRuntime.Cache.Get(cacheKey) as EstimateResult<IEstimate>;
+
+            if (cached != null)
+                return await Task.FromResult(cached);
+
             using (var client = CreateClient())
             {
                 try
@@ -57,9 +66,19 @@ namespace Geta.Bring.Shipping
                     return EstimateResult<IEstimate>.CreateFailure(rEx.Message);
                 }
             }
+
             var response = JsonConvert.DeserializeObject<ShippingResponse>(jsonResponse);
-            var estimates = response.Product.Select(MapProduct).Cast<IEstimate>();
-            return EstimateResult<IEstimate>.CreateSuccess(estimates);
+            var estimates = response.Product.Select(MapProduct).Cast<IEstimate>().ToList();
+            var result = EstimateResult<IEstimate>.CreateSuccess(estimates);
+
+            HttpRuntime.Cache.Insert(cacheKey, result, null, DateTime.UtcNow.AddMinutes(2), Cache.NoSlidingExpiration);
+
+            return result;
+        }
+
+        private string CreateCacheKey(Uri uri)
+        {
+            return string.Concat("EstimateResult", "-", typeof(T).Name, "-", uri.ToString());
         }
 
         private HttpClient CreateClient()
