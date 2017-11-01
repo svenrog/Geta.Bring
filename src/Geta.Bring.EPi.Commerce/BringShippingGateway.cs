@@ -12,10 +12,11 @@ using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Dto;
 using Mediachase.Commerce.Orders.Managers;
 using Geta.Bring.Shipping;
+using EPiServer.Commerce.Order;
 
 namespace Geta.Bring.EPi.Commerce
 {
-    public class BringShippingGateway : IShippingGateway
+    public class BringShippingGateway : IShippingPlugin
     {
         private readonly IShippingClient _shippingClient;
 
@@ -30,8 +31,9 @@ namespace Geta.Bring.EPi.Commerce
         {
         }
 
-        public ShippingRate GetRate(Guid methodId, Shipment shipment, ref string message)
+        public ShippingRate GetRate(Guid methodId, IShipment ishipment, ref string message)
         {
+            var shipment = ishipment as Shipment;
             if (shipment == null)
             {
                 return null;
@@ -44,7 +46,7 @@ namespace Geta.Bring.EPi.Commerce
                 return null;
             }
 
-            var shipmentLineItems = Shipment.GetShipmentLineItems(shipment);
+            var shipmentLineItems = shipment.LineItems;
             if (shipmentLineItems.Count == 0)
             {
                 message = ErrorMessages.ShipmentContainsNoLineItems;
@@ -89,7 +91,7 @@ namespace Geta.Bring.EPi.Commerce
             OrderAddress orderAddress,
             ShippingMethodDto shippingMethod,
             Shipment shipment, 
-            IEnumerable<LineItem> shipmentLineItems)
+            IEnumerable<ILineItem> shipmentLineItems)
         {
             var shipmentLeg = CreateShipmentLeg(orderAddress, shippingMethod);
             var packageSize = CreatePackageSize(shipment, shipmentLineItems);
@@ -137,10 +139,10 @@ namespace Geta.Bring.EPi.Commerce
             yield return new AdditionalServices(services.ToArray());
         }
 
-        private static PackageSize CreatePackageSize(Shipment shipment, IEnumerable<LineItem> shipmentLineItems)
+        private static PackageSize CreatePackageSize(Shipment shipment, IEnumerable<ILineItem> shipmentLineItems)
         {
             var weight = shipmentLineItems
-                .Select(item => item.GetWeight()*Shipment.GetLineItemQuantity(shipment, item.Id))
+                .Select(item => item.GetWeight() * Shipment.GetLineItemQuantity(shipment, item.LineItemId))
                 .Sum() * 1000; // KG to grams
             return PackageSize.InGrams((int)weight);
         }
