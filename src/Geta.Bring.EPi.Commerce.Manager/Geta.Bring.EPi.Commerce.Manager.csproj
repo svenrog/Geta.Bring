@@ -320,7 +320,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\EPiServerCommerceInitializationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
