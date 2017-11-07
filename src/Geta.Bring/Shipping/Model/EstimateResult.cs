@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Geta.Bring.Shipping.Model
 {
@@ -50,8 +51,22 @@ namespace Geta.Bring.Shipping.Model
             return new EstimateResult<T>
             {
                 Success = false,
-                ErrorMessages = new [] {message}
+                ErrorMessages = ParseErrorMessages(message)
             };
+        }
+
+        protected static string[] ParseErrorMessages(string message)
+        {
+            var regex = new Regex("FG_[A-Z0-9_]+");
+            var matches = regex.Matches(message);
+            var result = new string[matches.Count];
+
+            for (var i = 0; i < matches.Count; i++)
+            {
+                result[i] = matches[i].Value;
+            }
+
+            return result;
         }
 
         /// <summary>
