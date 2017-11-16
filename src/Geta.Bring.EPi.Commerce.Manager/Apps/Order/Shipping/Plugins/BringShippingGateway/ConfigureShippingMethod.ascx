@@ -43,4 +43,17 @@
             <asp:CheckBox runat="server" ID="cbPriceRounding" Checked="False"/>
         </td>
     </tr>
+    <tr>
+        <th class="FormLabelCell">Price adjustment:</th>
+        <td class="FormLabelCell">
+            <asp:RadioButton runat="server" ID="rbPriceAdjustmentAdd" Text="Add" GroupName="gPriceAdjustmentOperator" Checked="True" />
+            <asp:RadioButton runat="server" ID="rbPriceAdjustmentSubtract" Text="Subtract" GroupName="gPriceAdjustmentOperator" Checked="False" />
+        </td>
+    </tr>
+    <tr>
+        <th class="FormLabelCell">Price adjustment amount (%):</th>
+        <td class="FormLabelCell">
+            <asp:TextBox runat="server" ID="txtPercentAdjustment" />
+        </td>
+    </tr>
 </table>

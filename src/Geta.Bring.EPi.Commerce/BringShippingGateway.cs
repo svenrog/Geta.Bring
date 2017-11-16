@@ -12,26 +12,29 @@ using Mediachase.Commerce.Orders;
 using Mediachase.Commerce.Orders.Dto;
 using Mediachase.Commerce.Orders.Managers;
 using Geta.Bring.Shipping;
+using EPiServer.Commerce.Order;
+using Mediachase.Commerce.Inventory;
 
 namespace Geta.Bring.EPi.Commerce
 {
-    public class BringShippingGateway : IShippingGateway
+    public class BringShippingGateway : IShippingPlugin
     {
         private readonly IShippingClient _shippingClient;
+        private readonly IWarehouseRepository _warehouseRepository;
 
         public BringShippingGateway()
         {
             _shippingClient = ServiceLocator.Current.GetInstance<IShippingClient>();
+            _warehouseRepository = ServiceLocator.Current.GetInstance<IWarehouseRepository>();
         }
 
         // ReSharper disable once UnusedParameter.Local
-        public BringShippingGateway(IMarket market)
-            : this()
+        public BringShippingGateway(IMarket market) : this()
         {
         }
 
-        public ShippingRate GetRate(Guid methodId, Shipment shipment, ref string message)
-        {
+        public ShippingRate GetRate(Guid methodId, IShipment shipment, ref string message)
+        {            
             if (shipment == null)
             {
                 return null;
@@ -44,31 +47,20 @@ namespace Geta.Bring.EPi.Commerce
                 return null;
             }
 
-            var shipmentLineItems = Shipment.GetShipmentLineItems(shipment);
+            var shipmentLineItems = shipment.LineItems;
             if (shipmentLineItems.Count == 0)
             {
                 message = ErrorMessages.ShipmentContainsNoLineItems;
                 return null;
             }
 
-            if (shipment.Parent == null || shipment.Parent.Parent == null)
-            {
-                message = ErrorMessages.OrderFormOrOrderGroupNotFound;
-                return null;
-            }
-
-            var orderAddress =
-                shipment.Parent
-                    .Parent
-                    .OrderAddresses
-                    .FirstOrDefault(address => address.Name == shipment.ShippingAddressId);
-            if (orderAddress == null)
+            if (shipment.ShippingAddress == null)
             {
                 message = ErrorMessages.ShipmentAddressNotFound;
                 return null;
             }
 
-            var query = BuildQuery(orderAddress, shippingMethod, shipment, shipmentLineItems);
+            var query = BuildQuery(shipment, shippingMethod, shipmentLineItems);
             var estimate = _shippingClient.FindAsync<ShipmentEstimate>(query).Result;
             if (estimate.Success)
             {
@@ -85,14 +77,13 @@ namespace Geta.Bring.EPi.Commerce
             return null;
         }
 
-        private static EstimateQuery BuildQuery(
-            OrderAddress orderAddress,
+        private EstimateQuery BuildQuery(
+            IShipment shipment,
             ShippingMethodDto shippingMethod,
-            Shipment shipment, 
-            IEnumerable<LineItem> shipmentLineItems)
+            IEnumerable<ILineItem> shipmentLineItems)
         {
-            var shipmentLeg = CreateShipmentLeg(orderAddress, shippingMethod);
-            var packageSize = CreatePackageSize(shipment, shipmentLineItems);
+            var shipmentLeg = CreateShipmentLeg(shipment, shippingMethod);
+            var packageSize = CreatePackageSize(shipmentLineItems);
             var additionalParameters = CreateAdditionalParameters(shippingMethod);
             return new EstimateQuery(
                 shipmentLeg,
@@ -100,7 +91,7 @@ namespace Geta.Bring.EPi.Commerce
                 additionalParameters.ToArray());
         }
 
-        private static IEnumerable<IQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
+        private IEnumerable<IShippingQueryParameter> CreateAdditionalParameters(ShippingMethodDto shippingMethod)
         {
             var hasEdi = bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.Edi, "true"));
             yield return new Edi(hasEdi);
@@ -109,9 +100,26 @@ namespace Geta.Bring.EPi.Commerce
                 bool.Parse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PostingAtPostOffice, "false"));
             yield return new ShippedFromPostOffice(shippedFromPostOffice);
 
+            int priceAdjustmentPercent;
+            int.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentPercent, "0"), out priceAdjustmentPercent);
+
+            if (priceAdjustmentPercent > 0)
+            {
+                bool priceAdjustmentAdd;
+                bool.TryParse(shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceAdjustmentOperator, "true"), out priceAdjustmentAdd);
+
+                yield return priceAdjustmentAdd ? PriceAdjustment.IncreasePercent(priceAdjustmentPercent) : PriceAdjustment.DecreasePercent(priceAdjustmentPercent);
+            }
+
             var productCode = shippingMethod.GetShippingMethodParameterValue(ParameterNames.BringProductId, null)
                               ?? Product.Servicepakke.Code;
             yield return new Products(Product.GetByCode(productCode));
+
+            var customerNumber = shippingMethod.GetShippingMethodParameterValue(ParameterNames.BringCustomerNumber, null);
+            if (!string.IsNullOrWhiteSpace(customerNumber))
+            {
+                yield return new CustomerNumber(customerNumber);
+            }
 
             var additionalServicesCodes = shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices);
             var services = additionalServicesCodes.Split(',')
@@ -120,23 +128,40 @@ namespace Geta.Bring.EPi.Commerce
             yield return new AdditionalServices(services.ToArray());
         }
 
-        private static PackageSize CreatePackageSize(Shipment shipment, IEnumerable<LineItem> shipmentLineItems)
+        private PackageSize CreatePackageSize(IEnumerable<ILineItem> shipmentLineItems)
         {
             var weight = shipmentLineItems
-                .Select(item => item.GetWeight()*Shipment.GetLineItemQuantity(shipment, item.Id))
+                .Select(item => item.GetWeight() * item.Quantity)
                 .Sum() * 1000; // KG to grams
+
             return PackageSize.InGrams((int)weight);
         }
 
-        private static ShipmentLeg CreateShipmentLeg(OrderAddress orderAddress, ShippingMethodDto shippingMethod)
+        private ShipmentLeg CreateShipmentLeg(IShipment shipment, ShippingMethodDto shippingMethod)
         {
             var postalCodeFrom = shippingMethod.GetShippingMethodParameterValue(ParameterNames.PostalCodeFrom, null)
                                  ?? shippingMethod.GetShippingOptionParameterValue(ParameterNames.PostalCodeFrom);
+
             var countryCodeFrom = shippingMethod
                 .GetShippingOptionParameterValue(ParameterNames.CountryFrom, "NOR")
                 .ToIso2CountryCode();
-            var countryCodeTo = orderAddress.CountryCode.ToIso2CountryCode();
-            return new ShipmentLeg(postalCodeFrom, orderAddress.PostalCode, countryCodeFrom, countryCodeTo);
+
+            if (string.IsNullOrEmpty(shipment.WarehouseCode) == false)
+            {
+                var warehouse = _warehouseRepository.Get(shipment.WarehouseCode);
+                var warehousePostalCode = warehouse.ContactInformation?.PostalCode;
+                var warehouseCountryCode = warehouse.ContactInformation?.CountryCode;
+
+                if (string.IsNullOrEmpty(warehousePostalCode) == false && warehouse.IsPickupLocation)
+                {
+                    postalCodeFrom = warehousePostalCode;
+                    countryCodeFrom = warehouseCountryCode.ToIso2CountryCode();
+                }
+            }
+
+            var countryCodeTo = shipment.ShippingAddress.CountryCode.ToIso2CountryCode();
+
+            return new ShipmentLeg(postalCodeFrom, shipment.ShippingAddress.PostalCode, countryCodeFrom, countryCodeTo);
         }
 
         private ShippingRate CreateShippingRate(
@@ -145,7 +170,11 @@ namespace Geta.Bring.EPi.Commerce
             EstimateResult<ShipmentEstimate> result)
         {
             var estimate = result.Estimates.First();
-            var amount = AdjustPrice(shippingMethod, (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT);
+
+            var usesAdditionalServices = !string.IsNullOrEmpty(shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices));
+
+            var amount = AdjustPrice(shippingMethod, usesAdditionalServices ? (decimal)estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT :
+                                                                              (decimal)estimate.PackagePrice.PackagePriceWithoutAdditionalServices.AmountWithVAT);
 
             var moneyAmount = new Money(
                 amount,
@@ -185,6 +214,9 @@ namespace Geta.Bring.EPi.Commerce
             public const string Edi = "EDI";
             public const string AdditionalServices = "AdditionalServices";
             public const string PriceRounding = "PriceRounding";
+            public const string PriceAdjustmentOperator = "PriceAdjustmentOperator";
+            public const string PriceAdjustmentPercent = "PriceAdjustmentPercent";
+            public const string BringCustomerNumber = "BringCustomerNumber";
         }
 
         internal static class ErrorMessages

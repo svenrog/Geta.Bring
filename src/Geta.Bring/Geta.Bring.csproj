@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Geta.Bring</RootNamespace>
     <AssemblyName>Geta.Bring</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,14 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\net45\System.Net.Http.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -73,6 +75,23 @@
     <Compile Include="Booking\Model\Parties.cs" />
     <Compile Include="Booking\Model\Party.cs" />
     <Compile Include="Booking\Model\Product.cs" />
+    <Compile Include="Pickup\IPickupClient.cs" />
+    <Compile Include="Pickup\Model\IPickupQueryParameter.cs" />
+    <Compile Include="Pickup\Model\OpenDaysFilter.cs" />
+    <Compile Include="Pickup\Model\PickupLocationQuery.cs" />
+    <Compile Include="Pickup\Model\PickupPoint.cs" />
+    <Compile Include="Pickup\Model\PickupPointTypeFilter.cs" />
+    <Compile Include="Pickup\Model\PickupQuery.cs" />
+    <Compile Include="Pickup\Model\PickupResponse.cs" />
+    <Compile Include="Pickup\Model\PickupResult.cs" />
+    <Compile Include="Pickup\Model\PickupZipCodeQuery.cs" />
+    <Compile Include="Pickup\Model\QueryParameters\OpenHoursAfter.cs" />
+    <Compile Include="Pickup\Model\QueryParameters\OpenHoursBefore.cs" />
+    <Compile Include="Pickup\Model\QueryParameters\OpenOnDays.cs" />
+    <Compile Include="Pickup\Model\QueryParameters\PickupPointType.cs" />
+    <Compile Include="Pickup\Model\Time.cs" />
+    <Compile Include="Pickup\PickupClient.cs" />
+    <Compile Include="Pickup\PickupSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shipping\Infrastructure\DefaultingPropertyConverter.cs" />
     <Compile Include="Shipping\Infrastructure\DeliveryDateToDateTimeConverter.cs" />
@@ -87,6 +106,7 @@
     <Compile Include="Shipping\Model\GuiInformation.cs" />
     <Compile Include="Shipping\Model\IEstimate.cs" />
     <Compile Include="Shipping\Model\IQueryParameter.cs" />
+    <Compile Include="Shipping\Model\IShippingQueryParameter.cs" />
     <Compile Include="Shipping\Model\PackagePrice.cs" />
     <Compile Include="Shipping\Model\Price.cs" />
     <Compile Include="Shipping\Model\PriceEstimate.cs" />
@@ -94,6 +114,7 @@
     <Compile Include="Shipping\Model\Product.cs" />
     <Compile Include="Shipping\Model\ProductResponse.cs" />
     <Compile Include="Shipping\Model\QueryParameters\AdditionalServices.cs" />
+    <Compile Include="Shipping\Model\QueryParameters\CustomerNumber.cs" />
     <Compile Include="Shipping\Model\QueryParameters\Edi.cs" />
     <Compile Include="Shipping\Model\QueryParameters\PackageSize.cs" />
     <Compile Include="Shipping\Model\QueryParameters\PriceAdjustment.cs" />

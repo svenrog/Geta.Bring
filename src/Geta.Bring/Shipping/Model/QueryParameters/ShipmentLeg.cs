@@ -5,7 +5,7 @@ namespace Geta.Bring.Shipping.Model.QueryParameters
     /// <summary>
     /// Query parameter to describe shipment source and destination.
     /// </summary>
-    public class ShipmentLeg : IQueryParameter
+    public class ShipmentLeg : IShippingQueryParameter
     {
         /// <summary>
         /// Initializes new instance of <see cref="ShipmentLeg"/> with postal codes from/to for Norway.

@@ -1,5 +1,6 @@
-Bring .NET API and EPiServer Commerce module
-==================
+# Bring .NET API and EPiServer Commerce module
+
+![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_GetaBring_GetaBringDebug)/statusIcon)
 
 ## What is it?
 
@@ -58,6 +59,45 @@ Query requires at least two parameters - *ShipmentLeg* and *PackageSize* paramet
 - *ShippedFromPostOffice* - query parameter to describe if shipped from post office,
 - *ShippingDateAndTime* - query parameter to describe package shipping date and/or time to Bring,
 - *PriceAdjustment* - query parameter to describe price adjustments. Prices can be increased/decreased by percentage or amount or fixed price used.
+
+### Pickup API
+
+To start using Pickup API you have to create new *PickupClient* with provided settings.
+
+    var settings = new PickupSettings();
+    IPickupClient client = new PickupClient(settings);
+
+To find pickup points there are 4 different methods to use.
+
+    client.FindByZipCode(PickupZipCodeQuery query);
+
+Query requires that *CountryCode* and *ZipCode* are set.
+- *CountryCode* - Country. Possible values: NO, DK, SE, FI
+- *PostalCode* - Postal code.
+
+List of available additional parameters: https://developer.bring.com/api/pickup-point/#pickup-points-for-postal-code
+
+    client.FindByLocation(PickupLocationQuery query);
+
+Query requires that *CountryCode*, *Latitude* and *Longitude* are set.
+- *CountryCode* - Country. Possible values: NO, DK, SE, FI
+- *Latitude* - Latitude. Geographic coordinate specifying the north-south position.
+- *Longitude* - Longitude. Geographic coordinate specifying the east-west position.
+
+List of available additional parameters: https://developer.bring.com/api/pickup-point/#pickup-points-for-location
+
+    client.FindById(string countryCode, string id);
+
+- *countryCode* - Country. Possible values: NO, DK, SE, FI
+- *id* - Id of pickup point.
+
+List of available additional parameters: https://developer.bring.com/api/pickup-point/#a-specific-pickup-point
+
+    client.All(string countryCode);
+
+- *countryCode* - Country. Possible values: NO, DK, SE, FI
+
+Full documentation: https://developer.bring.com/api/pickup-point/#all-pickup-points-in-a-country
 
 ### Tracking API
 
@@ -200,7 +240,7 @@ To configure shipping methods you have to go to *Commerce Manager* - *Administra
 
 ### Shipping Guide API
 
-http://developer.bring.com/api/shippingguideapi.html
+http://developer.bring.com/api/shipping-guide/
 
 *Demo*
 
@@ -208,8 +248,8 @@ http://fraktguide.bring.no/fraktguide/demoVelgFraktalternativ.do?from=0484&to=04
 
 ### Tracking API
 
-http://developer.bring.com/api/trackingapi.html
+http://developer.bring.com/api/tracking/
 
 ### Booking API
 
-http://developer.bring.com/api/bookingapi.html
+http://developer.bring.com/api/booking
