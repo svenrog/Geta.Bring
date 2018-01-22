@@ -6,9 +6,14 @@
     <title>$title$</title>
     <authors>Geta AS</authors>
     <owners>Geta AS</owners>
+	<projectUrl>https://github.com/Geta/Geta.Bring/tree/master/src/Geta.Bring.EPi.Commerce</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2014</copyright>
     <tags>Bring EPiServer Commerce</tags>
+	<dependencies>
+      <dependency id="EPiServer.CMS.Core" version="[7.13.1, 8)" />
+      <dependency id="EPiServer.Commerce.Core" version="[8.0.0, 9)" />
+    </dependencies>
   </metadata>
 </package>
