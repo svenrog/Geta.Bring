@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+d<?xml version="1.0"?>
 <package >
   <metadata>
     <id>$id$</id>
@@ -6,6 +6,7 @@
     <title>$title$</title>
     <authors>Geta AS</authors>
     <owners>Geta AS</owners>
+	<projectUrl>https://github.com/Geta/Geta.Bring/tree/master/src/Geta.Bring</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2015</copyright>
