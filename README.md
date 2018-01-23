@@ -16,8 +16,6 @@ Start by installing NuGet packages in you project.
 
 ## Package maintainer
 
-https://github.com/marisks
-or
 https://github.com/svenrog
 
 
