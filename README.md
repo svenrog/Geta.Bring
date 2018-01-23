@@ -2,7 +2,7 @@
 
 ![](http://tc.geta.no/app/rest/builds/buildType:(id:TeamFrederik_GetaBring_GetaBringDebug)/statusIcon)
 
-## What is it?
+## Description
 
 This is a .NET Bring API library and module to integrate with EPiServer Commerce. Currently it supports these Bring APIs:
 - Shipping Guide API
@@ -12,6 +12,16 @@ This is a .NET Bring API library and module to integrate with EPiServer Commerce
 ## How to install?
 
 Start by installing NuGet packages in you project.
+
+
+## Package maintainer
+
+https://github.com/marisks
+or
+https://github.com/svenrog
+
+
+
 
 ### Bring API
 
