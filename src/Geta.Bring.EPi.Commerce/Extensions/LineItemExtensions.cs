@@ -1,4 +1,5 @@
 ﻿using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Catalog.Linking;
 using EPiServer.Commerce.Order;
 
 namespace Geta.Bring.EPi.Commerce.Extensions
@@ -25,11 +26,11 @@ namespace Geta.Bring.EPi.Commerce.Extensions
 
             if (package != null)
             {
-                weight = package.CalculateWeight();
+                weight = package.CalculateRelationsWeight<PackageEntry>();
             }
             else if (bundle != null)
             {
-                weight = bundle.CalculateWeight();
+                weight = bundle.CalculateRelationsWeight<BundleEntry>();
             }
 
             if (weight == 0)

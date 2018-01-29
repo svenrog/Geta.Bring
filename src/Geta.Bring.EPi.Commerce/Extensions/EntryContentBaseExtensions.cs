@@ -5,23 +5,28 @@ using EPiServer.ServiceLocation;
 
 namespace Geta.Bring.EPi.Commerce.Extensions
 {
-    internal static class PackageContentExtensions
+    internal static class EntryContentBaseExtensions
     {
         private static Injected<IRelationRepository> _injectedRelationRepository;
         private static Injected<IContentLoader> _injectedContentLoader;
 
-        public static decimal CalculateWeight(this PackageContent package)
+        public static decimal CalculateRelationsWeight<T>(this EntryContentBase entry) where T : EntryRelation
         {
-            var entryRelations = _injectedRelationRepository.Service.GetChildren<PackageEntry>(package.ContentLink);
+            if (entry == null)
+            {
+                return 0;
+            }
+
+            var relations = _injectedRelationRepository.Service.GetChildren<T>(entry.ContentLink);
             var contentLoader = _injectedContentLoader.Service;
 
             decimal weight = 0;
 
-            foreach (var entryRelation in entryRelations)
+            foreach (var entryRelation in relations)
             {
-                if (contentLoader.TryGet(entryRelation.Child, out EntryContentBase entry))
+                if (contentLoader.TryGet(entryRelation.Child, out EntryContentBase relationEntry))
                 {
-                    var stockPlacementEntry = entry as IStockPlacement;
+                    var stockPlacementEntry = relationEntry as IStockPlacement;
 
                     if (stockPlacementEntry != null)
                     {
