@@ -1,6 +1,5 @@
-﻿using EPiServer.Commerce.Order;
-using Mediachase.Commerce.Catalog;
-using Mediachase.Commerce.Catalog.Managers;
+﻿using EPiServer.Commerce.Catalog.ContentTypes;
+using EPiServer.Commerce.Order;
 
 namespace Geta.Bring.EPi.Commerce.Extensions
 {
@@ -13,26 +12,37 @@ namespace Geta.Bring.EPi.Commerce.Extensions
                 return 0;
             }
 
-            var catalogEntryDto = CatalogContext
-                .Current
-                .GetCatalogEntryDto(
-                    lineItem.Code, 
-                    new CatalogEntryResponseGroup(
-                        CatalogEntryResponseGroup.ResponseGroup.CatalogEntryFull));
+            var entry = lineItem.GetEntryContent();
 
-            if (catalogEntryDto.CatalogEntry.Count <= 0)
+            if (entry == null)
             {
                 return 0;
             }
 
-            // Todo: modify for packages
-            var variationRows = catalogEntryDto.CatalogEntry[0].GetVariationRows();
-            if (variationRows == null || variationRows.Length <= 0)
+            decimal weight = 0;
+            var package = entry as PackageContent;
+            var bundle = entry as BundleContent;
+
+            if (package != null)
             {
-                return 0;
+                weight = package.CalculateWeight();
+            }
+            else if (bundle != null)
+            {
+                weight = bundle.CalculateWeight();
             }
 
-            return (decimal)variationRows[0].Weight; 
+            if (weight == 0)
+            {
+                var stockPlacementEntry = entry as IStockPlacement;
+
+                if (stockPlacementEntry != null)
+                {
+                    weight = (decimal)stockPlacementEntry.Weight;
+                }
+            }
+
+            return weight;
         }
     }
 }
