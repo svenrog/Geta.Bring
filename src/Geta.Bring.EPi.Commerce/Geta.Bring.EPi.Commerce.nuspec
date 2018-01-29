@@ -12,8 +12,8 @@
     <copyright>Copyright 2014</copyright>
     <tags>Bring EPiServer Commerce</tags>
 	<dependencies>
-      <dependency id="EPiServer.CMS.Core" version="[7.13.1, 8)" />
-      <dependency id="EPiServer.Commerce.Core" version="[8.0.0, 9)" />
+      <dependency id="EPiServer.CMS.Core" version="[10.10.0, 11)" />
+      <dependency id="EPiServer.Commerce.Core" version="[11.0.0, 12)" />
     </dependencies>
   </metadata>
 </package>
