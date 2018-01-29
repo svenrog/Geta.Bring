@@ -308,9 +308,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BringShippingGateway.cs" />
+    <Compile Include="Extensions\EntryContentBaseExtensions.cs" />
     <Compile Include="Extensions\LineItemExtensions.cs" />
-    <Compile Include="Extensions\BundleContentExtensions.cs" />
-    <Compile Include="Extensions\PackageContentExtensions.cs" />
     <Compile Include="Extensions\ShippingMethodDtoExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Model\BringShippingRate.cs" />
