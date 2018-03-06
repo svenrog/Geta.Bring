@@ -56,4 +56,10 @@
             <asp:TextBox runat="server" ID="txtPercentAdjustment" />
         </td>
     </tr>
+    <tr>
+        <th class="FormLabelCell">Get prices without tax:</th>
+        <td class="FormLabelCell">
+            <asp:CheckBox runat="server" ID="cbPriceExclTax" Checked="False"/>
+        </td>
+    </tr>
 </table>
