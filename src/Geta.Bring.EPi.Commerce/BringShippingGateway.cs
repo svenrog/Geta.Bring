@@ -62,7 +62,7 @@ namespace Geta.Bring.EPi.Commerce
 
             var query = BuildQuery(shipment, shippingMethod, shipmentLineItems);
             var estimate = _shippingClient.FindAsync<ShipmentEstimate>(query).Result;
-            if (estimate.Success)
+            if (estimate.Success && estimate.Estimates.Any())
             {
                 return CreateShippingRate(methodId, shippingMethod, estimate);
             }
@@ -169,14 +169,7 @@ namespace Geta.Bring.EPi.Commerce
             ShippingMethodDto shippingMethod, 
             EstimateResult<ShipmentEstimate> result)
         {
-            var estimate = result.Estimates.FirstOrDefault();
-
-            // Estimate Query success but no estimates exists.
-            if (estimate == null)
-            {
-                return null;
-            }
-
+            var estimate = result.Estimates.First();
             var priceExclTax = shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceExclTax) == "True";
             var usesAdditionalServices = !string.IsNullOrEmpty(shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices));
             var priceWithAdditionalServices = !priceExclTax
