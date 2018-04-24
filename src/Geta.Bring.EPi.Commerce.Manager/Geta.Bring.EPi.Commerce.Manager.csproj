@@ -255,15 +255,6 @@
     <Content Include="Apps\Order\Shipping\Plugins\BringShippingGateway\ConfigureShipping.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="App_Data\EcfSqlConnection_8b3ef06a.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\EcfSqlConnection_a587d8b7.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\EcfSqlConnection_ed1a1ccc.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\Order\Shipping\Plugins\BringShippingGateway\ConfigureShippingMethod.ascx.cs">
