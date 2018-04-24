@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>Geta AS</authors>
     <owners>Geta AS</owners>
-	<projectUrl>https://github.com/Geta/Geta.Bring</projectUrl>
+	  <projectUrl>https://github.com/Geta/Geta.Bring</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2018</copyright>
@@ -14,6 +14,6 @@
 	<dependencies>
       <dependency id="EPiServer.CMS.Core" version="[11.2.1, 12)" />
       <dependency id="EPiServer.Commerce.Core" version="[11.5.0, 12)" />
-    </dependencies>
+  </dependencies>
   </metadata>
 </package>

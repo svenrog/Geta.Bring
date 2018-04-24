@@ -62,7 +62,7 @@ namespace Geta.Bring.EPi.Commerce
 
             var query = BuildQuery(shipment, shippingMethod, shipmentLineItems);
             var estimate = _shippingClient.FindAsync<ShipmentEstimate>(query).Result;
-            if (estimate.Success)
+            if (estimate.Success && estimate.Estimates.Any())
             {
                 return CreateShippingRate(methodId, shippingMethod, estimate);
             }
@@ -170,11 +170,17 @@ namespace Geta.Bring.EPi.Commerce
             EstimateResult<ShipmentEstimate> result)
         {
             var estimate = result.Estimates.First();
-
+            var priceExclTax = shippingMethod.GetShippingMethodParameterValue(ParameterNames.PriceExclTax) == "True";
             var usesAdditionalServices = !string.IsNullOrEmpty(shippingMethod.GetShippingMethodParameterValue(ParameterNames.AdditionalServices));
+            var priceWithAdditionalServices = !priceExclTax
+                ? (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT
+                : (decimal) estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithoutVAT;
+            var priceWithoutAdditionalServices = !priceExclTax
+                ? (decimal) estimate.PackagePrice.PackagePriceWithoutAdditionalServices.AmountWithVAT
+                : (decimal) estimate.PackagePrice.PackagePriceWithoutAdditionalServices.AmountWithoutVAT;
 
-            var amount = AdjustPrice(shippingMethod, usesAdditionalServices ? (decimal)estimate.PackagePrice.PackagePriceWithAdditionalServices.AmountWithVAT :
-                                                                              (decimal)estimate.PackagePrice.PackagePriceWithoutAdditionalServices.AmountWithVAT);
+            var amount = AdjustPrice(shippingMethod, usesAdditionalServices ? priceWithAdditionalServices :
+                                                                              priceWithoutAdditionalServices);
 
             var moneyAmount = new Money(
                 amount,
@@ -217,6 +223,7 @@ namespace Geta.Bring.EPi.Commerce
             public const string PriceAdjustmentOperator = "PriceAdjustmentOperator";
             public const string PriceAdjustmentPercent = "PriceAdjustmentPercent";
             public const string BringCustomerNumber = "BringCustomerNumber";
+            public const string PriceExclTax = "PriceExclTax";
         }
 
         internal static class ErrorMessages

@@ -29,6 +29,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var priceRoundingRow = GetOrCreateParameterRow("PriceRounding");
                 var priceAdjustmentOperatorRow = GetOrCreateParameterRow("PriceAdjustmentOperator");
                 var priceAdjustmentPercentRow = GetOrCreateParameterRow("PriceAdjustmentPercent");
+                var priceExclTaxRow = GetOrCreateParameterRow("PriceExclTax");
 
                 productIdRow.Value = ddlBringProducts.SelectedValue;
                 customerNumberRow.Value = txtCustomerNumber.Text;
@@ -39,6 +40,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 priceRoundingRow.Value = cbPriceRounding.Checked.ToString();
                 priceAdjustmentOperatorRow.Value = rbPriceAdjustmentAdd.Checked.ToString();
                 priceAdjustmentPercentRow.Value = txtPercentAdjustment.Text;
+                priceExclTaxRow.Value = cbPriceExclTax.Checked.ToString();
 
                 AttachParameterRow(productIdRow);
                 AttachParameterRow(customerNumberRow);
@@ -49,6 +51,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 AttachParameterRow(priceRoundingRow);
                 AttachParameterRow(priceAdjustmentOperatorRow);
                 AttachParameterRow(priceAdjustmentPercentRow);
+                AttachParameterRow(priceExclTaxRow);
             }
         }
 
@@ -73,6 +76,7 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 var priceRoundingRow = GetParameterRow("PriceRounding");
                 var priceAdjustmentOperatorRow = GetParameterRow("PriceAdjustmentOperator");
                 var priceAdjustmentPercentRow = GetParameterRow("PriceAdjustmentPercent");
+                var priceExclTaxRow = GetParameterRow("PriceExclTax");
 
                 if (productIdRow != null)
                 {
@@ -112,6 +116,12 @@ namespace Geta.Bring.EPi.Commerce.Manager.Apps.Order.Shipping.Plugins.BringShipp
                 if (priceAdjustmentPercentRow != null)
                 {
                     txtPercentAdjustment.Text = priceAdjustmentPercentRow.Value;
+                }
+
+                if (priceExclTaxRow != null)
+                {
+                    var priceExclTax = priceExclTaxRow.Value.Equals("true", StringComparison.InvariantCultureIgnoreCase);
+                    cbPriceExclTax.Checked = priceExclTax;
                 }
             }
         }
