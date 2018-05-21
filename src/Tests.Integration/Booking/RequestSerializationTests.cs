@@ -22,7 +22,7 @@ namespace Tests.Integration.Booking
                 Consignments = new List<Consignment>
                 {
                     new Consignment(
-                        "INTERNAL-123456", 
+                        "INTERNAL-123456",
                         DateTime.Parse("Sat, 22 Nov 2014 13:33:56.483"),
                         new Parties(
                             new Party(
@@ -69,9 +69,9 @@ namespace Tests.Integration.Booking
                 }
             };
             var result = JsonConvert.SerializeObject(request, new MilisecondEpochConverter());
-            var actual = JsonConvert.DeserializeObject<BookingRequest>(result, new MilisecondEpochConverter()); 
+            var actual = JsonConvert.DeserializeObject<BookingRequest>(result, new MilisecondEpochConverter());
 
-            expected.ShouldBeEquivalentTo(actual);
+            expected.Should().BeEquivalentTo(actual);
         }
 
         private const string ExpectedJson = @"
