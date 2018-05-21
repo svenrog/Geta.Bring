@@ -101,6 +101,10 @@ ClientBin
 *.dbmdl
 Generated_Code #added for RIA/Silverlight projects
 
+# Visual Studo 2015 cache/options directory
+.vs/
+*/.vs/*
+
 # Backup & report files from converting an old project file to a newer
 # Visual Studio version. Backup files are not needed, because we have git ;-)
 _UpgradeReport_Files/

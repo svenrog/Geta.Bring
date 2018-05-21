@@ -54,7 +54,7 @@ namespace Tests.Integration.Shipping
 
             var actual = JsonConvert.DeserializeObject<ShippingResponse>(SingleProductSuccessJsonResponse);
 
-            expected.ShouldBeEquivalentTo(actual);
+            expected.Should().BeEquivalentTo(actual);
         }
 
         private const string SingleProductSuccessJsonResponse = @"
