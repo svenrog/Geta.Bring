@@ -33,8 +33,13 @@ namespace Geta.Bring.EPi.Commerce
         {
         }
 
+        public ShippingRate GetRate(IMarket market, Guid methodId, IShipment shipment, ref string message)
+        {
+            return GetRate(methodId, shipment, ref message);
+        }
+
         public ShippingRate GetRate(Guid methodId, IShipment shipment, ref string message)
-        {            
+        {
             if (shipment == null)
             {
                 return null;
@@ -165,8 +170,8 @@ namespace Geta.Bring.EPi.Commerce
         }
 
         private ShippingRate CreateShippingRate(
-            Guid methodId, 
-            ShippingMethodDto shippingMethod, 
+            Guid methodId,
+            ShippingMethodDto shippingMethod,
             EstimateResult<ShipmentEstimate> result)
         {
             var estimate = result.Estimates.First();
@@ -228,13 +233,13 @@ namespace Geta.Bring.EPi.Commerce
 
         internal static class ErrorMessages
         {
-            public const string ShipmentAddressNotFound = 
+            public const string ShipmentAddressNotFound =
                 "The shipment address not found in order group.";
 
             public const string OrderFormOrOrderGroupNotFound =
                 "The order form or order group not found for shipment.";
 
-            public const string ShippingMethodCouldNotBeLoaded = 
+            public const string ShippingMethodCouldNotBeLoaded =
                 "The shipping method could not be loaded by '{0}' id.";
 
             public const string ShipmentContainsNoLineItems =

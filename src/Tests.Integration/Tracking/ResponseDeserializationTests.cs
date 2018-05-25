@@ -91,7 +91,7 @@ namespace Tests.Integration.Tracking
 
             var actual = JsonConvert.DeserializeObject<TrackingResponse>(SuccessJsonResponse);
 
-            expected.ShouldBeEquivalentTo(actual);
+            expected.Should().BeEquivalentTo(actual);
         }
 
         private const string SuccessJsonResponse = @"

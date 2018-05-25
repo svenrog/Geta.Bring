@@ -23,8 +23,8 @@ namespace Tests.Integration.Tracking
 
             var actual = await sut.TrackAsync(trackingNumber);
 
-            expected.ShouldBeEquivalentTo(actual,
-                options => options.Excluding(ctx => Regex.IsMatch(ctx.PropertyPath, @"item\[.+\].PackageSet\[.+\].EventSet\[.+\].Definitions")));
+            expected.Should().BeEquivalentTo(actual,
+                options => options.Excluding(ctx => Regex.IsMatch(ctx.SelectedMemberPath, @"item\[.+\].PackageSet\[.+\].EventSet\[.+\].Definitions")));
         }
     }
 }

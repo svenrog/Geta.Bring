@@ -50,7 +50,7 @@ namespace Tests.Integration.Booking
 
             var actual = JsonConvert.DeserializeObject<BookingResponse>(SuccessJsonResponse, new MilisecondEpochConverter());
 
-            expected.ShouldBeEquivalentTo(actual);
+            expected.Should().BeEquivalentTo(actual);
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace Tests.Integration.Booking
 
             var actual = JsonConvert.DeserializeObject<BookingResponse>(ErrorJsonResponse, new MilisecondEpochConverter());
 
-            expected.ShouldBeEquivalentTo(actual);
+            expected.Should().BeEquivalentTo(actual);
         }
 
         private const string SuccessJsonResponse = @"
