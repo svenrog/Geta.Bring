@@ -11,7 +11,7 @@
             return new ShipmentEstimate(
                 Product.GetByCode(response.ProductId),
                 response.GuiInformation,
-                response.Price,
+                response.NetPrice ?? response.Price,
                 response.ExpectedDelivery);
         }
     }

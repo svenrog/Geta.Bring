@@ -94,6 +94,8 @@
     <Compile Include="Shipping\Infrastructure\ObjectToArrayConverter.cs" />
     <Compile Include="Shipping\IShippingClient.cs" />
     <Compile Include="Shipping\Model\AdditionalService.cs" />
+    <Compile Include="Shipping\Model\CargoAgreementPrices.cs" />
+    <Compile Include="Shipping\Model\AgreementPrice.cs" />
     <Compile Include="Shipping\Model\DeliveryEstimate.cs" />
     <Compile Include="Shipping\Model\DeliveryEstimateQueryHandler.cs" />
     <Compile Include="Shipping\Model\EstimateQuery.cs" />
@@ -137,7 +139,9 @@
     <Compile Include="Tracking\TrackingSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
