@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Geta.Bring.Shipping.Infrastructure;
 using Newtonsoft.Json;
 
 namespace Geta.Bring.Shipping.Model
@@ -11,7 +13,8 @@ namespace Geta.Bring.Shipping.Model
         public PackagePrice(
             string currencyIdentificationCode,
             Price packagePriceWithoutAdditionalServices, 
-            Price packagePriceWithAdditionalServices)
+            Price packagePriceWithAdditionalServices,
+            CargoAgreementPrices cargoAgreementPrices = null)
         {
             if (currencyIdentificationCode == null) throw new ArgumentNullException("currencyIdentificationCode");
             if (packagePriceWithoutAdditionalServices == null)
@@ -21,6 +24,7 @@ namespace Geta.Bring.Shipping.Model
             PackagePriceWithAdditionalServices = packagePriceWithAdditionalServices;
             PackagePriceWithoutAdditionalServices = packagePriceWithoutAdditionalServices;
             CurrencyIdentificationCode = currencyIdentificationCode;
+            CargoAgreementPrices = cargoAgreementPrices;
         }
 
         /// <summary>
@@ -38,5 +42,10 @@ namespace Geta.Bring.Shipping.Model
         /// Price with additional services.
         /// </summary>
         public Price PackagePriceWithAdditionalServices { get; private set; }
+
+        /// <summary>
+        /// Special cargo agreement prices.
+        /// </summary>
+        public CargoAgreementPrices CargoAgreementPrices { get; private set; }
     }
 }
