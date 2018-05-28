@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Geta.Bring.Shipping.Infrastructure;
 using Newtonsoft.Json;
 
 namespace Geta.Bring.Shipping.Model
@@ -23,6 +25,17 @@ namespace Geta.Bring.Shipping.Model
             CurrencyIdentificationCode = currencyIdentificationCode;
         }
 
+        [JsonConstructor]
+        public PackagePrice(
+            string currencyIdentificationCode,
+            Price packagePriceWithoutAdditionalServices, 
+            Price packagePriceWithAdditionalServices,
+            CargoAgreementPrices cargoAgreementPrices) : 
+                this(currencyIdentificationCode, packagePriceWithoutAdditionalServices, packagePriceWithAdditionalServices)
+        {
+            CargoAgreementPrices = cargoAgreementPrices;
+        }
+
         /// <summary>
         /// Currency code.
         /// </summary>
@@ -38,5 +51,10 @@ namespace Geta.Bring.Shipping.Model
         /// Price with additional services.
         /// </summary>
         public Price PackagePriceWithAdditionalServices { get; private set; }
+
+        /// <summary>
+        /// Special cargo agreement prices.
+        /// </summary>
+        public CargoAgreementPrices CargoAgreementPrices { get; private set; }
     }
 }
