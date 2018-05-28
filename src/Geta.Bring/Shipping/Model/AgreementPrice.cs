@@ -1,4 +1,6 @@
-﻿namespace Geta.Bring.Shipping.Model
+﻿using System;
+
+namespace Geta.Bring.Shipping.Model
 {
     public class AgreementPrice
     {
@@ -9,6 +11,8 @@
             int subAgreementNumber,
             double price)
         {
+            if (agreementName == null) throw new ArgumentNullException("agreementName");
+            
             AgreementName = agreementName;
             AgreementNumber = agreementNumber;
             SubAgreementName = subAgreementName;

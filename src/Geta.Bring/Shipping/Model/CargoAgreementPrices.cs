@@ -1,9 +1,12 @@
-﻿namespace Geta.Bring.Shipping.Model
+﻿using System;
+
+namespace Geta.Bring.Shipping.Model
 {
     public class CargoAgreementPrices
     {
         public CargoAgreementPrices(AgreementPrice cargoAgreementPrice)
         {
+            if (cargoAgreementPrice == null) throw new ArgumentNullException("cargoAgreementPrice");
             CargoAgreementPrice = cargoAgreementPrice;
         }
 

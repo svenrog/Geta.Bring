@@ -13,8 +13,7 @@ namespace Geta.Bring.Shipping.Model
         public PackagePrice(
             string currencyIdentificationCode,
             Price packagePriceWithoutAdditionalServices, 
-            Price packagePriceWithAdditionalServices,
-            CargoAgreementPrices cargoAgreementPrices = null)
+            Price packagePriceWithAdditionalServices)
         {
             if (currencyIdentificationCode == null) throw new ArgumentNullException("currencyIdentificationCode");
             if (packagePriceWithoutAdditionalServices == null)
@@ -24,6 +23,16 @@ namespace Geta.Bring.Shipping.Model
             PackagePriceWithAdditionalServices = packagePriceWithAdditionalServices;
             PackagePriceWithoutAdditionalServices = packagePriceWithoutAdditionalServices;
             CurrencyIdentificationCode = currencyIdentificationCode;
+        }
+
+        [JsonConstructor]
+        public PackagePrice(
+            string currencyIdentificationCode,
+            Price packagePriceWithoutAdditionalServices, 
+            Price packagePriceWithAdditionalServices,
+            CargoAgreementPrices cargoAgreementPrices) : 
+                this(currencyIdentificationCode, packagePriceWithoutAdditionalServices, packagePriceWithAdditionalServices)
+        {
             CargoAgreementPrices = cargoAgreementPrices;
         }
 
