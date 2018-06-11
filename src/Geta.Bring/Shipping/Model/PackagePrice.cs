@@ -27,6 +27,17 @@ namespace Geta.Bring.Shipping.Model
             CargoAgreementPrices = cargoAgreementPrices;
         }
 
+        [JsonConstructor]
+        public PackagePrice(
+            string currencyIdentificationCode,
+            Price packagePriceWithoutAdditionalServices, 
+            Price packagePriceWithAdditionalServices,
+            CargoAgreementPrices cargoAgreementPrices) : 
+                this(currencyIdentificationCode, packagePriceWithoutAdditionalServices, packagePriceWithAdditionalServices)
+        {
+            CargoAgreementPrices = cargoAgreementPrices;
+        }
+
         /// <summary>
         /// Currency code.
         /// </summary>

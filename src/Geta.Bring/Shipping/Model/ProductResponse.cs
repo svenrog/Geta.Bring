@@ -1,4 +1,6 @@
-﻿namespace Geta.Bring.Shipping.Model
+﻿using Newtonsoft.Json;
+
+namespace Geta.Bring.Shipping.Model
 {
     internal class ProductResponse
     {
@@ -7,15 +9,26 @@
             string productCodeInProductionSystem, 
             GuiInformation guiInformation, 
             PackagePrice price,
-            ExpectedDelivery expectedDelivery,
-            PackagePrice netPrice = null)
+            ExpectedDelivery expectedDelivery)
         {
             ExpectedDelivery = expectedDelivery;
             Price = price;
-            NetPrice = netPrice;
             GuiInformation = guiInformation;
             ProductCodeInProductionSystem = productCodeInProductionSystem;
             ProductId = productId;
+        }
+
+        [JsonConstructor]
+        public ProductResponse(
+            string productId, 
+            string productCodeInProductionSystem, 
+            GuiInformation guiInformation, 
+            PackagePrice price,
+            PackagePrice netPrice,
+            ExpectedDelivery expectedDelivery) : 
+                this(productId, productCodeInProductionSystem, guiInformation, price, expectedDelivery)
+        {
+            NetPrice = netPrice;
         }
 
         public string ProductId { get; private set; }

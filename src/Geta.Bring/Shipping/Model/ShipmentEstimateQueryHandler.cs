@@ -1,4 +1,6 @@
-﻿namespace Geta.Bring.Shipping.Model
+﻿using Geta.Bring.Shipping.Extensions;
+
+namespace Geta.Bring.Shipping.Model
 {
     public class ShipmentEstimateQueryHandler : QueryHandler<ShipmentEstimate>
     {
@@ -11,7 +13,7 @@
             return new ShipmentEstimate(
                 Product.GetByCode(response.ProductId),
                 response.GuiInformation,
-                response.NetPrice ?? response.Price,
+                response.GetPackagePrice(),
                 response.ExpectedDelivery);
         }
     }

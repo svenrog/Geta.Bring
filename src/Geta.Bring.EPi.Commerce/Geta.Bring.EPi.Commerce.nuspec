@@ -11,9 +11,5 @@
     <description>$description$</description>
     <copyright>Copyright 2018</copyright>
     <tags>Bring EPiServer Commerce</tags>
-	<dependencies>
-      <dependency id="EPiServer.CMS.Core" version="[11.2.1, 12)" />
-      <dependency id="EPiServer.Commerce.Core" version="[11.5.0, 12)" />
-  </dependencies>
   </metadata>
 </package>
