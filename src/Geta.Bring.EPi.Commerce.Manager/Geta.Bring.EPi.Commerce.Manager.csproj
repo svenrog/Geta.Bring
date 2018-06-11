@@ -255,15 +255,6 @@
     <Content Include="Apps\Order\Shipping\Plugins\BringShippingGateway\ConfigureShipping.ascx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <Content Include="App_Data\EcfSqlConnection_8b3ef06a.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\EcfSqlConnection_a587d8b7.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Data\EcfSqlConnection_ed1a1ccc.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Apps\Order\Shipping\Plugins\BringShippingGateway\ConfigureShippingMethod.ascx.cs">
@@ -324,6 +315,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
